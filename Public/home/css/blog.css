@@ -130,14 +130,17 @@ box-shadow: 0 1px 4px 0 #9F9F9F;
 }
 
 /* Sidebar modules for boxing content */
+
+.blog-sidebar{
+  margin-top:70px;
+}
 .sidebar-module {
 
   padding: 15px;
   margin: 0 -15px 15px;
 }
 .sidebar-module-inset {
-		    margin-top: 70px;
-			margin-bottom:-50px;
+
   padding: 15px;
   background-color: white;
   border-radius: 4px;
@@ -182,6 +185,131 @@ box-shadow: 0 1px 4px 0 #9F9F9F;
   margin-bottom: 20px;
   color: #999;
 }
+.post-header{
+  border-bottom: 1px solid #bfbfbf;
+}
+.breadcrumb{
+  margin:-20px 0 0 -10px;
+  background-color: white;
+  font-size: 14px;
+}
+
+/*
+  * sign form (register and login)
+*/
+.signform{
+
+  font-size:14px;
+}
+.signform form {
+  margin-top:20px;
+  padding: 20px 50px 40px 50px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  -moz-box-shadow: 0 1px 5px 0 rgba(0,0,0,.3);
+  -webkit-box-shadow: 0 1px 5px 0 rgba(0,0,0,.3);
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,.3);
+  font-size: 14px;
+
+}
+
+.signform table td{
+  padding:5px 0;
+
+}
+
+
+.signform form input {
+  width: 50%;
+  height: 30px;
+  background: #fcfcfc;
+  border: 1px solid #ddd;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 0 1px 3px 0 rgba(0,0,0,.1) inset;
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.1) inset;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,.1) inset;
+  font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+  color: #888;
+  font-size: 14px;
+  margin-left:10px;
+  padding:0 6px;
+}
+
+.signform form input:focus {
+  border: 1px solid #ccc;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.signform form label {
+  margin: 7px 0 10px 0;
+  font-size: 14px;
+  font-weight: normal;
+  text-align: left;
+}
+
+.signform form span {
+  color: #a3a3a3;
+  font-size:12px;
+  line-height: 40px;
+  margin:30px 10px;
+}
+.signform a,.signform img{
+  margin-left: 10px;
+}
+
+.signform form input:-moz-placeholder { color: #aaa; }
+.signform form input:-ms-input-placeholder { color: #aaa; }
+.signform form input::-webkit-input-placeholder { color: #aaa; }
+
+.signform form button {
+  cursor: pointer;
+  width: 50%;
+  height: 42px;
+  margin-top: 5px;
+  margin-left:10px;
+  padding: 0;
+  background: #eb4141;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  border: 0;
+  -moz-box-shadow: 0 15px 30px 0 rgba(255,255,255,.1) inset;
+  -webkit-box-shadow: 0 15px 30px 0 rgba(255,255,255,.1) inset;
+  box-shadow: 0 15px 30px 0 rgba(255,255,255,.1) inset;
+  font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,.1);
+  -o-transition: all .2s;
+  -moz-transition: all .2s;
+  -webkit-transition: all .2s;
+  -ms-transition: all .2s;
+}
+
+.signform form button:hover {
+  -moz-box-shadow: 0 -15px 30px 0 rgba(255,255,255,.05) inset;
+  -webkit-box-shadow: 0 -15px 30px 0 rgba(255,255,255,.05) inset;
+  box-shadow: 0 -15px 30px 0 rgba(255,255,255,.05) inset;
+}
+
+.signform form button:active {
+  -moz-box-shadow:
+          0 -15px 30px 0 rgba(255,255,255,.05) inset,
+          0 5px 8px 0 rgba(0,0,0,.1) inset;
+  -webkit-box-shadow:
+          0 -15px 30px 0 rgba(255,255,255,.05) inset,
+          0 5px 8px 0 rgba(0,0,0,.1) inset;
+  box-shadow:
+          0 -15px 30px 0 rgba(255,255,255,.05) inset,
+          0 5px 8px 0 rgba(0,0,0,.1) inset;
+}
+
 
 
 /*
