@@ -198,3 +198,38 @@ box-shadow: 0 1px 4px 0 #9F9F9F;
 .blog-footer p:last-child {
   margin-bottom: 0;
 }
+
+.nav-tags li{
+margin: 0px 10px 10px 10px;
+}
+.nav-tags li a{
+  padding: 2px 3px;
+  font-size: 14px;
+  color: #000000;
+}
+.nav-nodes{
+  padding: 2px 3px;
+  font-size: 10px;
+  color: #000000;
+}
+.panel-heading{
+  padding: 2px 10px 2px 10px;
+}
+.panel{
+  border: 0;
+}
+.media-heading{
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.media-heading a{
+  color: black;
+}
+.tag p{
+  font-size: 5px;
+}
+td a{
+  font-size: 14px;
+  color: #778087;
+  margin-top: 0;
+}
