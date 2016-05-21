@@ -5,6 +5,7 @@
 body {
   font-family: Georgia, "Times New Roman", Times, serif;
   color: #555;
+  background-color:#E2E2E2;
 }
 
 h1, .h1,
@@ -18,7 +19,17 @@ h6, .h6 {
   font-weight: normal;
   color: #333;
 }
-
+.navbar{
+	background-color:white;
+box-shadow: 0 1px 4px 0 #9F9F9F;
+}
+.container-fluid{
+	width:75%;
+}
+  .container {
+  margin-top:20px;
+  
+  }
 
 /*
  * Override Bootstrap's default container.
