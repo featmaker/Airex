@@ -7,9 +7,12 @@ use Home\Controller\BaseController;
 */
 class UserController extends BaseController
 {
-	
-	function __construct(argument)
-	{
-		parent::__construct();
+
+	public function login(){
+		$this->display();
+	}
+
+	public function register(){
+		$this->display();
 	}
 }

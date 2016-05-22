@@ -361,3 +361,6 @@ td a{
   color: #778087;
   margin-top: 0;
 }
+.info:hover{
+  text-decoration: none;
+}
