@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
    <!-- Bootstrap core CSS -->
-    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/blog.css">
@@ -29,7 +29,7 @@
 	        </div>
 	        <div id="navbar" class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav navbar-right">
-	            <li><a href="/">首页</a></li>
+	            <li><a href="__ROOT__">首页</a></li>
 	            <li><a href="#">设置</a></li>
 	            <li><a href="#">个人中心</a></li>
 	            <li><a href="#">帮助</a></li>
@@ -45,16 +45,7 @@
       <div class="row">
         <div class="col-sm-8 blog-main">
 
-		    <block name="page-main"></block>					<!-- 页面主要内容区 -->
-
-		    <block name="pager">								      <!-- 分页部分 -->
-    		  <nav>
-    		    <ul class="pager">
-    		      <li><a href="#">Previous</a></li>
-    		      <li><a href="#">Next</a></li>
-    		    </ul>
-    		  </nav>
-        </block>
+		      <block name="page-main"></block>					<!-- 页面主要内容区 -->
 
         </div><!-- /.blog-main -->
 
@@ -69,7 +60,8 @@
 
     <footer class="blog-footer">
     <block name="footer">									<!-- 页脚部分 -->
-      <p>Blog template built for <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+      <p>Blog template built for <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.
+      </p>
 	        <p>Copyright AirEX.</p>
       <p>
         <a href="#">Back to top</a>
@@ -77,14 +69,11 @@
       </block>
     </footer>
 
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="http://apps.bdimg.com/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/jquery/3.0.0-rc1/jquery.min.js"></script>
     <script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-	<block name="js-append">
-   </block>
+
+  <block name="js"></block>
+
+
   </body>
 </html>

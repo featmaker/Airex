@@ -364,3 +364,9 @@ td a{
 .info:hover{
   text-decoration: none;
 }
+.nav-active{
+  background-color: #ECF0F1;
+}
+.nav-active a{
+  color: #22313F;
+}
