@@ -12,7 +12,7 @@ class TopicController extends BaseController
 	function __construct()
 	{
 		parent::__construct();
-		if (!checkLogin()) {
+		if (checkLogin()) {
 			$this->redirect("User/login",'',0);
 		}
 	}
