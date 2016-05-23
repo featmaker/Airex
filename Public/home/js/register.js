@@ -10,9 +10,9 @@ $(document).ready(function(){
         //判断username
         if ($(this).is("#username")){
 
-            if (this.value=="" || this.value.length < 6){
+            if (this.value=="" || ( this.value!="" && !/^\w+$/.test(this.value) )){
 
-                var hdw1 = $("<span class='tips error'>× 用户名不得小于6位</span>");
+                var hdw1 = $("<span class='tips error'>× 用户名不合法</span>");
 
                 $(this).parent().append(hdw1);
 
