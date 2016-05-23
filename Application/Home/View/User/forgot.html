@@ -1,11 +1,11 @@
 <extend name="Public:base" />
-<block name="title"><title>登录 - Airex</title></block>
+<block name="title"><title>找回密码 - Airex</title></block>
 
 <block name="page-main">
     <div class="post-header">
         <ol class="breadcrumb">
             <li><a href="/">Airex</a></li>
-            <li class="active">登录</li>
+            <li class="active">找回密码</li>
         </ol>
     </div>
 
@@ -14,18 +14,10 @@
             <table cellpadding="5" cellspacing="0" border="0" width="100%">
                 <tr>
                     <td width="120" align="right" valign="top">
-                        <label>用户名</label>
+                        <label>电子邮箱</label>
                     </td>
                     <td width="auto" align="left">
-                        <input type="text" name="username">
-                    </td>
-                </tr>
-                <tr>
-                    <td width="120" align="right" valign="top">
-                        <label>密码</label>
-                    </td>
-                    <td width="auto" align="left">
-                        <input type="password" name="password">
+                        <input type="email" name="email">
                     </td>
                 </tr>
                 <tr>
@@ -34,19 +26,19 @@
                     </td>
                     <td width="auto" align="left">
 
-                        <button type="submit">登录</button>
+                        <span>系统将向你帐号设置的电子邮箱发送一封重置密码的电子邮件.</span>
                     </td>
                 </tr>
-
                 <tr>
                     <td width="120" align="right" valign="top">
 
                     </td>
                     <td width="auto" align="left">
 
-                        <a href="{:U('User/forgot')}">忘记密码了？</a>
+                        <button type="submit">找回密码</button>
                     </td>
                 </tr>
+
             </table>
         </form>
     </div>

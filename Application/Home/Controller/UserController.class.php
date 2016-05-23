@@ -30,4 +30,10 @@ class UserController extends BaseController
 
 		$this->display();
 	}
+
+
+	public function forgot(){
+
+		$this->display();
+	}
 }

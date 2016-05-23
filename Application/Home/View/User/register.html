@@ -19,8 +19,9 @@
                             <label>用户名</label>
                         </td>
                         <td width="auto" align="left">
-                            <input type="text" name="username">
-                            <span>请使用英文或数字</span>
+                            <div class="input"><input type="text" id="username" name="username"></div>
+
+                            <span>用户名只能包含英文、数字或下划线</span>
                         </td>
                     </tr>
                     <tr>
@@ -28,7 +29,8 @@
                             <label>密码</label>
                         </td>
                         <td width="auto" align="left">
-                            <input type="password" name="password">
+                            <div class="input"> <input type="password" id="password" name="password"></div>
+                            <span>密码不得小于6位</span>
                         </td>
                     </tr>
                     <tr>
@@ -36,7 +38,8 @@
                             <label>电子邮箱</label>
                         </td>
                         <td width="auto" align="left">
-                            <input type="email" name="email"><span>请使用真实的电子邮箱注册</span>
+                            <div class="input"><input type="email" id="email" name="email"></div>
+                            <span>请使用真实的电子邮箱注册</span>
                         </td>
                     </tr>
                     <tr>
@@ -45,8 +48,9 @@
                         </td>
                         <td width="auto" align="left">
 
-                            <input type="text" name="captcha" placeholder="请输入下图中的验证码" autocomplete="off"><br><br>
-                            <img src="{:U('home/user/captcha')}" id="captcha">
+                            <div class="input"><input type="text" name="captcha" id="captcha" placeholder="请输入下图中的验证码" autocomplete="off"></div>
+                            <br>
+                            <img src="{:U('home/user/captcha')}" id="captcha_img">
                         </td>
                     </tr>
                     <tr>
@@ -55,7 +59,7 @@
                         </td>
                         <td width="auto" align="left">
 
-                            <button type="submit">注册</button>
+                            <button type="submit" id="reg">注册</button>
                         </td>
                     </tr>
              </table>
@@ -80,7 +84,7 @@
 <block name="js">
 
     <script type="text/javascript">
-    var captcha_img = $('#captcha');
+    var captcha_img = $('#captcha_img');
     var verifyimg = captcha_img.attr("src");
     captcha_img.attr('title', '点击刷新');
     captcha_img.click(function(){
@@ -90,7 +94,7 @@
     $(this).attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
     }
     });
-
     </script>
+    <script src="__PUBLIC__/home/js/register.js"></script>
 
 </block>
