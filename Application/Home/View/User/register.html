@@ -48,8 +48,8 @@
                         </td>
                         <td width="auto" align="left">
 
-                            <input type="text" name="captcha" placeholder="请输入下图中的验证码"><br><br>
-                            <img src="__PUBLIC__/Home/img/logo.png">
+                            <input type="text" name="captcha" placeholder="请输入下图中的验证码" autocomplete="off"><br><br>
+                            <img src="{:U('home/user/captcha')}" id="captcha">
                         </td>
                     </tr>
                     <tr>
@@ -83,9 +83,27 @@
         <h4>注册/登录</h4>
         <p style="font-size:12px;color:grey">Airex是一个基于ThinkPHP的轻型bbs社区.</p>
         <div align="center"><br>
-            <a class="btn btn-default" href="/home/register" role="button">现在注册</a><br><br>
-            <p>已注册用户请  <a href="/home/login">登录</a></p>
+            <a class="btn btn-default" href="{:U('/home/user/register')}" role="button">现在注册</a><br><br>
+            <p>已注册用户请  <a href="{:U('/home/user/login')}">登录</a></p>
         </div>
     </div>
+
+</block>
+
+<block name="js-append">
+
+    <script type="text/javascript">
+    var captcha_img = $('#captcha');
+    var verifyimg = captcha_img.attr("src");
+    captcha_img.attr('title', '点击刷新');
+    captcha_img.click(function(){
+    if( verifyimg.indexOf('?')>0){
+    $(this).attr("src", verifyimg+'&random='+Math.random());
+    }else{
+    $(this).attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
+    }
+    });
+
+    </script>
 
 </block>
