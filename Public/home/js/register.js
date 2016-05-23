@@ -50,7 +50,7 @@ $(document).ready(function(){
 
             if (this.value=="" || ( this.value!="" && !/.+@.+\.[a-zA-Z]{2,4}$/.test(this.value) )){
 
-                var hdw1 = $("<span class='tips error'>× 邮件的格式不正确</span>");
+                var hdw1 = $("<span class='tips error'>× 邮箱格式不正确</span>");
 
                 $(this).parent().append(hdw1);
 
