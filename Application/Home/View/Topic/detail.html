@@ -162,14 +162,14 @@
 
 	<hr>
 
-	<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+	<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse">
 	  添加一条留言!
 	</button>
-	<div class="collapse" id="collapseExample">
+	<div class="collapse" id="collapse">
 	  <div class="well">
 	    <textarea name="reply" class="form-control" rows="5" placeholder="写下你的留言..."></textarea>
 	    <h5 id="helpBlock" class="help-block">尽量让你的留言能帮助其他人.
-	    	<button type="button" class="btn btn-primary" style="float: right;">回复</button>
+	    	<button type="button" class="btn btn-primary" style="float: right;">提交</button>
 	    </h5>
 	    
 	    <br>
@@ -177,4 +177,43 @@
 	</div>
   </div>
 </div>
+</block>
+<block name="sidebar">
+	 <div class="sidebar-module sidebar-module-inset" style="padding-bottom: 5px">
+	    <a href="#" title="">
+	      <img src="__PUBLIC__/home/img/tx.png" alt="..." class="img-rounded">
+	    </a>  
+		&nbsp;&nbsp;
+	    <label><a href="#" title="">小王</a></label>
+	    <table class="table">
+	      <tr>
+	        <td align="center"><a class="info" href="#" title="1" style="display: block;"><span class="lead">1</span> <br><span>节点收藏</span></a></td>
+	        <td align="center"><a class="info" href="#" title="1" style="display: block"><span class="lead">1</span> <br><span>主题收益</span></a></td>
+	        <td align="center"><a class="info" href="#" title="1" style="display: block"><span class="lead">1</span> <br><span>特别关注</span></a></td>
+	      </tr>
+	    </table>
+	    <hr style="margin: 4px 0">
+	    <a href="#" title="">
+	      <span class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp;创建新主题</span>
+	    </a>
+	    <hr style="margin: 8px 0">
+	    <a href="#" title="">
+	      <small>0条未读提醒</small>
+	    </a>
+		<a href="#" title=""><span class="badge" style="float: right">财富: 42</span></a>
+	 </div>
+     <div class="sidebar-module sidebar-module-inset">
+         <h4>最热节点</h4>
+         <a href="#" class="item-node">PHP</a>
+		 <a href="#" class="item-node">Python</a>
+		 <a href="#" class="item-node">工作</a>
+		 <a href="#" class="item-node">生活</a>
+		 <a href="#" class="item-node">二手交易</a>
+     </div>
+     <div class="sidebar-module sidebar-module-inset">
+       	<h4>站点实况</h4>			
+		<p>注册会员	173280</p>
+		<p>主题	275247</p>
+		<p>回复	3186640</p>
+     </div>
 </block>

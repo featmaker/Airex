@@ -17,7 +17,7 @@ class TopicController extends BaseController {
 	}
 
 	public function index() {
-		$this->redirect(U('User/index'), 0);
+		$this->redirect("Index/index", 0);
 	}
 
 	public function detail() {
