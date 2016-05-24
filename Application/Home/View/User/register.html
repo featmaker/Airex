@@ -19,11 +19,10 @@
                             <label>用户名</label>
                         </td>
                         <td width="auto" align="left">
-
-                            <div class="input"><input type="text" id="username" name="username"></div>
-
+                            <div class="input">
+                                <input type="text" id="username" name="username">
+                            </div>
                             <span>用户名只能包含英文、数字或下划线</span>
-
                         </td>
                     </tr>
                     <tr>
@@ -31,12 +30,11 @@
                             <label>密码</label>
                         </td>
                         <td width="auto" align="left">
-<<<<<<< HEAD
-                           
-=======
-                            <div class="input"> <input type="password" id="password" name="password"></div>
+                            <div class="input"> 
+                                <input type="password" id="password" name="password">
+                            </div>
                             <span>密码不得小于6位</span>
->>>>>>> 90d46c065a637e55b38f4c8e78bf803b541b6e6a
+
                         </td>
                     </tr>
                     <tr>
@@ -44,12 +42,11 @@
                             <label>电子邮箱</label>
                         </td>
                         <td width="auto" align="left">
-<<<<<<< HEAD
-                            
-=======
-                            <div class="input"><input type="email" id="email" name="email"></div>
+
+                            <div class="input">
+                                <input type="email" id="email" name="email">
+                            </div>
                             <span>请使用真实的电子邮箱注册</span>
->>>>>>> 90d46c065a637e55b38f4c8e78bf803b541b6e6a
                         </td>
                     </tr>
                     <tr>
@@ -57,22 +54,16 @@
                            <label>验证码</label>
                         </td>
                         <td width="auto" align="left">
-
-<<<<<<< HEAD
-
-=======
-                            <div class="input"><input type="text" name="captcha" id="captcha" placeholder="请输入下图中的验证码" autocomplete="off"></div>
+                            <div class="input">
+                                <input type="text" name="captcha" id="captcha" placeholder="请输入下图中的验证码" autocomplete="off">
+                            </div>
                             <br>
-                            <img src="{:U('home/user/captcha')}" id="captcha_img">
->>>>>>> 90d46c065a637e55b38f4c8e78bf803b541b6e6a
+                            <img src="{:U('home/user/captcha')}" id="captcha_img" onclick="javascript:this.src='__CONTROLLER__/captcha?='+Math.random()"">
                         </td>
                     </tr>
                     <tr>
-                        <td width="120" align="right" valign="top">
-
-                        </td>
+                        <td width="120" align="right" valign="top"></td>
                         <td width="auto" align="left">
-
                             <button type="submit" id="reg">注册</button>
                         </td>
                     </tr>
@@ -97,7 +88,7 @@
 
 <block name="js">
 
-    <script type="text/javascript">
+<!--     <script type="text/javascript">
     var captcha_img = $('#captcha_img');
     var verifyimg = captcha_img.attr("src");
     captcha_img.attr('title', '点击刷新');
@@ -108,7 +99,7 @@
     $(this).attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
     }
     });
-    </script>
+    </script> -->
     <script src="__PUBLIC__/home/js/register.js"></script>
 
 </block>

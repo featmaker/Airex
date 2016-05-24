@@ -10,7 +10,7 @@ $(document).ready(function(){
         //判断username
         if ($(this).is("#username")){
 
-            if (this.value=="" || ( this.value!="" && !/^\w+$/.test(this.value) )){
+            if (this.value=="" || ( this.value != "" && !/^\w+$/.test(this.value) )){
 
                 var hdw1 = $("<span class='tips error'>× 用户名不合法</span>");
 
@@ -48,7 +48,7 @@ $(document).ready(function(){
         //判断email
         if ($(this).is("#email")){
 
-            if (this.value=="" || ( this.value!="" && !/.+@.+\.[a-zA-Z]{2,4}$/.test(this.value) )){
+            if (this.value=="" || ( this.value!="" && !/^\w+((-\w+)|(\.\w+))*\@\w+((\.|-)\w+)*\.\w+$/.test(this.value) )){
 
                 var hdw1 = $("<span class='tips error'>× 邮箱格式不正确</span>");
 
