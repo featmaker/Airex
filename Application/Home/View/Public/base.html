@@ -77,7 +77,7 @@
             if ($(window).scrollTop() > 300) {
               $("#toTop").attr('src','__PUBLIC__/home/img/totop.png');
               $("#toTop").fadeIn(1000);
-              $("#toTop").css('position','fixed');
+              $("#toTop").css({position:'fixed',cursor:'pointer'});
             }else{
               $("#toTop").fadeOut(0);
             }            
