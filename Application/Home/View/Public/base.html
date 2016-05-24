@@ -14,7 +14,7 @@
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/blog.css">
 	<block name="title"></block>						<!-- 标题部分 -->
   </head>
-  <body>
+  <div>
 	<nav class="navbar navbar-fixed-top">
 	      <div class="container-fluid">
 	        <div class="navbar-header">
@@ -36,7 +36,7 @@
 	        </div>
 	      </div>
 	    </nav>
-
+<div class="bggrey">
     <div class="container">
       <div class="row">
         <div class="col-sm-8 blog-main">
@@ -50,9 +50,12 @@
 
           <block name="sidebar"></block>						<!-- 侧栏展示部分-->
 
+
         </div>
       </div>
     </div>
+  </div>
+
 
 
     <footer class="blog-footer">
@@ -65,6 +68,7 @@
       </p>
       </block>
     </footer>
+
     <script src="http://cdn.bootcss.com/jquery/3.0.0-rc1/jquery.min.js"></script>
     <script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript">
@@ -86,6 +90,7 @@
       });
     </script>
   <block name="js"></block>
+
 
   </body>
 </html>

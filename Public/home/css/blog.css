@@ -2,10 +2,12 @@
  * Globals
  */
 
+
+
 body {
   font-family: Georgia, "Times New Roman", Times, serif;
   color: #555;
-  background-color:#E2E2E2;
+
 }
 
 h1, .h1,
@@ -26,12 +28,17 @@ box-shadow: 0 1px 4px 0 #9F9F9F;
 .container-fluid{
 	width:85%;
 }
+.bggrey{
+  background-color:#E2E2E2;
+}
   .container {
   margin-top:5px;
+
+
   }
   
   .item-node{
-	    font-size: 12px;
+   font-size: 12px;
   line-height: 12px;
   padding: 4px 10px 4px 10px;
   margin: 0px 5px 5px 0px;
@@ -50,6 +57,7 @@ box-shadow: 0 1px 4px 0 #9F9F9F;
     width: 1170px;
   }
 }
+
 
 
 /*
@@ -255,7 +263,7 @@ box-shadow: 0 1px 4px 0 #9F9F9F;
 .signform form span {
   color: #a3a3a3;
   font-size:12px;
-  line-height: 40px;
+  line-height: 30px;
   margin:30px 10px;
 }
 .signform a,.signform img{
@@ -310,6 +318,25 @@ box-shadow: 0 1px 4px 0 #9F9F9F;
           0 5px 8px 0 rgba(0,0,0,.1) inset;
 }
 
+/*
+ * Register tips
+ */
+
+.error { color:red !important; }
+.correct { color:green !important;}
+
+
+
+/*
+ * Reply
+ */
+
+.reply-content {
+
+  font-size: 85%;
+}
+
+
 
 
 /*
@@ -322,6 +349,7 @@ box-shadow: 0 1px 4px 0 #9F9F9F;
   text-align: center;
   background-color: #f9f9f9;
   border-top: 1px solid #e5e5e5;
+
 }
 .blog-footer p:last-child {
   margin-bottom: 0;
