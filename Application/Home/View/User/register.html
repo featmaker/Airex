@@ -6,7 +6,7 @@
 <block name="page-main">
   <div class="post-header">
       <ol class="breadcrumb">
-          <li><a href="/">Airex</a></li>
+          <li><a href="__ROOT__/">Airex</a></li>
           <li class="active">注册</li>
       </ol>
   </div>
@@ -19,7 +19,7 @@
                             <label>用户名</label>
                         </td>
                         <td width="auto" align="left">
-                            <input type="text" name="username">
+                            <input type="text" class="form-control" name="username">
                             <span>请使用英文或数字</span>
                         </td>
                     </tr>
@@ -28,7 +28,7 @@
                             <label>密码</label>
                         </td>
                         <td width="auto" align="left">
-                            <input type="password" name="password">
+                            <input type="password" class="form-control" name="password">
                         </td>
                     </tr>
                     <tr>
@@ -36,7 +36,7 @@
                             <label>电子邮箱</label>
                         </td>
                         <td width="auto" align="left">
-                            <input type="email" name="email"><span>请使用真实的电子邮箱注册</span>
+                            <input type="email" name="email" class="form-control"><span>请使用真实的电子邮箱注册</span>
                         </td>
                     </tr>
                     <tr>
@@ -45,7 +45,7 @@
                         </td>
                         <td width="auto" align="left">
 
-                            <input type="text" name="captcha" placeholder="请输入下图中的验证码"><br><br>
+                            <input type="text" name="captcha" placeholder="请输入下图中的验证码" class="form-control"><br><br>
                             <img src="__PUBLIC__/Home/img/logo.png">
                         </td>
                     </tr>

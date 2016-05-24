@@ -7,6 +7,12 @@ use Home\Controller\BaseController;
  */
 
 class UserController extends BaseController {
+	public function index() {
+		if (checkLogin()) {
+			$this->redirect("login", 0);
+		}
+		$this->redirect("userInfo", 0);
+	}
 
 	public function login() {
 		$this->display();
@@ -14,5 +20,9 @@ class UserController extends BaseController {
 
 	public function register() {
 		$this->display();
+	}
+
+	public function userInfo() {
+		$this->show('hello world');
 	}
 }
