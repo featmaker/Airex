@@ -12,6 +12,8 @@
   </div>
 
     <div class="signform">
+        <input type="hidden" id="username_ajax_url" value="{:U('User/check_username')}">
+        <input type="hidden" id="email_ajax_url" value="{:U('User/check_email')}">
             <form action="" method="post">
                 <table cellpadding="5" cellspacing="0" border="0" width="100%">
                     <tr>
@@ -88,7 +90,7 @@
 
 <block name="js">
 
-<!--     <script type="text/javascript">
+    <script type="text/javascript">
     var captcha_img = $('#captcha_img');
     var verifyimg = captcha_img.attr("src");
     captcha_img.attr('title', '点击刷新');
@@ -99,7 +101,7 @@
     $(this).attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
     }
     });
-    </script> -->
+    </script>
     <script src="__PUBLIC__/home/js/register.js"></script>
 
 </block>
