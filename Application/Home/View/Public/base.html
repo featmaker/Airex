@@ -1,78 +1,86 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
-   <!-- Bootstrap core CSS -->
-    <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    
-    <block name="css"></block>            <!-- css部分 -->
 
-	<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/blog.css">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../favicon.ico">
+  <!-- Bootstrap core CSS -->
+  <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 
-	  <block name="title"></block>						<!-- 标题部分 -->
-    
-  </head>
-  <div>
-	<nav class="navbar navbar-fixed-top">
-	      <div class="container-fluid">
-	        <div class="navbar-header">
-	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <label>菜单</label>              
-	          </button>
-	          <a href="__ROOT__/"><img src="__PUBLIC__/home/img/logo.png" border="0" alt="AIREX" width="94" height="30" style="margin-top:10px;"></a>
-	        </div>
-	        <div id="navbar" class="navbar-collapse collapse">
-	          <ul class="nav navbar-nav navbar-right">
-	            <li><a href="__ROOT__/">首页</a></li>
-	            <li><a href="#">设置</a></li>
-	            <li><a href="#">个人中心</a></li>
-	            <li><a href="#">帮助</a></li>
-	          </ul>
-	          <form class="navbar-form navbar-right">
-	            <input type="text" class="form-control" placeholder="Search...">
-	          </form>
-	        </div>
-	      </div>
-	    </nav>
-<div class="bggrey">
+  <block name="css"></block>
+
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/style.css">
+  <block name="title"></block>
+  <!-- 标题部分 -->
+</head>
+<body>
+  <nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <label>菜单</label>
+        </button>
+        <a href="__ROOT__/">
+          <img src="__PUBLIC__/home/img/logo.png" border="0" alt="AIREX" width="94" height="30" style="margin-top:10px;"></a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="__ROOT__/">首页</a>
+          </li>
+          <li>
+            <a href="#">设置</a>
+          </li>
+          <li>
+            <a href="#">个人中心</a>
+          </li>
+          <li>
+            <a href="#">帮助</a>
+          </li>
+        </ul>
+        <form class="navbar-form navbar-right">
+          <input type="text" class="form-control" placeholder="Search..."></form>
+      </div>
+    </div>
+  </nav>
+  <div class="bggrey">
+
     <div class="container">
       <div class="row">
         <div class="col-sm-8 blog-main">
 
-		      <block name="page-main"></block>					<!-- 页面主要内容区 -->
-
-        </div>
+          <block name="page-main"></block>
+          <!-- 页面主要内容区 --> </div>
 
         <div class="col-sm-3 blog-sidebar">
-          <img id="toTop" src="" alt="" style="margin-top: 23%">  <!-- 返回顶部 -->
+          <img id="toTop" src="" alt="" style="margin-top: 23%">
+          <!-- 返回顶部 -->
 
-          <block name="sidebar"></block>						<!-- 侧栏展示部分-->
-
-        </div>
+          <block name="sidebar"></block>
+          <!-- 侧栏展示部分--> </div>
       </div>
     </div>
   </div>
 
-    <footer class="blog-footer">
-    <block name="footer">									          <!-- 页脚部分 -->
-      <p>Designed by Micanss and Patrick-95
-      </p>
-	        <p>Copyright AirEX.</p>
+  <footer class="blog-footer">
+    <block name="footer">
+      <!-- 页脚部分 -->
+      <p>Designed by Micanss and Patrick-95 and LDZ</p>
+      <p>Copyright AirEX.</p>
       <p>
-         <a href="https://github.com/Micanss/airex.git" title="">项目源码</a>
+        <a href="https://github.com/Micanss/airex.git" title="">项目源码</a>
       </p>
-      </block>
-    </footer>
+    </block>
+  </footer>
 
-    <script src="http://cdn.bootcss.com/jquery/3.0.0-rc1/jquery.min.js"></script>
-    <script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
+  <script src="http://cdn.bootcss.com/jquery/3.0.0-rc1/jquery.min.js"></script>
+  <script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
       $(document).ready(function() {
         $(function(){
           $(window).scroll(function() {
@@ -93,6 +101,5 @@
 
   <block name="js"></block>           <!-- js部分 -->
 
-
-  </body>
+</body>
 </html>

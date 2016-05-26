@@ -1,40 +1,106 @@
-img.reply{
-	float: right;
-	margin:0 20px
+img.reply {
+    float: right;
+
+    margin: 0 20px;
 }
-img.reply:hover{
-	cursor: pointer;
+img.reply:hover {
+    cursor: pointer;
 }
-.panel-footer{
-	margin:14px -15px 0 -15px;
-	padding-top: 1px;
-	height:37px;
-	padding:0 10px
+
+.panel-default {
+    margin-bottom: 0;
+    padding: 0;
 }
-.panel-footer h6{
-	font-size: 14px;
-	line-height: 37px
+
+.panel-body {
+    padding: 0;
 }
-.dividers-div{
-	background-color: #E2E2E2;height:20px;margin:0 -15px;
-	-webkit-box-shadow: inset 0 10px 10px rgba(0,0,0,.1);
-	box-shadow: inset 0 10px 10px rgba(0,0,0,.1);
+
+.img-circle {
+    float: right;
 }
-.panel-heading h6{
-	color:#6E6E6E;
-	padding-left: 10px;
-	padding-top: 15px;
+.small {
+    text-indent: 16px;
 }
-.time{
-	color:grey;
-	font-size:12px;
-	padding-left:5px;
+
+
+.panel-footer {
+    height: 37px;
+    margin: 14px -15px 0 -15px;
+    padding: 0 10px;
+    padding-top: 1px;
 }
-.uname{
-	color:#808080;
-	font-weight:bold;
-	text-decoration:none;
+.panel-footer h6 {
+    font-size: 14px;
+    line-height: 37px;
 }
-.thank-area,.badge{
-	float: right;
+.dividers-div {
+    height: 20px;
+    margin: 0 -15px;
+
+    background-color: #e2e2e2;
+    -webkit-box-shadow: inset 0 10px 10px rgba(0,0,0,.1);
+            box-shadow: inset 0 10px 10px rgba(0,0,0,.1);
+}
+
+
+.panel-heading {
+    margin: 0 -15px;
+    padding: 0;
+}
+.panel-info > .panel-heading {
+    border-color: #f5f5f5;
+    background-color: #f5f5f5;
+}
+.panel-heading h6 {
+    padding-top: 15px;
+    padding-left: 10px;
+
+    color: #6e6e6e;
+}
+.panel-body {
+    padding: 15px 0;
+}
+
+.reply-info {
+    border-bottom: 1px solid #eee;
+}
+
+h6 > a {
+    color: #b6b6b6;
+}
+
+.btn btn-primary {
+    float: right;
+}
+
+.well button {
+    float: right;
+}
+
+.sidebar-module .sidebar-module-inset {
+    padding-bottom: 5px;
+}
+
+.info{
+	display: block;
+}
+
+.time {
+    font-size: 12px;
+
+    padding-left: 5px;
+
+    color: grey;
+}
+.uname {
+    font-weight: bold;
+
+    text-decoration: none;
+
+    color: #808080;
+}
+.thank-area,
+.badge {
+    float: right;
 }
