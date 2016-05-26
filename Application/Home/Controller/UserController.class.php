@@ -20,19 +20,37 @@ class UserController extends BaseController
 		$Verify->entry();
 	}
 
-
+	//登录
 	public function login(){
 		$User = FactoryModel::createUserModel();
 		$this->display();
 	}
 
 
-
+	//注册
 	public function register(){
+
 		$User = FactoryModel::createUserModel();
-		$this->display();
+		if (IS_POST){
+			if(check_verify(I('post.captcha'))){
+
+				//留空字段验证，待补
+				$postinfo=array("user_name"=>I('post.username'),"password"=>sha1(I('post.password')),"email"=>I('post.email'));
+				$User->add_user($postinfo);
+				$this->success('注册成功！');
+
+			}else{
+				$this->error('验证码错误，请重新输入！');
+			}
+
+		}else{
+
+			$this->display();
+		}
+
 	}
 
+	//AJAX检查用户名
 	public function check_username(){
 		$User = FactoryModel::createUserModel();
 		// $User = new \Home\Model\UserModel();
@@ -41,6 +59,7 @@ class UserController extends BaseController
 
 	}
 
+	//AJAX检查EMAIL
 	public function check_email(){
 		$User = FactoryModel::createUserModel();
 		// $User = new \Home\Model\UserModel();
@@ -49,7 +68,7 @@ class UserController extends BaseController
 
 	}
 
-
+	//忘记密码
 	public function forgot(){
 
 		$this->display();
