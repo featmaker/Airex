@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+    var captcha_img = $('#captcha_img');
+    var verifyimg = captcha_img.attr("src");
+    captcha_img.attr('title', '点击刷新');
+    captcha_img.attr("src", verifyimg+'?&random='+Math.random());
     $("form :input").blur(function(){
         $(this).parent().find(".tips").remove();
         //判断username
@@ -21,8 +25,8 @@ $(document).ready(function(){
                             var hdw1 = $("<span class='tips error'>× 用户名被占用</span>");
                             $('#username').parent().append(hdw1);
                         }else if(msg.occupied == 0){
-                            var hdw1 = $("<span class='tips correct'>√ 用户名可用</span>");
-                            $('#username').parent().append(hdw1);
+                            //var hdw1 = $("<span class='tips correct'>√ 用户名可用</span>");
+                            //$('#username').parent().append(hdw1);
                         }
                     }
                 });
@@ -36,8 +40,8 @@ $(document).ready(function(){
                 var hdw1 = $("<span class='tips error'>× 密码不得小于6位</span>");
                 $(this).parent().append(hdw1);
             }else{
-                var hdw1 = $("<span class='tips correct'>√ 正确</span>");
-                $(this).parent().append(hdw1);
+                //var hdw1 = $("<span class='tips correct'>√ 正确</span>");
+                //$(this).parent().append(hdw1);
             }
         }
         //end
@@ -60,8 +64,8 @@ $(document).ready(function(){
                             var hdw1 = $("<span class='tips error'>× 此邮箱已被占用</span>");
                             $('#email').parent().append(hdw1);
                         }else if(msg.occupied == 0){
-                            var hdw1 = $("<span class='tips correct'>√ 正确</span>");
-                            $('#email').parent().append(hdw1);
+                            //var hdw1 = $("<span class='tips correct'>√ 正确</span>");
+                            //$('#email').parent().append(hdw1);
                         }
                     }
                 });
@@ -73,9 +77,6 @@ $(document).ready(function(){
         if ($(this).is("#captcha")){
             if (this.value==""){
                 var hdw1 = $("<span class='tips error'>× 验证码不能为空</span>");
-                $(this).parent().append(hdw1);
-            }else{
-                var hdw1 = $("<span class='tips correct'>√ 正确</span>");
                 $(this).parent().append(hdw1);
             }
         }
@@ -91,10 +92,14 @@ $(document).ready(function(){
         $("#password").trigger("blur");
         $("#captcha").trigger("blur");
         var hdw3 = $(".error").length;
-        if (hdw3 || $('#username').val() =="" || $('#email').val() ==""){
+        if($('#username').val() =="" || $('#email').val() ==""){
+            $("#username").trigger("blur");
+            $("#email").trigger("blur");
             return false;
         }
-        alert("注册成功");
+        if (hdw3){
+            return false;
+        }
     });
     //end
 

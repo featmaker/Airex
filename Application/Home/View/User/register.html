@@ -60,7 +60,7 @@
                                 <input type="text" name="captcha" id="captcha" placeholder="请输入下图中的验证码" autocomplete="off">
                             </div>
                             <br>
-                            <img src="{:U('home/user/captcha')}" id="captcha_img" onclick="javascript:this.src='__CONTROLLER__/captcha?='+Math.random()"">
+                            <img src="{:U('home/user/captcha')}" id="captcha_img" onclick="javascript:this.src='__CONTROLLER__/captcha?='+Math.random()">
                         </td>
                     </tr>
                     <tr>
@@ -90,18 +90,7 @@
 
 <block name="js">
 
-    <script type="text/javascript">
-    var captcha_img = $('#captcha_img');
-    var verifyimg = captcha_img.attr("src");
-    captcha_img.attr('title', '点击刷新');
-    captcha_img.click(function(){
-    if( verifyimg.indexOf('?')>0){
-    $(this).attr("src", verifyimg+'&random='+Math.random());
-    }else{
-    $(this).attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
-    }
-    });
-    </script>
+
     <script src="__PUBLIC__/home/js/register.js"></script>
 
 </block>

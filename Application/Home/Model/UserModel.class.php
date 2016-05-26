@@ -37,5 +37,16 @@ class UserModel extends Model{
         }
 
     }
+
+    //新增用户
+    public function add_user($userinfo){
+
+
+        $User = M("User");
+        $User->data($userinfo)->add();
+
+
+
+    }
 	
 }
