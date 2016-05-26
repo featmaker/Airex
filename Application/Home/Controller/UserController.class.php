@@ -32,6 +32,20 @@ class UserController extends BaseController
 		$this->display();
 	}
 
+	public function check_username(){
+		$User = new \Home\Model\UserModel();
+		$username = I('post.username');
+		echo $User->check_username($username);
+
+	}
+
+	public function check_email(){
+		$User = new \Home\Model\UserModel();
+		$email = I('post.email');
+		echo $User->check_email($email);
+
+	}
+
 
 	public function forgot(){
 
