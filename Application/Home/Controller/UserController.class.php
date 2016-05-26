@@ -1,13 +1,13 @@
 <?php 
 namespace Home\Controller;
 use Home\Controller\BaseController;
-
+use Home\Model\FactoryModel;
 /**
 * 用户控制器
 */
 class UserController extends BaseController
 
-{
+{	
 	/**
 	 *
 	 * 验证码生成
@@ -22,25 +22,28 @@ class UserController extends BaseController
 
 
 	public function login(){
+		$User = FactoryModel::createUserModel();
 		$this->display();
 	}
 
 
 
 	public function register(){
-
+		$User = FactoryModel::createUserModel();
 		$this->display();
 	}
 
 	public function check_username(){
-		$User = new \Home\Model\UserModel();
+		$User = FactoryModel::createUserModel();
+		// $User = new \Home\Model\UserModel();
 		$username = I('post.username');
 		echo $User->check_username($username);
 
 	}
 
 	public function check_email(){
-		$User = new \Home\Model\UserModel();
+		$User = FactoryModel::createUserModel();
+		// $User = new \Home\Model\UserModel();
 		$email = I('post.email');
 		echo $User->check_email($email);
 
