@@ -427,3 +427,11 @@ td a{
 .nav-active a{
   color: #22313F;
 }
+
+#logo{
+  float:left;
+}
+.logo{
+  width:1080px;
+  margin:0 auto;
+}
