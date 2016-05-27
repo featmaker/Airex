@@ -22,10 +22,17 @@ h6, .h6 {
   font-weight: normal;
   color: #333;
 }
+
+#logo {
+  margin-top:10px;
+  margin-left:-25px;
+}
+
 .navbar{
 	background-color:white;
 box-shadow: 0 1px 4px 0 #9F9F9F;
 }
+
 .container-fluid{
 	width:85%;
 }
@@ -163,6 +170,15 @@ box-shadow: 0 1px 4px 0 #9F9F9F;
 .sidebar-module-inset ul:last-child,
 .sidebar-module-inset ol:last-child {
   margin-bottom: 0;
+}
+
+
+/* 用户信息侧边栏 */
+.table{
+  margin-top:15px;
+}
+.badge-balance{
+  float:right;
 }
 
 
