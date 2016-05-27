@@ -23,7 +23,23 @@ class UserController extends BaseController
 	//登录
 	public function login(){
 		$User = FactoryModel::createUserModel();
-		$this->display();
+		if (IS_POST){
+			$postinfo=array("user_name"=>I('post.username'),"password"=>sha1(I('post.password')));
+			switch($User->user_login($postinfo)){
+				case 0:
+					$this->error('没有此用户！');
+					break;
+				case 1:
+					$this->success('登录成功！');
+					break;
+				case 2:
+					$this->error('用户名或密码不正确！');
+					break;
+			}
+		}else{
+			$this->display();
+		}
+
 	}
 
 
@@ -36,7 +52,7 @@ class UserController extends BaseController
 
 				//留空字段验证，待补
 				$postinfo=array("user_name"=>I('post.username'),"password"=>sha1(I('post.password')),"email"=>I('post.email'));
-				$User->add_user($postinfo);
+				$User->user_register($postinfo);
 				$this->success('注册成功！');
 
 			}else{

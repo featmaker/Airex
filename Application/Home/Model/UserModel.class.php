@@ -39,13 +39,29 @@ class UserModel extends Model{
     }
 
     //新增用户
-    public function add_user($userinfo){
-
+    public function user_register($userinfo){
 
         $User = M("User");
         $User->data($userinfo)->add();
 
+    }
 
+    //用户登录 返回0没有此用户 返回1登录成功 返回2密码错误
+    public function user_login($userinfo){
+
+        $User = M("User");
+        $username = $userinfo['user_name'];
+        $password = substr($userinfo['password'],0,32); //因为数据库只存了32位sha1，实际上sha1生成的是40位
+        $data = $User->where('user_name = "'.$username.'"')->find();
+        if($data){
+            if($password == $data['password']){
+                return 1;
+            }else{
+                return 2;
+            }
+        }else{
+            return 0;
+        }
 
     }
 	
