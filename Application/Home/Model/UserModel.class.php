@@ -55,6 +55,7 @@ class UserModel extends Model{
         $data = $User->where('user_name = "'.$username.'"')->find();
         if($data){
             if($password == $data['password']){
+                session('user',$username); // 将已登录用户名加入SESSION
                 return 1;
             }else{
                 return 2;

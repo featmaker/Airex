@@ -22,6 +22,9 @@ class UserController extends BaseController
 
 	//登录
 	public function login(){
+		if (checkLogin()) {
+			$this->redirect("Index/index",'',0);
+		}
 		$User = FactoryModel::createUserModel();
 		if (IS_POST){
 			$postinfo=array("user_name"=>I('post.username'),"password"=>sha1(I('post.password')));
@@ -30,7 +33,9 @@ class UserController extends BaseController
 					$this->error('没有此用户！');
 					break;
 				case 1:
-					$this->success('登录成功！');
+					$this->redirect("Index/index",'',0);
+					//$this->success('登录成功，正在转向首页...',__ROOT__."/",2);
+					//$this->success('登录成功！');
 					break;
 				case 2:
 					$this->error('用户名或密码不正确！');
@@ -45,7 +50,9 @@ class UserController extends BaseController
 
 	//注册
 	public function register(){
-
+		if (checkLogin()) {
+			$this->redirect("Index/index",'',0);
+		}
 		$User = FactoryModel::createUserModel();
 		if (IS_POST){
 			if(check_verify(I('post.captcha'))){
@@ -86,8 +93,16 @@ class UserController extends BaseController
 
 	//忘记密码
 	public function forgot(){
-
+		if (checkLogin()) {
+			$this->redirect("Index/index",'',0);
+		}
 		$this->display();
+	}
+
+	//登出
+	public function logout(){
+		session('user',null);
+		$this->redirect("User/login",'',0);
 	}
 
 	public function userInfo(){
