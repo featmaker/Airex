@@ -28,8 +28,8 @@ class UserController extends BaseController
 		if (checkLogin()) {
 			$this->redirect("Index/index",'',0);
 		}
-		$User = FactoryModel::createUserModel();
 		if (IS_POST){
+			$User = FactoryModel::createUserModel();
 			$postinfo=array("user_name"=>I('post.username'),"password"=>I('post.password'));
 			switch($User->user_login($postinfo)){
 				case 0:
