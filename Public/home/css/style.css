@@ -23,6 +23,10 @@ h6, .h6 {
   color: #333;
 }
 
+*{
+  font-family: "Microsoft Yahei";
+}
+
 #logo {
   margin-top:10px;
   margin-left:-25px;
