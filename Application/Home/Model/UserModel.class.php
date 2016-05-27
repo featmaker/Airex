@@ -56,7 +56,6 @@ class UserModel extends Model{
         if($data){
             if($password == $data['password']){
                 session('user',$data['user_name']); // 将已登录用户名加入SESSION
-                session('avatar',$data['imgpath']); // 将已登录用户名加入SESSION
                 return 1;
             }else{
                 return 2;
@@ -64,7 +63,10 @@ class UserModel extends Model{
         }else{
             return 0;
         }
+    }
 
+    public function password_hash($password){
+        
     }
 	
 }
