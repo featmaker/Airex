@@ -35,3 +35,14 @@ function get_real_ip(){
 	}
 	return ($ip ? $ip : $_SERVER['REMOTE_ADDR']);
 }
+
+//得到用户头像
+function get_avatar($username){
+
+	$User = M("User");
+	//$password = substr(sha1($userinfo['password']),0,32); //因为数据库只存了32位sha1，实际上sha1生成的是40位
+	$data = $User->where('user_name = "'.$username.'"')->find();
+	$avatar=$data['imgpath'];
+	return $avatar;
+
+}

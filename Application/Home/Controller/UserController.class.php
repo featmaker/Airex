@@ -27,7 +27,7 @@ class UserController extends BaseController
 		}
 		$User = FactoryModel::createUserModel();
 		if (IS_POST){
-			$postinfo=array("user_name"=>I('post.username'),"password"=>sha1(I('post.password')));
+			$postinfo=array("user_name"=>I('post.username'),"password"=>I('post.password'));
 			switch($User->user_login($postinfo)){
 				case 0:
 					$this->error('没有此用户！');
@@ -61,6 +61,7 @@ class UserController extends BaseController
 				$postinfo=array("user_name"=>I('post.username'),"password"=>sha1(I('post.password')),"email"=>I('post.email'));
 				$User->user_register($postinfo);
 				$this->success('注册成功！');
+
 
 			}else{
 				$this->error('验证码错误，请重新输入！');

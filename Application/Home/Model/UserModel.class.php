@@ -42,7 +42,8 @@ class UserModel extends Model{
     public function user_register($userinfo){
 
         $User = M("User");
-        $User->data($userinfo)->add();
+        $User->data($userinfo)->add(); //USER表新增数据
+        session('user',$userinfo['user_name']); //session 注册后进入已登录状态
 
     }
 
@@ -51,11 +52,12 @@ class UserModel extends Model{
 
         $User = M("User");
         $username = $userinfo['user_name'];
-        $password = substr($userinfo['password'],0,32); //因为数据库只存了32位sha1，实际上sha1生成的是40位
+        $password = substr(sha1($userinfo['password']),0,32); //因为数据库只存了32位sha1，实际上sha1生成的是40位
         $data = $User->where('user_name = "'.$username.'"')->find();
         if($data){
             if($password == $data['password']){
-                session('user',$username); // 将已登录用户名加入SESSION
+                session('user',$data['user_name']); // 将已登录用户名加入SESSION
+                session('avatar',$data['imgpath']); // 将已登录用户名加入SESSION
                 return 1;
             }else{
                 return 2;

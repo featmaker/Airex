@@ -153,10 +153,10 @@
 <block name="sidebar">
 	 <div class="sidebar-module sidebar-module-inset" style="">
 	    <a href="#" title="">
-	      <img src="__PUBLIC__/home/img/tx.png" alt="..." class="img-rounded">
+	      <img src="__PUBLIC__{:get_avatar(I('session.user'))}" alt="..." class="img-rounded">
 	    </a>  
 		&nbsp;&nbsp;
-	    <label><a href="#" title="">小王</a></label>
+	    <label><a href="#" title="">{:I('session.user')}</a></label>
 	    <table class="table">
 	      <tr>
 	        <td align="center"><a class="info" href="#" title="1" ><span class="lead">1</span> <br><span>节点收藏</span></a></td>

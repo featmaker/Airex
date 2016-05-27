@@ -5,8 +5,8 @@ use Home\Controller\BaseController;
 
 class IndexController extends BaseController
 {
-    public function index()
-    {
+    public function index(){
+
         $this->display();
     }
 }
