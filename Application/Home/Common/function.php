@@ -1,6 +1,5 @@
 <?php 
 
-//检查登录状态
 function checkLogin(){
 	if (session('user')) {
 		return true;
