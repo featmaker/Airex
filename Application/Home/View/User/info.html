@@ -49,11 +49,11 @@
 						<li class="active">
 							<a href="#">Mr.Trump 创建的所有主题</a>
 						</li>
-						<li>
-							<a href="#">提问</a>
+						<li id="toggle">
+							<a href="#">显示主题</a>
 						</li>
 						<li>
-							<a href="#">技术话题</a>
+							<a href="#">提问</a>
 						</li>
 						<li>
 							<a href="#">好玩</a>
@@ -76,16 +76,82 @@
 
 		</div>
 
-		<div class="col-sm-12 theme">
-			<div class="media theme-list">
+		<div class="col-sm-12 theme-hide" id="themeHide">
+			<div class="media theme-hide-list">
 				<div class="media-left">
-					<img class="theme-list-lock" width="128" src="__PUBLIC__/home/img/lock.png"></div>
+					<img class="theme-hide-lock" width="128" src="__PUBLIC__/home/img/lock.png"></div>
 				<div class="media-body media-middle">
 					<span>
 						<small>根据 Mr.Trump 的设置，主题列表被隐藏</small>
 					</span>
 				</div>
 			</div>
+		</div>
+
+		<div class="col-sm-12 theme-display" id="themeShow">
+			<ul class="list-group">
+				<li class="list-group-item">
+					<span>
+						<span>想做个个人博客玩玩，求推荐框架，！ WordPress</span>
+						<br>
+						<span class="label label-default location">杭州</span>
+						<span class="light-color">
+							&nbsp;•&nbsp; <strong><a href="#">Mr.Trump</a>
+								&nbsp;•&nbsp;</strong> 
+							&nbsp;15天前&nbsp;• &nbsp;最后回复来自&nbsp;
+							<a href="#"> <strong>tvallday</strong>
+							</a>
+						</span>
+					</span>
+
+					<a href="#">
+						<span class="badge">42</span>
+					</a>
+				</li>
+				<li class="list-group-item">
+					<span>
+						<span>想做个个人博客玩玩，求推荐框架，！ WordPress</span>
+						<br>
+						<span class="label label-default location">杭州</span>
+						<span class="light-color">
+							&nbsp;•&nbsp;
+							<strong><a href="#">Mr.Trump</a>
+								&nbsp;•&nbsp;</strong> 
+							&nbsp;15天前&nbsp;• &nbsp;最后回复来自&nbsp;
+							<a href="#">
+								<strong>tvallday</strong>
+							</a>
+						</span>
+					</span>
+
+					<a href="#">
+						<span class="badge">42</span>
+					</a>
+				</li>
+				<li class="list-group-item">
+					<span>
+						<span>想做个个人博客玩玩，求推荐框架，！ WordPress</span>
+						<br>
+						<span class="label label-default location">杭州</span>
+						<span class="light-color">
+							&nbsp;•&nbsp;
+							<strong>
+								<a href="#">Mr.Trump</a>
+								&nbsp;•&nbsp;
+							</strong>
+							&nbsp;15天前&nbsp;• &nbsp;最后回复来自&nbsp;
+							<a href="#">
+								<strong>tvallday</strong>
+							</a>
+						</span>
+					</span>
+
+					<a href="#">
+						<span class="badge">42</span>
+					</a>
+				</li>
+
+			</ul>
 		</div>
 
 		<div class="col-sm-12 divider"></div>
@@ -221,5 +287,50 @@
 
 			</div>
 		</div>
+
+	</block>
+
+	<block name="sidebar">
+		<div class="col-sm-12 timeline">
+			<div class="media">
+				<div class="media-head media-left">
+					<img width="18" src="__PUBLIC__/home/img/comment.png"></div>
+				<div class="media-body">
+					<span>cwlmxwb 最近的时间轴更新</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-sm-12 question">
+			<div class="media">
+				<div class="media-body">
+					<span>有没有用 libcurl 过的，遇到问题了，求教</span>
+				</div>
+				<div class="light-color">
+					<span>4天前</span>
+				</div>
+			</div>
+		</div>
+
+		<script>
+
+			(function toggle() {
+				document.getElementById("toggle").onclick = function() {
+					var show = document.getElementById("themeShow").style.display,
+						hide = document.getElementById("themeHide").style.display;
+					if ((show == "none") ) {
+						hide = "none";
+						show = "block";
+					} else if ((show == "block")) {
+						hide = "block";
+						show = "none";
+
+					}
+				}
+			})();
+
+
+		
+		</script>
 
 	</block>
