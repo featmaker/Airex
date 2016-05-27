@@ -42,7 +42,7 @@
 		  <div class="media-body">
 		    <h4 class="media-heading"><a href="{:U('topic/detail')}" title="">有用过 Synergy 的同志吗？</a></h4>
 		    <a href="#" title="程序员" style="font-size:10px;background: #f5f5f5">程序员</a><em>.</em>
-		    <strong><a href="#" title="" style="font-size:12px;color: black;">admin</a></strong><em>.</em><em>.</em>
+		    <strong><a href="#" title="" style="font-size:12px;color: black;">admin</a></strong><em>.</em>
 		    <span style="font-size:10px;color: #CDCFD7">2分钟前</span><em>.</em>
 		    <span style="font-size:10px;color: #CDCFD7">最后回复来自:<strong><a href="#" title="" style="color: black;">admin</a></strong></span>
 			 <span class="badge" style="float:right">3</span>
@@ -359,10 +359,10 @@
 		 <!-- 用户信息侧边栏需要和/topic/detail/里样式一致，请把样式从detail.css移至style.css -->
 		 <div class="sidebar-module sidebar-module-inset">
 			 <a href="#" title="">
-				 <img src="__PUBLIC__/home/img/tx.png" alt="..." class="img-rounded">
+				 <img src="__PUBLIC__{:get_avatar(I('session.user'))}" alt="..." class="img-rounded">
 			 </a>
 			 &nbsp;&nbsp;
-			 <label><a href="#" title="">小王</a></label>
+			 <label><a href="#" title="">{:I('session.user')}</a></label>
 			 <table class="table">
 				 <tr>
 					 <td align="center"><a class="info" href="#" title="1" ><span class="lead">1</span> <br><span>节点收藏</span></a></td>
