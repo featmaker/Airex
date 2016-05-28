@@ -59,4 +59,35 @@ class TopicModel extends Model {
 		}
 		return true;
 	}
+
+	//根据tid获取主题详情
+	public function getInfoById($tid) {
+		$topicInfo = $this
+		->where(array('id' => $tid))
+		->field('title,content,publish_time,username,hits,collections,comments,node_name')
+		->join('airex_user as u on u.id = airex_topic.uid')
+		->join('airex_node as n on n.id = airex_topic.node_id')
+		->select()[0];
+		return $topicInfo;
+	}
+
+	//根据tid获取相应评论
+	public function getCommentById($tid) {
+		$commentInfo = M('comment as c')
+		->where(array('tid' => $tid))
+		->field('user_name,content,publish_time,imgpath')
+		->join('airex_user as u on u.id = c.uid')
+		->order('publish_time desc')
+		->select()[0];
+		return $commentInfo;
+	}
+
+	//检查tid是否存在
+	public function checkTid($tid) {
+		$tids = $this->getField('id', true);
+		if (!in_array($tid, $tids)) {
+			return false;
+		}
+		return true;
+	}
 }

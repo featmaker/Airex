@@ -12,7 +12,7 @@ class TopicController extends BaseController
 	function __construct()
 	{
 		parent::__construct();
-		if (checkLogin()) {
+		if (!checkLogin()) {
 			$this->redirect("User/login",'',0);
 		}
 	}
@@ -47,9 +47,13 @@ class TopicController extends BaseController
 	public function detail(){
 		$tid = I('get.tid','','intval');
 		$Topic = FactoryModel::createTopicModel();
+		if (!$Topic->checkTid($tid)) {
+			$this->error('传输参数错误');
+		}
 		$topicInfo = $Topic->getInfoById($tid);
 		$commentInfo = $Topic->getCommentById($tid);
-		// $replyInfo = 
+		$this->assign('topicInfo',$topicInfo);
+		$this->assign('commentInfo',$commentInfo);
 		$this->display();
 	}
 }

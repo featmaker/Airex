@@ -52,7 +52,8 @@ class UserModel extends Model{
 
         $User = M("User");
         $username = $userinfo['user_name'];
-        $password = substr(sha1($userinfo['password']),0,32); //因为数据库只存了32位sha1，实际上sha1生成的是40位
+        //因为数据库只存了32位sha1，实际上sha1生成的是40位
+        $password = substr(sha1($userinfo['password']),0,32); 
         $data = $User->where('user_name = "'.$username.'"')->find();
         if($data){
             if($password == $data['password']){
