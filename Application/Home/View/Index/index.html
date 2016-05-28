@@ -365,9 +365,9 @@
 			 <label><a href="#" title="">{:I('session.user')}</a></label>
 			 <table class="table">
 				 <tr>
-					 <td align="center"><a class="info" href="#" title="1" ><span class="lead">1</span> <br><span>节点收藏</span></a></td>
-					 <td align="center"><a class="info" href="#" title="1" ><span class="lead">1</span> <br><span>主题收益</span></a></td>
-					 <td align="center"><a class="info" href="#" title="1" ><span class="lead">1</span> <br><span>特别关注</span></a></td>
+					 <td align="center"><a class="info" href="#" title="1" ><span class="lead">{$nodes}</span> <br><span>节点收藏</span></a></td>
+					 <td align="center"><a class="info" href="#" title="1" ><span class="lead">{$topics}</span> <br><span>主题收藏</span></a></td>
+					 <td align="center"><a class="info" href="#" title="1" ><span class="lead">{$attentions}</span> <br><span>特别关注</span></a></td>
 				 </tr>
 			 </table>
 			 <hr style="margin: 4px 0">
@@ -378,7 +378,7 @@
 			 <a href="#" title="">
 				 <small>0条未读提醒</small>
 			 </a>
-			 <a href="#" title=""><span class="badge badge-balance">财富: 42</span></a>
+			 <a href="#" title=""><span class="badge badge-balance">财富: {$wealth}</span></a>
 		 </div>
 
 	 </if>
