@@ -56,4 +56,22 @@ class TopicController extends BaseController
 		$this->assign('commentInfo',$commentInfo);
 		$this->display();
 	}
+
+	public function appendTopic(){
+		if (IS_POST) {
+			$content = I('post.append','','trim') == '' ?
+												 $this->error('追加信息不能为空') :
+												 I('post.append','','trim');
+			$tid = I('post.tid','','intval');
+			$Topic = FactoryModel::createTopicModel();
+			if (!$Topic->checkTid($tid)) {
+				$this->error('不要修改tid值');
+			}
+			if (!$Topic->appendContent($tid,$content)) {
+				$this->error($Topic->getError());
+			}
+		}else{
+			$this->display();
+		}
+	}
 }
