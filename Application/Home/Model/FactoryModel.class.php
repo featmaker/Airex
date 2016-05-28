@@ -8,6 +8,7 @@ class FactoryModel
 {
 	private static $userModel;		//User模型
 	private static $topicModel;		//Topic模型
+	private static $categoryModel;
 
 	static function createUserModel(){
 		if (!self::$userModel) {
@@ -21,5 +22,12 @@ class FactoryModel
 			self::$topicModel = new \Home\Model\TopicModel();
 		}
 		return self::$topicModel;
+	}
+
+	static function createCategoryModel(){
+		if (!self::$categoryModel) {
+			self::$categoryModel = new \Home\Model\CategoryModel();
+		}
+		return self::$categoryModel;
 	}
 }

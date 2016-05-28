@@ -39,11 +39,10 @@ class TopicModel extends Model {
 	public function appendContent($tid, $content) {
 		$originContent = $this->where(array('id' => $tid))->getField('content');
 		$newContent    = $originContent.'<br>'.$content;
-		if ($this->where(array('id' => $tid))->save($newContent)) {
+		if ($this->where(array('id' => $tid))->setField('content', $newContent)) {
 			return true;
 		}
 		return false;
-
 	}
 	//检查所属节点值
 	function checkNodeId($nodeId) {

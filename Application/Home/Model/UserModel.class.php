@@ -66,14 +66,8 @@ class UserModel extends Model{
 
     //用户登录 返回0没有此用户 返回1登录成功 返回2密码错误
     public function user_login($userinfo){
-
         $username = $userinfo['user_name'];
-<<<<<<< HEAD
-
-        $password = substr(sha1($userinfo['password']),0,32); //因为数据库只存了32位sha1，实际上sha1生成的是40位
-=======
         $password = $this->password_hasher($userinfo['password']); //将密码加密 与数据库比对
->>>>>>> fc23da0e0df66c2df457165ae305fe0fd6509389
         $data = $this->where('user_name = "'.$username.'"')->find();
         if($data){
             if($password == $data['password']){

@@ -12,7 +12,7 @@ class TopicController extends BaseController
 	function __construct()
 	{
 		parent::__construct();
-		if (!checkLogin()) {
+		if (checkLogin()) {
 			$this->redirect("User/login",'',0);
 		}
 	}
@@ -27,9 +27,6 @@ class TopicController extends BaseController
 			$data['title'] = I('post.title','','trim');
 			$date['content'] = I('post.content','','trim');
 			$data['node_id'] = I('post.nodeid','','intval');
-			// $data['title'] = '我是中国人';
-			// $data['content'] = '你是谁你是谁你是谁你是谁你是谁';
-			// $data['node_id'] = 3;
 			$data['uid'] = session('uid');
 			$Topic = FactoryModel::createTopicModel();
 			$Topic->addTopic($data);
@@ -57,6 +54,7 @@ class TopicController extends BaseController
 		$this->display();
 	}
 
+	//追加主题内容
 	public function appendTopic(){
 		if (IS_POST) {
 			$content = I('post.append','','trim') == '' ?
