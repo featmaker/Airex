@@ -1,3 +1,7 @@
+
+a {
+    color: #778087;
+}
 .blog-main {
     background-color: #e2e2e2;
 }
@@ -64,6 +68,7 @@
     font-size: 14px;
 
     min-height: 42px;
+    margin-bottom: 0;
 
     border-top: 0;
     border-right: 0;
@@ -93,16 +98,62 @@
 .navbar-info ul {
     margin-right: 50px;
 }
-.theme-list-lock {
+.theme-hide-lock {
     margin-right: 40px;
     margin-left: 40px;
 }
-.theme-list {
+.theme-hide-list {
     color: gray;
 }
-.theme {
+.theme-hide {
     box-shadow: 0 2px 3px rgba(0, 0, 0, .1);
 }
+
+.theme-display {
+    padding: 0;
+}
+
+.theme-display li {
+    padding: 8px;
+    padding-left: 10px;
+
+    border: 0;
+    border-bottom: solid 2px #ccc;
+}
+.location {
+    font-size: 10px;
+    font-weight: lighter;
+
+    padding-bottom: 0;
+
+    color: #999;
+    background-color: #f5f5f5;
+}
+.list-group {
+    margin-bottom: 0;
+}
+.list-group-item {
+    font-size: 16px;
+
+    padding-left: 10px;
+
+    color: #778087;
+}
+.list-group-item .badge {
+    position: relative;
+    bottom: 10px;
+
+    float: right;
+
+    color: white;
+    background: #aab0c6;
+}
+.light-color {
+    font-size: 11px;
+
+    color: #ccc;
+}
+
 .info-reply {
     padding: 0;
 
@@ -120,9 +171,7 @@
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
 }
-.reply-recent {
-    color: #999;
-}
+
 
 .info-reply .panel-heading {
     font-size: 12px;
@@ -149,6 +198,12 @@
 
     text-align: left;
 }
+.panel-body.reply-recent {
+    padding: 8px;
+    padding-left: 10px;
+
+    color: #999;
+}
 .reply-content {
     font-size: 14px;
     line-height: 1.6;
@@ -158,6 +213,7 @@
 
     color: #000;
 }
+
 .info-reply-time {
     float: right;
 
@@ -182,4 +238,26 @@
     color: #778087;
     border-top: solid 1px #e2e2e2;
     box-shadow: 0 2px 3px rgba(0, 0, 0, .1);
+}
+
+.timeline {
+    padding: .7em;
+
+    border-bottom: solid 1px #e2e2e2;
+}
+.col-sm-12.question {
+    font-size: 12px;
+
+    padding: 1em;
+}
+.media .light-color {
+    margin-top: 5px;
+}
+
+#themeHide {
+    display: none;
+}
+
+.navbar.navbar-fixed-top a{
+    color:#337AB7;
 }
