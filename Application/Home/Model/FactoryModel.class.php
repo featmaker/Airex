@@ -6,9 +6,17 @@ namespace Home\Model;
 */
 class FactoryModel
 {
+	private static $indexModel;		//Index模型
 	private static $userModel;		//User模型
 	private static $topicModel;		//Topic模型
 	private static $categoryModel;
+
+	static function createIndexModel(){
+		if (!self::$indexModel) {
+			self::$indexModel = new \Home\Model\IndexModel();
+		}
+		return self::$indexModel;
+	}
 
 	static function createUserModel(){
 		if (!self::$userModel) {
