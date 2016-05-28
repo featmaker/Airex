@@ -1,18 +1,19 @@
 <?php
 namespace Home\Controller;
-
 use Home\Controller\BaseController;
-
+use Home\Model\FactoryModel;
+/**
+ * 首页控制器.
+ * Author:Patrick95
+ * Date:2016/5/28
+ * Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
+ */
 class IndexController extends BaseController
 {
     public function index(){
-        $username = I('session.user');
-        $User = M("User");
-        $data = $User->where('user_name = "'.$username.'"')->find();
-        $this->assign('nodes',$data['nodes']); //输出收藏节点数
-        $this->assign('topics',$data['topics']); //输出主题收藏数
-        $this->assign('attentions',$data['attentions']); //输出特别关注数
-        $this->assign('wealth',$data['wealth']); //输出财富值
+        $Index = FactoryModel::createIndexModel(); //实例化Index模型
+        $data = $Index->get_userinfo(); //得到用户信息
+        $this->assign('data',$data); //输出用户信息数组到前台
         $this->display();
     }
 }

@@ -359,15 +359,15 @@
 		 <!-- 用户信息侧边栏需要和/topic/detail/里样式一致，请把样式从detail.css移至style.css -->
 		 <div class="sidebar-module sidebar-module-inset">
 			 <a href="#" title="">
-				 <img src="__PUBLIC__{:get_avatar(I('session.user'))}" alt="..." class="img-rounded">
+				 <img src="__PUBLIC__{$data.imgpath}" alt="..." class="img-rounded">
 			 </a>
 			 &nbsp;&nbsp;
 			 <label><a href="#" title="">{:I('session.user')}</a></label>
 			 <table class="table">
 				 <tr>
-					 <td align="center"><a class="info" href="#" title="1" ><span class="lead">{$nodes}</span> <br><span>节点收藏</span></a></td>
-					 <td align="center"><a class="info" href="#" title="1" ><span class="lead">{$topics}</span> <br><span>主题收藏</span></a></td>
-					 <td align="center"><a class="info" href="#" title="1" ><span class="lead">{$attentions}</span> <br><span>特别关注</span></a></td>
+					 <td align="center"><a class="info" href="#" title="1" ><span class="lead">{$data.nodes}</span> <br><span>节点收藏</span></a></td>
+					 <td align="center"><a class="info" href="#" title="1" ><span class="lead">{$data.topics}</span> <br><span>主题收藏</span></a></td>
+					 <td align="center"><a class="info" href="#" title="1" ><span class="lead">{$data.attentions}</span> <br><span>特别关注</span></a></td>
 				 </tr>
 			 </table>
 			 <hr style="margin: 4px 0">
@@ -378,7 +378,7 @@
 			 <a href="#" title="">
 				 <small>0条未读提醒</small>
 			 </a>
-			 <a href="#" title=""><span class="badge badge-balance">财富: {$wealth}</span></a>
+			 <a href="#" title=""><span class="badge badge-balance">财富: {$data.wealth}</span></a>
 		 </div>
 
 	 </if>
