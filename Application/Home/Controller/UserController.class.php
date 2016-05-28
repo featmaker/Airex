@@ -60,10 +60,13 @@ class UserController extends BaseController
 		if (IS_POST){
 			if(check_verify(I('post.captcha'))){
 
-				//留空字段验证，待补
-				$postinfo=array("user_name"=>I('post.username'),"password"=>sha1(I('post.password')),"email"=>I('post.email'));
-				$User->user_register($postinfo);
-				$this->success('注册成功！');
+				$postinfo=array("user_name"=>I('post.username'),"password"=>I('post.password'),"email"=>I('post.email'));
+				//自动验证
+				if ($User->user_register($postinfo)) {
+					$this->success('注册成功！');
+				}else{
+					$this->error($User->getError());
+				}
 
 
 			}else{
