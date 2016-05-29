@@ -66,7 +66,6 @@ class UserModel extends Model{
 
     //用户登录 返回0没有此用户 返回1登录成功 返回2密码错误
     public function user_login($userinfo){
-
         $username = $userinfo['user_name'];
         $password = $this->password_hasher($userinfo['password']); //将密码加密 与数据库比对
         //$data = $this->where('user_name = "'.$username.'"')->find();

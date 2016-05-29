@@ -3,7 +3,10 @@ namespace Home\Controller;
 use Home\Controller\BaseController;
 use Home\Model\FactoryModel;
 /**
- * 用户控制器
+ * 用户控制器.
+ * Author:Patrick95 (lawcy@qq.com)
+ * Date:2016/5/27
+ * Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
  */
 
 class UserController extends BaseController {
@@ -55,10 +58,13 @@ class UserController extends BaseController {
 		if (IS_POST) {
 			if (check_verify(I('post.captcha'))) {
 
-				//留空字段验证，待补
-				$postinfo = array("user_name" => I('post.username'), "password" => sha1(I('post.password')), "email" => I('post.email'));
-				$User->user_register($postinfo);
-				$this->success('注册成功！');
+				$postinfo = array("user_name" => I('post.username'), "password" => I('post.password'), "email" => I('post.email'));
+				//自动验证
+				if ($User->user_register($postinfo)) {
+					$this->success('注册成功！');
+				} else {
+					$this->error($User->getError());
+				}
 
 			} else {
 				$this->error('验证码错误，请重新输入！');

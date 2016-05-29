@@ -27,9 +27,6 @@ class TopicController extends BaseController
 			$data['title'] = I('post.title','','trim');
 			$date['content'] = I('post.content','','trim');
 			$data['node_id'] = I('post.nodeid','','intval');
-			// $data['title'] = '我是中国人';
-			// $data['content'] = '你是谁你是谁你是谁你是谁你是谁';
-			// $data['node_id'] = 3;
 			$data['uid'] = session('uid');
 			$Topic = FactoryModel::createTopicModel();
 			$Topic->addTopic($data);
@@ -47,9 +44,32 @@ class TopicController extends BaseController
 	public function detail(){
 		$tid = I('get.tid','','intval');
 		$Topic = FactoryModel::createTopicModel();
+		if (!$Topic->checkTid($tid)) {
+			$this->error('传输参数错误');
+		}
 		$topicInfo = $Topic->getInfoById($tid);
 		$commentInfo = $Topic->getCommentById($tid);
-		// $replyInfo = 
+		$this->assign('topicInfo',$topicInfo);
+		$this->assign('commentInfo',$commentInfo);
 		$this->display();
+	}
+
+	//追加主题内容
+	public function appendTopic(){
+		if (IS_POST) {
+			$content = I('post.append','','trim') == '' ?
+												 $this->error('追加信息不能为空') :
+												 I('post.append','','trim');
+			$tid = I('post.tid','','intval');
+			$Topic = FactoryModel::createTopicModel();
+			if (!$Topic->checkTid($tid)) {
+				$this->error('不要修改tid值');
+			}
+			if (!$Topic->appendContent($tid,$content)) {
+				$this->error($Topic->getError());
+			}
+		}else{
+			$this->display();
+		}
 	}
 }
