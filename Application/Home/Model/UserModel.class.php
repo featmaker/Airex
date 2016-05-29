@@ -96,5 +96,29 @@ class UserModel extends Model{
         //加密思路：原始密码->MD5(32)->sha1(40)->截取前32位
         return substr(sha1(md5($password)),0,32);
     }
+
+    //忘记密码 - 通过邮件查询用户名
+    public function get_username_by_email($email){
+
+        $username = $this->where('email = "'.$email.'"')->getField('user_name');
+        return $username;
+    }
+
+    //发送重置密码邮件
+    public function send_resetpw_email($email,$username){
+
+        $hash = $this->password_hasher($email.time()); //用加密函数生成hash
+        $date = date('Y-n-j',time());
+        $url = 'http://'.I('server.HTTP_HOST').U('User/resetpw').'?hash='.$hash;
+        $content = '你好，<br><br>请点击以下链接来重设你的密码：<br><br><a href="'.$url.'" target="_blank">'.$url.'</a><br><br><b>请不要将此链接告诉其他人，请在60分钟内完成密码重置！</b><br><br>Airex社区 '.$date;
+        if(SendMail($email,'[Airex] '.$username.'，请重置你的密码！',$content)) {
+            session(array('name'=>$hash,'expire'=>3600));//session失效时间为60分钟
+            session($hash,$username); //将hash加入session
+            return true;
+        }else {
+            return false;
+        }
+
+    }
 	
 }
