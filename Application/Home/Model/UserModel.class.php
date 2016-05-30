@@ -65,6 +65,11 @@ class UserModel extends Model{
     }
 
     //用户登录 返回0没有此用户 返回1登录成功 返回2密码错误
+    /**
+     * 用户登录
+     * @param  array $userinfo [description]
+     * @return int           0没有此用户 返回1登录成功 返回2密码错误
+     */
     public function user_login($userinfo){
         $username = $userinfo['user_name'];
         $password = $this->password_hasher($userinfo['password']); //将密码加密 与数据库比对
@@ -74,7 +79,7 @@ class UserModel extends Model{
         if($data){
             if($password == $data[$user_id]['password']){
                 session('user',$data[$user_id]['user_name']); // 将已登录用户名加入SESSION
-                session('user_id',$data[$user_id]['id']); // 将用户ID加入SESSION
+                session('uid',$data[$user_id]['id']); // 将用户ID加入SESSION
                 return 1; //登录成功
             }else{
                 return 2; //密码错误

@@ -128,4 +128,8 @@ class UserController extends BaseController{
 	public function userInfo(){
 		$this->show('hello world');
 	}
+
+	public function setting(){
+		$this->display();
+	}
 }

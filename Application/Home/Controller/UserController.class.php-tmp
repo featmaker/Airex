@@ -10,6 +10,7 @@ use Home\Model\FactoryModel;
  */
 
 class UserController extends BaseController {
+
 	/**
 	 *
 	 * 验证码生成
@@ -31,15 +32,16 @@ class UserController extends BaseController {
 			$User     = FactoryModel::createUserModel();
 			$postinfo = array("user_name" => I('post.username'), "password" => I('post.password'));
 			switch ($User->user_login($postinfo)) {
-				case 0:
+				case 0://无此用户
 					$this->error('没有此用户！');
 					break;
-				case 1:
-					$this->redirect("Index/index", '', 0);
+				case 1://登录成功
+					$User->update_loginIP($postinfo['user_name']);//更新用户登录IP
+					$this->redirect("Index/index", '', 0);//转向首页
 					//$this->success('登录成功，正在转向首页...',__ROOT__."/",2);
 					//$this->success('登录成功！');
 					break;
-				case 2:
+				case 2://密码不对
 					$this->error('用户名或密码不正确！');
 					break;
 			}
@@ -61,7 +63,7 @@ class UserController extends BaseController {
 				$postinfo = array("user_name" => I('post.username'), "password" => I('post.password'), "email" => I('post.email'));
 				//自动验证
 				if ($User->user_register($postinfo)) {
-					$this->success('注册成功！');
+					$this->success('注册成功！', 'login');//注册成功转向登录页
 				} else {
 					$this->error($User->getError());
 				}
@@ -103,13 +105,30 @@ class UserController extends BaseController {
 		$this->display();
 	}
 
+	//重置密码
+	public function resetpw() {
+		if (checkLogin()) {
+			$this->redirect("Index/index", '', 0);
+		}
+		if (I('get.hash')) {
+			$this->display();
+		} else {
+			$this->error('非法操作');
+		}
+	}
+
 	//登出
 	public function logout() {
 		session('user', null);
+		session('user_id', null);
 		$this->redirect("User/login", '', 0);
 	}
 
 	public function userInfo() {
 		$this->show('hello world');
+	}
+
+	public function setting() {
+		$this->display();
 	}
 }
