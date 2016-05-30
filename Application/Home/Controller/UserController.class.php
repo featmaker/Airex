@@ -129,16 +129,27 @@ class UserController extends BaseController{
 		if(I('get.hash')){  //如果存在hash参数
 			$hash = I('get.hash');
 			if(session('?'.$hash)){ //如果session中存在此hash
+				//session(NULL);
 				$username = session($hash);  //得到hash中的用户名
 				$this->assign('username',$username); //将用户名输出到前端
 				$this->display();
 			}else{
+				//session(NULL);
 				$this->error('不存在此重置密钥或已失效',U('Index/index'));
 			}
 		}else{
 			$this->error('非法操作',U('Index/index'));
 		}
 
+
+	}
+
+	//用户信息设置
+	public function settings(){
+		if (!checkLogin()) {
+			$this->redirect("Index/index",'',0);
+		}
+		$this->display();
 
 	}
 
