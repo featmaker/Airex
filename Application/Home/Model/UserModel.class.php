@@ -1,13 +1,14 @@
 <?php
+/**
+ * Author:Patrick95 (lawcy@qq.com)
+ * Date:2016/5/27
+ * Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
+*/
 namespace Home\Model;
-
 use Think\Model;
 
 /**
  * 用户模型类.
- * Author:Patrick95 (lawcy@qq.com)
- * Date:2016/5/27
- * Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
  */
 class UserModel extends Model{
 
@@ -23,7 +24,7 @@ class UserModel extends Model{
     );
 
     //AJAX检查用户名是否占用
-    public function check_username($username){
+    public function checkUsername($username){
 
         $data = $this->where("user_name='$username'")->find();
         if($data){
@@ -38,7 +39,7 @@ class UserModel extends Model{
 
 
     //AJAX检查邮箱是否占用
-    public function check_email($email){
+    public function checkEmail($email){
 
         $data = $this->where("email='$email'")->find();
         if($data){
@@ -53,8 +54,8 @@ class UserModel extends Model{
 
 
     //新增用户
-    public function user_register($userinfo){
-        $userinfo['password'] = $this->password_hasher($userinfo['password']); //用户密码加密
+    public function userRegister($userinfo){
+        $userinfo['password'] = $this->passwordHasher($userinfo['password']); //用户密码加密
         if($this->create($userinfo)){
             if ($this->add()) {
                 //session('user',$userinfo['user_name']); //session 注册后进入已登录状态
@@ -64,13 +65,12 @@ class UserModel extends Model{
 
     }
 
-    //用户登录 返回0没有此用户 返回1登录成功 返回2密码错误
     /**
      * 用户登录
      * @param  array $userinfo [description]
      * @return int           0没有此用户 返回1登录成功 返回2密码错误
      */
-    public function user_login($userinfo){
+    public function userLogin($userinfo){
         $username = $userinfo['user_name'];
         $password = $this->password_hasher($userinfo['password']); //将密码加密 与数据库比对
         //$data = $this->where('user_name = "'.$username.'"')->find();
@@ -90,28 +90,28 @@ class UserModel extends Model{
     }
 
     //更新用户登录IP
-    public function update_loginIP($username){
+    public function updateLoginIP($username){
 
         $this->where('user_name = "'.$username.'"')->setField('login_ip',ip2long(get_real_ip()));
     }
 
     //用户密码加密函数
-    public function password_hasher($password){
+    public function passwordHasher($password){
         //加密思路：原始密码->MD5(32)->sha1(40)->截取前32位
         return substr(sha1(md5($password)),0,32);
     }
 
     //忘记密码 - 通过邮件查询用户名
-    public function get_username_by_email($email){
+    public function getUsernameByEmail($email){
 
         $username = $this->where('email = "'.$email.'"')->getField('user_name');
         return $username;
     }
 
     //发送重置密码邮件
-    public function send_resetpw_email($email,$username){
+    public function sendResetpwEmail($email,$username){
 
-        $hash = $this->password_hasher($email.time()); //用加密函数生成hash
+        $hash = $this->passwordHasher($email.time()); //用加密函数生成hash
         $date = date('Y-n-j',time());
         $url = 'http://'.I('server.HTTP_HOST').U('User/resetpw').'?hash='.$hash;
         $content = '你好，<br><br>请点击以下链接来重设你的密码：<br><br><a href="'.$url.'" target="_blank">'.$url.'</a><br><br><b>请不要将此链接告诉其他人，请在60分钟内完成密码重置！</b><br><br>Airex社区 '.$date;
