@@ -103,7 +103,22 @@ class UserController extends BaseController{
 		if (checkLogin()) {
 			$this->redirect("Index/index",'',0);
 		}
-		$this->display();
+		if(IS_POST){
+			$User = FactoryModel::createUserModel();
+			$email = I('post.email'); //得到参数email
+			if($username = $User->get_username_by_email($email)){ //此email是否存在数据库中
+				if($User->send_resetpw_email($email,$username)){  //发送邮件给此email
+					$this->success('重置密码邮件发送成功！',U('Index/index'));
+				}else{
+					$this->error('邮件发送失败');
+				}
+			}else{
+				$this->error('不存在此邮箱');
+			}
+
+		}else{
+			$this->display();
+		}
 	}
 
 	//重置密码
@@ -111,11 +126,20 @@ class UserController extends BaseController{
 		if (checkLogin()) {
 			$this->redirect("Index/index",'',0);
 		}
-		if(I('get.hash')){
-			$this->display();
+		if(I('get.hash')){  //如果存在hash参数
+			$hash = I('get.hash');
+			if(session('?'.$hash)){ //如果session中存在此hash
+				$username = session($hash);  //得到hash中的用户名
+				$this->assign('username',$username); //将用户名输出到前端
+				$this->display();
+			}else{
+				$this->error('不存在此重置密钥或已失效',U('Index/index'));
+			}
 		}else{
-			$this->error('非法操作');
+			$this->error('非法操作',U('Index/index'));
 		}
+
+
 	}
 
 	//登出

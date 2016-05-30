@@ -21,9 +21,7 @@
 					<button type="button" class="btn btn-warning btn-sm">加入特别关注</button>
 					<br></div>
 				<span class="info-number">
-					<small>
-						Airex 第 1 号会员，加入于 2016-05-27 19:16:56，今日活跃度排名 3332
-					</small>
+					<small>Airex 第 1 号会员，加入于 2016-05-27 19:16:56，今日活跃度排名 3332</small>
 				</span>
 				<button type="button" class="btn btn-sm">Block</button>
 			</div>
@@ -50,7 +48,7 @@
 							<a href="#">Mr.Trump 创建的所有主题</a>
 						</li>
 						<li id="toggle">
-							<a href="#">显示主题</a>
+							<a href="#">点击显示主题</a>
 						</li>
 						<li>
 							<a href="#">提问</a>
@@ -88,7 +86,7 @@
 			</div>
 		</div>
 
-		<div class="col-sm-12 theme-display" id="themeShow">
+		<div class="col-sm-12 theme-display" id="themeShow" >
 			<ul class="list-group">
 				<li class="list-group-item">
 					<span>
@@ -312,25 +310,8 @@
 			</div>
 		</div>
 
-		<script>
+	</block>
 
-			(function toggle() {
-				document.getElementById("toggle").onclick = function() {
-					var show = document.getElementById("themeShow").style.display,
-						hide = document.getElementById("themeHide").style.display;
-					if ((show == "none") ) {
-						hide = "none";
-						show = "block";
-					} else if ((show == "block")) {
-						hide = "block";
-						show = "none";
-
-					}
-				}
-			})();
-
-
-		
-		</script>
-
+	<block name="js">
+		<script src="__PUBLIC__/home/js/info.js"></script>
 	</block>

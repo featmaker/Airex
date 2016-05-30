@@ -14,6 +14,7 @@ a {
 
     background-color: white;
     box-shadow: 0 2px 3px rgba(0, 0, 0, .1);
+  
 }
 
 .header-up {
@@ -254,10 +255,12 @@ a {
     margin-top: 5px;
 }
 
-#themeHide {
-    display: none;
-}
+
 
 .navbar.navbar-fixed-top a{
     color:#337AB7;
+}
+
+#themeShow{
+    display:none;
 }
