@@ -4,179 +4,40 @@
 
 <block name="page-main">
 	<ul class="nav nav-pills nav-tags" role="tablist">
-	  <li role="presentation" class="active"><a href="#">技术</a></li>
-	  <li role="presentation"><a href="#">创意</a></li>
-	  <li role="presentation"><a href="#">好玩</a></li>
-	  <li role="presentation"><a href="#">Apple</a></li>
-	  <li role="presentation"><a href="#">酷工作</a></li>
-	  <li role="presentation"><a href="#">交易</a></li>
-	  <li role="presentation"><a href="#">城市</a></li>
-	  <li role="presentation"><a href="#">问与答</a></li>
-	  <li role="presentation"><a href="#">最热</a></li>
-	  <li role="presentation"><a href="#">全部</a></li>
-	  <li role="presentation"><a href="#">节点</a></li>
-	  <li role="presentation"><a href="#">关注</a></li>
+	<!-- 展示分类 -->
+	<volist name="categorys" id="cate">
+		<li role="presentation"><a href="__ACTION__?cat={$cate}">{$cate}</a></li>
+	</volist>
 	</ul>
 	<div class="panel panel-default">
 	  <div class="panel-heading">
-		  <a class="nav-nodes" href="#">技术</a>
-		  <a class="nav-nodes" href="#">创意</a>
-		  <a class="nav-nodes" href="#">好玩</a>
-		  <a class="nav-nodes" href="#">Apple</a>
-		  <a class="nav-nodes" href="#">酷工作</a>
-		  <a class="nav-nodes" href="#">交易</a>
-		  <a class="nav-nodes" href="#">城市</a>
-		  <a class="nav-nodes" href="#">问与答</a>
-		  <a class="nav-nodes" href="#">最热</a>
-		  <a class="nav-nodes" href="#">全部</a>
-		  <a class="nav-nodes" href="#">节点</a>
-		  <a class="nav-nodes" href="#">关注</a>
+	 <!-- 相应节点展示 -->
+	  <volist name="nodes" id="node">
+	  	<a class="nav-nodes" href="#">{$node.node_name}</a>
+	  </volist>
 	  </div>
   <div class="panel-body" style="padding: 2;">
+<!--  展示该分类下部分文章 -->
+  <volist name="topics" id="topic">
 	<div class="media">
 		  <div class="media-left">
-		    <a href="{:U('topic/detail',array('tid'=>$tid))}">
-		      <img class="media-object" src="__PUBLIC__/home/img/tx.png" alt="...">
+		    <a href="{:U('User/info',array('member'=>$topic['user_name']))}">
+		      <img class="media-object" src="{$topic.imgpath}" alt="...">
 		    </a>
 		  </div>
 		  <div class="media-body">
-		    <h4 class="media-heading"><a href="{:U('topic/detail',array('tid'=>$tid))}" title="">有用过 Synergy 的同志吗？</a></h4>
-		    <a href="#" title="程序员" style="font-size:10px;background: #f5f5f5">程序员</a><em>.</em>
-		    <strong><a href="#" title="" style="font-size:12px;color: black;">admin</a></strong><em>.</em>
-		    <span style="font-size:10px;color: #CDCFD7">2分钟前</span><em>.</em>
-		    <span style="font-size:10px;color: #CDCFD7">最后回复来自:<strong><a href="#" title="" style="color: black;">admin</a></strong></span>
-			 <span class="badge" style="float:right">3</span>
+		    <h4 class="media-heading">
+		    	<a href="{:U('topic/detail',array('tid'=>$topic['tid']))}" title="">{$topic.title}</a>
+		    </h4>
+		    <a href="{:U('Category/find',array('node'=>$topic['node_name']))}" title="程序员" style="font-size:10px;background: #f5f5f5">{$topic.node_name}</a><em>.</em>
+		    <strong><a href="{:U('User/info',array('member'=>$topic['user_name']))}" title="" style="font-size:12px;color: black;">{$topic.user_name}</a></strong><em>.</em>
+		    <span style="font-size:10px;color: #CDCFD7">{$topic.publish_time} 分钟前</span><em>.</em>
+		    <span style="font-size:10px;color: #CDCFD7">最后回复来自:<strong><a href="{:U('User/info',array('member'=>$topic['user_name']))}" title="" style="color: black;">admin</a></strong></span>
+			 <span class="badge" style="float:right">{$topic.comments}</span>
 		  </div>
 	</div>
-	<hr>
-	<div class="media">
-		  <div class="media-left">
-		    <a href="{:U('topic/detail',array('tid'=>$tid))}">
-		      <img class="media-object" src="__PUBLIC__/home/img/tx.png" alt="...">
-		    </a>
-		  </div>
-		  <div class="media-body">
-		    <h4 class="media-heading"><a href="{:U('topic/detail',array('tid'=>$tid))}" title="">有用过 Synergy 的同志吗？</a></h4>
-		    <a href="#" title="程序员" style="font-size:10px;background: #f5f5f5">程序员</a><em>.</em>
-		    <strong><a href="#" title="" style="font-size:12px;color: black;">admin</a></strong><em>.</em><em>.</em>
-		    <span style="font-size:10px;color: #CDCFD7">2分钟前</span><em>.</em>
-		    <span style="font-size:10px;color: #CDCFD7">最后回复来自:<strong><a href="#" title="" style="color: black;">admin</a></strong></span>
-		    <span class="badge" style="float: right">3</span>
-		  </div>
-	</div>
-	<hr>
-	<div class="media">
-		  <div class="media-left">
-		    <a href="{:U('topic/detail',array('tid'=>$tid))}">
-		      <img class="media-object" src="__PUBLIC__/home/img/tx.png" alt="...">
-		    </a>
-		  </div>
-		  <div class="media-body">
-		    <h4 class="media-heading"><a href="{:U('topic/detail',array('tid'=>$tid))}" title="">有用过 Synergy 的同志吗？</a></h4>
-		    <a href="#" title="程序员" style="font-size:10px;background: #f5f5f5">程序员</a><em>.</em>
-		    <strong><a href="#" title="" style="font-size:12px;color: black;">admin</a></strong><em>.</em><em>.</em>
-		    <span style="font-size:10px;color: #CDCFD7">2分钟前</span><em>.</em>
-		    <span style="font-size:10px;color: #CDCFD7">最后回复来自:<strong><a href="#" title="" style="color: black;">admin</a></strong></span>
-		    <span class="badge" style="float: right">3</span>
-		  </div>
-	</div>
-	<hr>
-	<div class="media">
-		  <div class="media-left">
-		    <a href="{:U('topic/detail',array('tid'=>$tid))}">
-		      <img class="media-object" src="__PUBLIC__/home/img/tx.png" alt="...">
-		    </a>
-		  </div>
-		  <div class="media-body">
-		    <h4 class="media-heading"><a href="{:U('topic/detail',array('tid'=>$tid))}" title="">有用过 Synergy 的同志吗？</a></h4>
-		    <a href="#" title="程序员" style="font-size:10px;background: #f5f5f5">程序员</a><em>.</em>
-		    <strong><a href="#" title="" style="font-size:12px;color: black;">admin</a></strong><em>.</em><em>.</em>
-		    <span style="font-size:10px;color: #CDCFD7">2分钟前</span><em>.</em>
-		    <span style="font-size:10px;color: #CDCFD7">最后回复来自:<strong><a href="#" title="" style="color: black;">admin</a></strong></span>
-		    <span class="badge" style="float: right">3</span>
-		  </div>
-	</div>
-	<hr>
-	<div class="media">
-		  <div class="media-left">
-		    <a href="{:U('topic/detail',array('tid'=>$tid))}">
-		      <img class="media-object" src="__PUBLIC__/home/img/tx.png" alt="...">
-		    </a>
-		  </div>
-		  <div class="media-body">
-		    <h4 class="media-heading"><a href="{:U('topic/detail',array('tid'=>$tid))}" title="">有用过 Synergy 的同志吗？</a></h4>
-		    <a href="#" title="程序员" style="font-size:10px;background: #f5f5f5">程序员</a><em>.</em>
-		    <strong><a href="#" title="" style="font-size:12px;color: black;">admin</a></strong><em>.</em><em>.</em>
-		    <span style="font-size:10px;color: #CDCFD7">2分钟前</span><em>.</em>
-		    <span style="font-size:10px;color: #CDCFD7">最后回复来自:<strong><a href="#" title="" style="color: black;">admin</a></strong></span>
-		    <span class="badge" style="float: right">3</span>
-		  </div>
-	</div>
-	<hr>
-		<div class="media">
-		  <div class="media-left">
-		    <a href="{:U('topic/detail',array('tid'=>$tid))}">
-		      <img class="media-object" src="__PUBLIC__/home/img/tx.png" alt="...">
-		    </a>
-		  </div>
-		  <div class="media-body">
-		    <h4 class="media-heading"><a href="{:U('topic/detail',array('tid'=>$tid))}" title="">有用过 Synergy 的同志吗？</a></h4>
-		    <a href="#" title="程序员" style="font-size:10px;background: #f5f5f5">程序员</a><em>.</em>
-		    <strong><a href="#" title="" style="font-size:12px;color: black;">admin</a></strong><em>.</em><em>.</em>
-		    <span style="font-size:10px;color: #CDCFD7">2分钟前</span><em>.</em>
-		    <span style="font-size:10px;color: #CDCFD7">最后回复来自:<strong><a href="#" title="" style="color: black;">admin</a></strong></span>
-		    <span class="badge" style="float: right">3</span>
-		  </div>
-	</div>
-	<hr>
-	<div class="media">
-		  <div class="media-left">
-		    <a href="{:U('topic/detail',array('tid'=>$tid))}">
-		      <img class="media-object" src="__PUBLIC__/home/img/tx.png" alt="...">
-		    </a>
-		  </div>
-		  <div class="media-body">
-		    <h4 class="media-heading"><a href="{:U('topic/detail',array('tid'=>$tid))}" title="">有用过 Synergy 的同志吗？</a></h4>
-		    <a href="#" title="程序员" style="font-size:10px;background: #f5f5f5">程序员</a><em>.</em>
-		    <strong><a href="#" title="" style="font-size:12px;color: black;">admin</a></strong><em>.</em><em>.</em>
-		    <span style="font-size:10px;color: #CDCFD7">2分钟前</span><em>.</em>
-		    <span style="font-size:10px;color: #CDCFD7">最后回复来自:<strong><a href="#" title="" style="color: black;">admin</a></strong></span>
-		    <span class="badge" style="float: right">3</span>
-		  </div>
-	</div>
-	<hr>
-	<div class="media">
-		  <div class="media-left">
-		    <a href="{:U('topic/detail',array('tid'=>$tid))}">
-		      <img class="media-object" src="__PUBLIC__/home/img/tx.png" alt="...">
-		    </a>
-		  </div>
-		  <div class="media-body">
-		    <h4 class="media-heading"><a href="{:U('topic/detail',array('tid'=>$tid))}" title="">有用过 Synergy 的同志吗？</a></h4>
-		    <a href="#" title="程序员" style="font-size:10px;background: #f5f5f5">程序员</a><em>.</em>
-		    <strong><a href="#" title="" style="font-size:12px;color: black;">admin</a></strong><em>.</em><em>.</em>
-		    <span style="font-size:10px;color: #CDCFD7">2分钟前</span><em>.</em>
-		    <span style="font-size:10px;color: #CDCFD7">最后回复来自:<strong><a href="#" title="" style="color: black;">admin</a></strong></span>
-		    <span class="badge" style="float: right">3</span>
-		  </div>
-	</div>
-	<hr>
-	<div class="media">
-		  <div class="media-left">
-		    <a href="{:U('topic/detail',array('tid'=>$tid))}">
-		      <img class="media-object" src="__PUBLIC__/home/img/tx.png" alt="...">
-		    </a>
-		  </div>
-		  <div class="media-body">
-		    <h4 class="media-heading"><a href="{:U('topic/detail',array('tid'=>$tid))}" title="">有用过 Synergy 的同志吗？</a></h4>
-		    <a href="#" title="程序员" style="font-size:10px;background: #f5f5f5">程序员</a><em>.</em>
-		    <strong><a href="#" title="" style="font-size:12px;color: black;">admin</a></strong><em>.</em><em>.</em>
-		    <span style="font-size:10px;color: #CDCFD7">2分钟前</span><em>.</em>
-		    <span style="font-size:10px;color: #CDCFD7">最后回复来自:<strong><a href="#" title="" style="color: black;">admin</a></strong></span>
-		    <span class="badge" style="float: right">3</span>
-		  </div>
-	</div>
-	<hr>
+	<hr>  	
+  </volist>
 
 	<!-- 分页 -->
 	<nav class="col-md-6 col-md-offset-3">
@@ -358,16 +219,16 @@
 
 		 <!-- 用户信息侧边栏需要和/topic/detail/里样式一致，请把样式从detail.css移至style.css -->
 		 <div class="sidebar-module sidebar-module-inset">
-			 <a href="#" title="">
-				 <img src="__PUBLIC__{$data.imgpath}" alt="..." class="img-rounded">
+			 <a href="#" title="" class="info">
+				 <img src="{$data['userInfo']['imgpath']}" alt="..." class="img-rounded">
 			 </a>
 			 &nbsp;&nbsp;
 			 <label><a href="#" title="">{:I('session.user')}</a></label>
 			 <table class="table">
 				 <tr>
-					 <td align="center"><a class="info" href="#" title="1" ><span class="lead">{$data.nodes}</span> <br><span>节点收藏</span></a></td>
-					 <td align="center"><a class="info" href="#" title="1" ><span class="lead">{$data.topics}</span> <br><span>主题收藏</span></a></td>
-					 <td align="center"><a class="info" href="#" title="1" ><span class="lead">{$data.attentions}</span> <br><span>特别关注</span></a></td>
+					 <td align="center"><a class="info" href="#" title="" ><span class="lead">{$data['userInfo']['nodes']}</span> <br><span>节点收藏</span></a></td>
+					 <td align="center"><a class="info" href="#" title="1" ><span class="lead">{$data['userInfo']['topics']}</span> <br><span>主题收藏</span></a></td>
+					 <td align="center"><a class="info" href="#" title="1" ><span class="lead">{$data['userInfo']['attentions']}</span> <br><span>特别关注</span></a></td>
 				 </tr>
 			 </table>
 			 <hr style="margin: 4px 0">
@@ -376,9 +237,9 @@
 			 </a>
 			 <hr style="margin: 8px 0">
 			 <a href="#" title="">
-				 <small>0条未读提醒</small>
+				 <small>{$data['notifications']}条未读提醒</small>
 			 </a>
-			 <a href="#" title=""><span class="badge badge-balance">财富: {$data.wealth}</span></a>
+			 <a href="#" title=""><span class="badge badge-balance">财富: {$data['userInfo']['wealth']}</span></a>
 		 </div>
 
 	 </if>
@@ -404,5 +265,10 @@
  			var actives = $('#navbar ul li');
  			actives.eq(0).addClass('nav-active');
  		});
+ 		$('ul.nav-tags li a').each(function(){
+ 			if ($(this).text() == "{$activeCat|default='技术'}") {
+ 				$(this).parent('li').addClass('active');
+ 			}
+ 		})
  	</script>
  </block>

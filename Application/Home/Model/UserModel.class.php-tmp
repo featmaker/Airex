@@ -56,7 +56,7 @@ class UserModel extends Model {
 		$userinfo['password'] = $this->password_hasher($userinfo['password']);//用户密码加密
 		if ($this->create($userinfo)) {
 			if ($this->add()) {
-				session('user', $userinfo['user_name']);//session 注册后进入已登录状态
+				//session('user',$userinfo['user_name']); //session 注册后进入已登录状态
 				return true;
 			}
 		}
@@ -64,20 +64,34 @@ class UserModel extends Model {
 	}
 
 	//用户登录 返回0没有此用户 返回1登录成功 返回2密码错误
+	/**
+	 * 用户登录
+	 * @param  array $userinfo [description]
+	 * @return int           0没有此用户 返回1登录成功 返回2密码错误
+	 */
 	public function user_login($userinfo) {
 		$username = $userinfo['user_name'];
 		$password = $this->password_hasher($userinfo['password']);//将密码加密 与数据库比对
-		$data     = $this->where('user_name = "'.$username.'"')->find();
+		//$data = $this->where('user_name = "'.$username.'"')->find();
+		$user_id = $this->where('user_name = "'.$username.'"')->getField('id');
+		$data    = $this->where('user_name = "'.$username.'"')->getField('id,user_name,password');//返回二维数组以ID为索引
 		if ($data) {
-			if ($password == $data['password']) {
-				session('user', $data['user_name']);// 将已登录用户名加入SESSION
-				return 1;
+			if ($password == $data[$user_id]['password']) {
+				session('user', $data[$user_id]['user_name']);// 将已登录用户名加入SESSION
+				session('uid', $data[$user_id]['id']);// 将用户ID加入SESSION
+				return 1;//登录成功
 			} else {
-				return 2;
+				return 2;//密码错误
 			}
 		} else {
-			return 0;
+			return 0;//不存在此用户
 		}
+	}
+
+	//更新用户登录IP
+	public function update_loginIP($username) {
+
+		$this->where('user_name = "'.$username.'"')->setField('login_ip', ip2long(get_real_ip()));
 	}
 
 	//用户密码加密函数

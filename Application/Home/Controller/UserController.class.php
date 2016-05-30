@@ -160,7 +160,11 @@ class UserController extends BaseController{
 		$this->redirect("User/login",'',0);
 	}
 
-	public function userInfo(){
-		$this->show('hello world');
+	public function info(){
+		$this->display();
+	}
+
+	public function setting(){
+		$this->display();
 	}
 }
