@@ -36,7 +36,12 @@ class TopicModel extends Model
 		}
 	}
 
-	//追加内容
+	/**
+	 * 追加主题内容
+	 * @param  [type] $tid     [description]
+	 * @param  [type] $content [description]
+	 * @return [type]          [description]
+	 */
 	public function appendContent($tid,$content){
 		$originContent = $this->where(array('id'=>$tid))->getField('content');
 		$newContent = $originContent.'<br>'.$content;
@@ -45,7 +50,12 @@ class TopicModel extends Model
 		}
 		return false;
 	}
-	//检查所属节点值
+
+	/**
+	 * 检查所属节点值
+	 * @param  [type] $nodeId [description]
+	 * @return [type]         [description]
+	 */
 	function checkNodeId($nodeId){
 		$nodeIds = M('node')->getField('id',true);
 		if (!in_array($nodeId, $nodeIds)) {
@@ -54,12 +64,19 @@ class TopicModel extends Model
 		return true;
 	}
 
-	//获取当前时间
+	/**
+	 * 获取当前时间
+	 * @return [type] [description]
+	 */
 	function getTime(){
 		return date('Y-m-d h:m:s',time());
 	}
 
-	//检查content字符长度
+	/**
+	 * 检查content字符长度
+	 * @param  [type] $content [description]
+	 * @return [type]          [description]
+	 */
 	function checkLength_c($content){
 		if (mb_strlen($content) > 2000) {
 			return false;
@@ -67,7 +84,11 @@ class TopicModel extends Model
 		return true;
 	}
 
-	//检查title字符长度
+	/**
+	 * 检查title字符长度
+	 * @param  [type] $title [description]
+	 * @return [type]        [description]
+	 */
 	function checkLength_t($title){
 		if (mb_strlen($title) > 120) {
 			return false;
@@ -75,18 +96,26 @@ class TopicModel extends Model
 		return true;
 	}
 
-	//根据tid获取主题详情
+	/**
+	 * 根据tid获取主题详情
+	 * @param  [type] $tid [description]
+	 * @return [type]      [description]
+	 */
 	public function getInfoById($tid){
 		$topicInfo = $this
-				->where(array('id'=>$tid))
-				->field('title,content,publish_time,username,hits,collections,comments,node_name')
+				->where(array('airex_topic.id'=>$tid))
+				->field('title,content,publish_time,user_name,hits,collections,comments,node_name')
 				->join('airex_user as u on u.id = airex_topic.uid')
 				->join('airex_node as n on n.id = airex_topic.node_id')
 				->select()[0];
 		return $topicInfo;
 	}
 
-	//根据tid获取相应评论
+	/**
+	 * 根据tid获取相应评论
+	 * @param  [type] $tid [description]
+	 * @return [type]      [description]
+	 */
 	public function getCommentById($tid){
 		$commentInfo = M('comment as c')
 					->where(array('tid'=>$tid))
@@ -97,7 +126,11 @@ class TopicModel extends Model
 		return $commentInfo;
 	}
 
-	//检查tid是否存在
+	/**
+	 * 检查tid是否存在
+	 * @param  [type] $tid [description]
+	 * @return [type]      [description]
+	 */
 	public function checkTid($tid){
 		$tids = $this->getField('id',true);
 		if (!in_array($tid, $tids)) {
@@ -105,4 +138,5 @@ class TopicModel extends Model
 		}
 		return true;
 	}
+
 }

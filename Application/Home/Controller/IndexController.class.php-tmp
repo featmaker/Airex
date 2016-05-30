@@ -25,9 +25,23 @@ use Home\Model\FactoryModel;
 
 class IndexController extends BaseController {
 	public function index() {
-		$Index = FactoryModel::createIndexModel();//实例化Index模型
-		$data  = $Index->get_userinfo();//得到用户信息
-		$this->assign('data', $data);//输出用户信息数组到前台
+		if (session('?uid')) {
+			$Index = FactoryModel::createIndexModel();//得到用户信息
+			$data  = $Index->getUserInfo();
+			$this->assign('data', $data);
+		}
+		$Cate      = FactoryModel::createCategoryModel();
+		$categorys = $Cate->getCategorys();//获取分类
+		$catName   = I('get.cat');
+		$nodes     = $Cate->getNodeByCatName($catName);//获取节点
+		// var_dump($nodes);
+		$topics = $Cate->getTopicsByCat($catName);//获取主题
+		// var_dump($topics);
+		$this->assign('categorys', $categorys);
+		$this->assign('nodes', $nodes);
+		$this->assign('activeCat', $catName);
+		$this->assign('topics', $topics);
 		$this->display();
+		// var_dump($data);
 	}
 }

@@ -1,5 +1,5 @@
 <extend name="Public:base" />
-<block name="title"><title>Ubuntu16.04 稳定吗? - Airex</title></block>
+<block name="title"><title>{$topicInfo.title}</title></block>
 <block name="css">
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/detail.css">
 </block>
@@ -14,8 +14,8 @@
 	</ol>
 	<div class="media">
 	  <div class="media-body">
-		<h3>Ubuntu16.04 稳定吗? 
-		<h6><span><a href="#" title="">Admin</a></span> . <span>3分钟前</span> . <span>24条回复</span> . <span>103次点击</span></h6></h3>
+		<h3>{$topicInfo.title}
+		<h6><span><a href="#" title="">{$topicInfo.user_name}</a></span> . <span>{$topicInfo.publish_time}分钟前</span> . <span>{$topicInfo.comments}条回复</span> . <span>{$topicInfo.hits}次点击</span></h6></h3>
 	  </div>
 	    <div class="media-right">
 	    <a href="#">
@@ -25,17 +25,8 @@
 	</div>
 	<hr style="margin: 10px 0">
 	<p class="small">
-		格式化了之前的 ubuntu 15.10 重装的，有下面的几个问题咯 
-
-		1. 无线会断，以前 ubuntu 15.10 也会，但是 16.04 断了之后就找不到我的 Wi-Fi 了 
-
-		2. 触摸板在合起来再打开之后会失效，无解 
-
-		3. 大概还有 chrome 不定时的闪屏 
-
-		4. 以前会有更新跳出来的，现在会有个通知，但是不能点，还是只能 asmallt-get 
-
-		5. flash 在软件中心找不到了？</p>
+		{$topicInfo.content}
+	</p>
 
   </div>
 
@@ -151,29 +142,29 @@
 </div>
 </block>
 <block name="sidebar">
-	 <div class="sidebar-module sidebar-module-inset" style="">
-	    <a href="#" title="">
-	      <img src="__PUBLIC__{:get_avatar(I('session.user'))}" alt="..." class="img-rounded">
-	    </a>  
-		&nbsp;&nbsp;
-	    <label><a href="#" title="">{:I('session.user')}</a></label>
-	    <table class="table">
-	      <tr>
-	        <td align="center"><a class="info" href="#" title="1" ><span class="lead">1</span> <br><span>节点收藏</span></a></td>
-	        <td align="center"><a class="info" href="#" title="1" ><span class="lead">1</span> <br><span>主题收藏</span></a></td>
-	        <td align="center"><a class="info" href="#" title="1" ><span class="lead">1</span> <br><span>特别关注</span></a></td>
-	      </tr>
-	    </table>
-	    <hr style="margin: 4px 0">
-	    <a href="#" title="">
-	      <span class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp;创建新主题</span>
-	    </a>
-	    <hr style="margin: 8px 0">
-	    <a href="#" title="">
-	      <small>0条未读提醒</small>
-	    </a>
-		<a href="#" title=""><span class="badge badge-balance">财富: 42</span></a>
-	 </div>
+		 <div class="sidebar-module sidebar-module-inset">
+			 <a href="#" title="" class="info">
+				 <img src="{$data['userInfo']['imgpath']}" alt="..." class="img-rounded">
+			 </a>
+			 &nbsp;&nbsp;
+			 <label><a href="#" title="">{:I('session.user')}</a></label>
+			 <table class="table">
+				 <tr>
+					 <td align="center"><a class="info" href="#" title="" ><span class="lead">{$data['userInfo']['nodes']}</span> <br><span>节点收藏</span></a></td>
+					 <td align="center"><a class="info" href="#" title="1" ><span class="lead">{$data['userInfo']['topics']}</span> <br><span>主题收藏</span></a></td>
+					 <td align="center"><a class="info" href="#" title="1" ><span class="lead">{$data['userInfo']['attentions']}</span> <br><span>特别关注</span></a></td>
+				 </tr>
+			 </table>
+			 <hr style="margin: 4px 0">
+			 <a href="#" title="">
+				 <span class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp;创建新主题</span>
+			 </a>
+			 <hr style="margin: 8px 0">
+			 <a href="#" title="">
+				 <small>{$data['notifications']}条未读提醒</small>
+			 </a>
+			 <a href="#" title=""><span class="badge badge-balance">财富: {$data['userInfo']['wealth']}</span></a>
+		 </div>
      <div class="sidebar-module sidebar-module-inset">
          <h4>最热节点</h4>
          <a href="#" class="item-node">PHP</a>
