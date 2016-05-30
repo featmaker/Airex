@@ -34,13 +34,26 @@ function get_real_ip(){
 	return ($ip ? $ip : $_SERVER['REMOTE_ADDR']);
 }
 
-//得到用户头像
-function get_avatar($username){
+/**
+ * 邮件发送函数
+ */
+function sendMail($to, $title, $content) {
 
-	$User = M("User");
-	//$password = substr(sha1($userinfo['password']),0,32); //因为数据库只存了32位sha1，实际上sha1生成的是40位
-	$data = $User->where('user_name = "'.$username.'"')->find();
-	$avatar=$data['imgpath'];
-	return $avatar;
-
+	Vendor('PHPMailer.PHPMailerAutoload');
+	$mail = new PHPMailer(); //实例化
+	$mail->IsSMTP(); // 启用SMTP
+	$mail->Host=C('MAIL_HOST'); //smtp服务器的名称（这里以QQ邮箱为例）
+	$mail->SMTPAuth = C('MAIL_SMTPAUTH'); //启用smtp认证
+	$mail->Username = C('MAIL_USERNAME'); //你的邮箱名
+	$mail->Password = C('MAIL_PASSWORD') ; //邮箱密码
+	$mail->From = C('MAIL_FROM'); //发件人地址（也就是你的邮箱地址）
+	$mail->FromName = C('MAIL_FROMNAME'); //发件人姓名
+	$mail->AddAddress($to,"Airex用户");
+	$mail->WordWrap = 50; //设置每行字符长度
+	$mail->IsHTML(C('MAIL_ISHTML')); // 是否HTML格式邮件
+	$mail->CharSet=C('MAIL_CHARSET'); //设置邮件编码
+	$mail->Subject =$title; //邮件主题
+	$mail->Body = $content; //邮件内容
+	$mail->AltBody = "Airex是一个基于ThinkPHP的轻量级bbs社区"; //邮件正文不支持HTML的备用显示
+	return($mail->Send());
 }
