@@ -49,3 +49,9 @@
 .form-horizontal{
 	padding-left:10%;
 }
+.col-sm-2.radio>label{
+    font-size:12px;
+}
+.form-control{
+    width:50%;
+}
