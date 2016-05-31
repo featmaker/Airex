@@ -18,7 +18,7 @@
 	  </div>
   <div class="panel-body" style="padding: 2;">
 <!--  展示该分类下部分文章 -->
-  <volist name="topics" id="topic">
+  <volist name="topics" id="topic" empty="暂时没有数据">
 	<div class="media">
 		  <div class="media-left">
 		    <a href="{:U('User/info',array('member'=>$topic['user_name']))}">
@@ -219,11 +219,19 @@
 
 		 <!-- 用户信息侧边栏需要和/topic/detail/里样式一致，请把样式从detail.css移至style.css -->
 		 <div class="sidebar-module sidebar-module-inset">
+<<<<<<< HEAD
+			 <a href="{:U('User/info',array('member'=>$_SESSION['user']))}" title="" class="info">
+				 <img src="__PUBLIC__{$data['userInfo']['imgpath']}" alt="..." class="img-rounded">
+			 </a>
+			 &nbsp;&nbsp;
+			 <label><a href="{:U('User/info',array('member'=>$_SESSION['user']))}" title="">{$Think.session.user}</a></label>
+=======
 			 <a href="#" title="">
 				 <img src="__PUBLIC__{$data['userInfo']['imgpath']}" alt="..." class="img-rounded">
 			 </a>
 			 &nbsp;&nbsp;
 			 <label><a href="#" title="">{$Think.session.user}</a></label>
+>>>>>>> 75be73d39e208204aac24f00608071806b56f01a
 			 <table class="table">
 				 <tr>
 					 <td align="center"><a class="info" href="#" title="" ><span class="lead">{$data['userInfo']['nodes']}</span> <br><span>节点收藏</span></a></td>

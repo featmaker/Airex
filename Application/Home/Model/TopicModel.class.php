@@ -122,7 +122,7 @@ class TopicModel extends Model
 					->field('user_name,content,publish_time,imgpath')
 					->join('airex_user as u on u.id = c.uid')
 					->order('publish_time desc')
-					->select()[0];
+					->select();
 		return $commentInfo;
 	}
 
