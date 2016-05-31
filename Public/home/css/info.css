@@ -14,7 +14,6 @@ a {
 
     background-color: white;
     box-shadow: 0 2px 3px rgba(0, 0, 0, .1);
-  
 }
 
 .header-up {
@@ -102,6 +101,7 @@ a {
 .theme-hide-lock {
     margin-right: 40px;
     margin-left: 40px;
+    margin-top:1em;
 }
 .theme-hide-list {
     color: gray;
@@ -112,6 +112,9 @@ a {
 
 .theme-display {
     padding: 0;
+
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
 }
 
 .theme-display li {
@@ -140,6 +143,7 @@ a {
 
     color: #778087;
 }
+
 .list-group-item .badge {
     position: relative;
     bottom: 10px;
@@ -257,10 +261,15 @@ a {
 
 
 
-.navbar.navbar-fixed-top a{
-    color:#337AB7;
+.navbar.navbar-fixed-top a {
+    color: #337ab7;
 }
 
+<<<<<<< HEAD
+#themeShow {
+    display: none;
+=======
 #themeShow{
     display:none;
+>>>>>>> 75be73d39e208204aac24f00608071806b56f01a
 }

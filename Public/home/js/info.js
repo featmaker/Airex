@@ -1,4 +1,3 @@
-
 /*************  javascript  ***********
   
 		window.onload = function() {
@@ -32,12 +31,10 @@
 
 $(document).ready(function() {
 
-// 显示隐藏切换
+	// 显示隐藏切换
 	$("#toggle").click(function() {
-		
 		var hide = $("#themeHide"),
 			show = $("#themeShow");
-
 		if (hide.is(":hidden")) {
 			hide.show();
 			show.hide();
@@ -48,10 +45,6 @@ $(document).ready(function() {
 			$("#toggle>a").html("点击隐藏主题");
 		}
 	});
-
-
-
-
 
 
 
