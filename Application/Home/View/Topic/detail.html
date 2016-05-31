@@ -75,6 +75,21 @@
 		  </div>
 	  </div>  		
   	</volist>
+  <div class="media-body">
+			  <h5 class="media-heading">
+			  	<a href="{:U('User/info',array('member'=>$comment['user_name']))}" class="uname">{$comment.user_name}</a>
+			  	<span class="badge">{$key}</span>
+				<img src="__PUBLIC__/home/img/reply.png" alt="fdsfd" class="reply">
+			  	<div class="thank-area" hidden="">
+			  	 	<h6>
+				  	 	<a href="#" title="" onclick="return confirm('将花费10金币感谢回复者？')">感谢回复者</a>			  	 		
+			  	 	</h6>
+			  	</div>
+			  	<span class="time">{$comment.publish_time}6 小时 43 分钟前</span>
+			  </h5>
+			  <span class="reply-content">
+				  <small>然世界</small>
+			  </span>
 
 
 	<hr>
