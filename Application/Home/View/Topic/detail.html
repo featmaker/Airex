@@ -10,7 +10,7 @@
   <div class="panel-body">
 	<ol class="breadcrumb">
 	  <li><a href="__ROOT__/">Ariex</a></li>
-	  <li class="active">Music</li>
+	  <li class="active">{$topicInfo.node_name}</li>
 	</ol>
 	<div class="media">
 	  <div class="media-body">
@@ -50,7 +50,7 @@
   </div>
 
   <div class="panel-body" >
-  	<volist name="commentInfo" id="comment" key="key">
+  	<volist name="commentInfo" id="comment" key="key" empty="暂时没有评论，快来抢沙发">
 	  <div class="media reply-info">
 		  <div class="media-left">
 			  <a href="{:U('User/info',array('member'=>$comment['user_name']))}">
