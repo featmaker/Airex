@@ -22,7 +22,7 @@
 	<div class="media">
 		  <div class="media-left">
 		    <a href="{:U('User/info',array('member'=>$topic['user_name']))}">
-		      <img class="media-object" src="{$topic.imgpath}" alt="...">
+		      <img class="media-object" src="__PUBLIC__{$topic.imgpath}" alt="...">
 		    </a>
 		  </div>
 		  <div class="media-body">
@@ -219,11 +219,11 @@
 
 		 <!-- 用户信息侧边栏需要和/topic/detail/里样式一致，请把样式从detail.css移至style.css -->
 		 <div class="sidebar-module sidebar-module-inset">
-			 <a href="#" title="" class="info">
-				 <img src="{$data['userInfo']['imgpath']}" alt="..." class="img-rounded">
+			 <a href="#" title="">
+				 <img src="__PUBLIC__{$data['userInfo']['imgpath']}" alt="..." class="img-rounded">
 			 </a>
 			 &nbsp;&nbsp;
-			 <label><a href="#" title="">{:I('session.user')}</a></label>
+			 <label><a href="#" title="">{$Think.session.user}</a></label>
 			 <table class="table">
 				 <tr>
 					 <td align="center"><a class="info" href="#" title="" ><span class="lead">{$data['userInfo']['nodes']}</span> <br><span>节点收藏</span></a></td>

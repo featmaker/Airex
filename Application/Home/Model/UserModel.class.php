@@ -23,7 +23,11 @@ class UserModel extends Model{
         array('email','email','Email格式不正确',1),
     );
 
-    //AJAX检查用户名是否占用
+    /**
+     * AJAX检查占用用户名
+     * @param  string $username [description]
+     * @return json
+     */
     public function checkUsername($username){
 
         $data = $this->where("user_name='$username'")->find();
@@ -38,7 +42,11 @@ class UserModel extends Model{
     }
 
 
-    //AJAX检查邮箱是否占用
+    /**
+     * AJAX检查占用Email
+     * @param  string $email [description]
+     * @return json
+     */
     public function checkEmail($email){
 
         $data = $this->where("email='$email'")->find();
@@ -53,7 +61,11 @@ class UserModel extends Model{
     }
 
 
-    //新增用户
+    /**
+     * 新增用户
+     * @param  array $userinfo [description]
+     * @return boolean
+     */
     public function userRegister($userinfo){
         $userinfo['password'] = $this->passwordHasher($userinfo['password']); //用户密码加密
         if($this->create($userinfo)){
@@ -72,7 +84,7 @@ class UserModel extends Model{
      */
     public function userLogin($userinfo){
         $username = $userinfo['user_name'];
-        $password = $this->password_hasher($userinfo['password']); //将密码加密 与数据库比对
+        $password = $this->passwordHasher($userinfo['password']); //将密码加密 与数据库比对
         //$data = $this->where('user_name = "'.$username.'"')->find();
         $user_id = $this->where('user_name = "'.$username.'"')->getField('id');
         $data = $this->where('user_name = "'.$username.'"')->getField('id,user_name,password'); //返回二维数组以ID为索引
@@ -89,26 +101,43 @@ class UserModel extends Model{
         }
     }
 
-    //更新用户登录IP
+    /**
+     * 更新用户登录IP
+     * @param  string $username [description]
+     * @return
+     */
     public function updateLoginIP($username){
 
         $this->where('user_name = "'.$username.'"')->setField('login_ip',ip2long(get_real_ip()));
     }
 
-    //用户密码加密函数
+    /**
+     * 用户加密函数
+     * @param  string $password [description]
+     * @return string [返回加密后的密码]
+     */
     public function passwordHasher($password){
         //加密思路：原始密码->MD5(32)->sha1(40)->截取前32位
         return substr(sha1(md5($password)),0,32);
     }
 
-    //忘记密码 - 通过邮件查询用户名
+    /**
+     * 忘记密码-通过邮件查询用户名
+     * @param  string $email [description]
+     * @return string $username[返回用户名]
+     */
     public function getUsernameByEmail($email){
 
         $username = $this->where('email = "'.$email.'"')->getField('user_name');
         return $username;
     }
 
-    //发送重置密码邮件
+    /**
+     * 发送重置密码用剑
+     * @param  string $username [description]
+     * @param  string $emaill [description]
+     * @return boolean
+     */
     public function sendResetpwEmail($email,$username){
 
         $hash = $this->passwordHasher($email.time()); //用加密函数生成hash
@@ -116,13 +145,60 @@ class UserModel extends Model{
         $url = 'http://'.I('server.HTTP_HOST').U('User/resetpw').'?hash='.$hash;
         $content = '你好，<br><br>请点击以下链接来重设你的密码：<br><br><a href="'.$url.'" target="_blank">'.$url.'</a><br><br><b>请不要将此链接告诉其他人，请在60分钟内完成密码重置！</b><br><br>Airex社区 '.$date;
         if(SendMail($email,'[Airex] '.$username.'，请重置你的密码！',$content)) {
+            $db_resetpw = M('resetpw');
+            $db_resetpw->where('expire <= '.(time()-3600))->delete(); //清空过期密钥
+            $data['hash'] = $hash;
+            $data['expire'] = time()+3600; //密钥过期时间：1小时
+            $data['user_name'] = $username;
+            $db_resetpw->add($data);
             //session(array('name'=>'PHPSESSID','expire'=>600));//session失效时间为60分钟
-            session($hash,$username); //将hash加入session
+            //session($hash,$username); //将hash加入session
             return true;
         }else {
             return false;
         }
 
     }
-	
+
+    /**
+     * 获取重置密码的hash是否有效
+     * @param  string $hash [description]
+     * @return boolean or string
+     */
+    public function checkResetpwHash($hash){
+        $db_resetpw = M('resetpw');
+        if($data=$db_resetpw->where('hash = "'.$hash.'"')->find()){ //判断是否存在密钥
+            if($data['expire']>=time()){ //判断密钥是否过期
+                return $data['user_name'];
+            }else{
+                $this->deleteResetpwHash($hash);//若过期则删除此密钥
+                //$db_resetpw->where('hash = "'.$hash.'"')->delete();
+                return false;
+            }
+        }else{
+            return false;
+        }
+
+    }
+
+    /**
+     * 删除重置密码hash
+     * @param  string $hash [description]
+     * @return
+     */
+    public function deleteResetpwHash($hash){
+        $db_resetpw = M('resetpw');
+        $db_resetpw->where('hash = "'.$hash.'"')->delete();
+    }
+
+    /**
+     * 更新用户密码
+     * @param  string $username [description]
+     * @param  string $password [description]
+     * @return
+     */
+	public function updatePassword($username,$password){
+
+        $this->where('user_name = "'.$username.'"')->save(array('password'=>$this->passwordHasher($password)));
+    }
 }
