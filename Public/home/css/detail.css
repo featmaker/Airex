@@ -82,9 +82,7 @@ h6 > a {
     padding-bottom: 5px;
 }
 
-.info{
-	display: block;
-}
+
 
 .time {
     font-size: 12px;
@@ -100,6 +98,14 @@ h6 > a {
 
     color: #808080;
 }
-.thank-area{
+.thank-area {
     float: right;
+}
+.badge {
+    float: right;
+}
+.btn.btn-info.btn-sm {
+    float: right;
+
+    margin: 1em 0 .5em 0;
 }

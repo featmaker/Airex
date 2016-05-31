@@ -265,6 +265,11 @@ a {
     color: #337ab7;
 }
 
+<<<<<<< HEAD
 #themeShow {
     display: none;
+=======
+#themeShow{
+    display:none;
+>>>>>>> 75be73d39e208204aac24f00608071806b56f01a
 }

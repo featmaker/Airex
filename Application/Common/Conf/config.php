@@ -17,8 +17,15 @@ return array(
     'DB_MASTER_NUM'         =>  1, // 读写分离后 主服务器数量
     'DB_SLAVE_NO'           =>  '', // 指定从服务器序号
 
-    /* Auto session */
+    /* session */
     'SESSION_AUTO_START' => true, //自动SESSION
+
+    'SESSION_OPTIONS'         =>  array(
+        'name'                =>  'PHPSESSID',                    //设置session名
+        'expire'              =>  3600*24*15,                      //SESSION保存15天
+        'use_trans_sid'       =>  1,                               //跨页传递
+        'use_cookies'    =>  1,                               //是否只开启基于cookies的session的会话方式
+    ),
 
     // 配置邮件发送服务器
     'MAIL_HOST' =>'smtp.163.com',//smtp服务器的名称
@@ -29,4 +36,7 @@ return array(
     'MAIL_PASSWORD' =>'airex123',//邮箱密码
     'MAIL_CHARSET' =>'utf-8',//设置邮件编码
     'MAIL_ISHTML' =>TRUE, // 是否HTML格式邮件
+
+    //开启页面跟踪
+    'SHOW_PAGE_TRACE' =>true,
 );

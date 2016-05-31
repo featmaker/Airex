@@ -12,7 +12,7 @@ class TopicController extends BaseController
 	function __construct()
 	{
 		parent::__construct();
-		if (checkLogin()) {
+		if (!checkLogin()) {
 			$this->redirect("User/login",'',0);
 		}
 	}
@@ -21,7 +21,9 @@ class TopicController extends BaseController
 		$this->redirect("Index/index",0);
 	}
 
-	//发布新主题
+	/**
+	 * 发布新主题
+	 */
 	public function addTopic(){
 		if (IS_POST) {
 			$data['title'] = I('post.title','','trim');
@@ -40,21 +42,31 @@ class TopicController extends BaseController
 		}
 	}
 
-	//主题详情
+	/**
+	 * 主题详情
+	 * @return [type] [description]
+	 */
 	public function detail(){
 		$tid = I('get.tid','','intval');
 		$Topic = FactoryModel::createTopicModel();
 		if (!$Topic->checkTid($tid)) {
 			$this->error('传输参数错误');
 		}
-		$topicInfo = $Topic->getInfoById($tid);
-		$commentInfo = $Topic->getCommentById($tid);
+		$topicInfo = $Topic->getInfoById($tid);		//根据tid获取详情
+		$commentInfo = $Topic->getCommentById($tid);	//根据tid获取评论
+		$Index = FactoryModel::createIndexModel();
+		$data = $Index->getUserInfo();			//获取登陆用户信息
 		$this->assign('topicInfo',$topicInfo);
 		$this->assign('commentInfo',$commentInfo);
+		$this->assign('data',$data);
 		$this->display();
+		//var_dump($topicInfo);
 	}
 
-	//追加主题内容
+	/**
+	 * 追加主题内容
+	 * @return [type] [description]
+	 */
 	public function appendTopic(){
 		if (IS_POST) {
 			$content = I('post.append','','trim') == '' ?
