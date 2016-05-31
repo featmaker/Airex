@@ -83,3 +83,11 @@
 	</div>
 
 </block>
+<block name="js">
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var actives = $('#navbar ul li');
+			actives.eq(2).addClass('nav-active');
+		});
+	</script>
+</block>
