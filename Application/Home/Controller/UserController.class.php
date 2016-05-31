@@ -13,7 +13,6 @@ use Home\Model\FactoryModel;
 class UserController extends BaseController{
 
 	/**
-	 *
 	 * 验证码生成
 	 */
 	public function captcha(){
@@ -24,7 +23,9 @@ class UserController extends BaseController{
 		$Verify->entry();
 	}
 
-	//登录
+	/**
+	 * 用户登录
+	 */
 	public function login(){
 		if (checkLogin()) {
 			$this->redirect("Index/index",'',0);
@@ -38,9 +39,7 @@ class UserController extends BaseController{
 					break;
 				case 1: //登录成功
 					$User->updateLoginIP($postinfo['user_name']); //更新用户登录IP
-					$this->redirect("Index/index",'',0); //转向首页
-					//$this->success('登录成功，正在转向首页...',__ROOT__."/",2);
-					//$this->success('登录成功！');
+					$this->success('登录成功，正在转向首页...',U('Index/index'),1);
 					break;
 				case 2: //密码不对
 					$this->error('用户名或密码不正确！');
@@ -53,7 +52,9 @@ class UserController extends BaseController{
 	}
 
 
-	//注册
+	/**
+	 * 用户注册
+	 */
 	public function register(){
 		if (checkLogin()) {
 			$this->redirect("Index/index",'',0);
@@ -82,7 +83,9 @@ class UserController extends BaseController{
 
 	}
 
-	//AJAX检查用户名
+	/**
+	 * AJAX检查占用用户名接口
+	 */
 	public function checkUsername(){
 		$User = FactoryModel::createUserModel();
 		// $User = new \Home\Model\UserModel();
@@ -91,7 +94,9 @@ class UserController extends BaseController{
 
 	}
 
-	//AJAX检查EMAIL
+	/**
+	 * AJAX检查占用Email接口
+	 */
 	public function checkEmail(){
 		$User = FactoryModel::createUserModel();
 		// $User = new \Home\Model\UserModel();
@@ -100,7 +105,9 @@ class UserController extends BaseController{
 
 	}
 
-	//忘记密码
+	/**
+	 * 忘记密码
+	 */
 	public function forgot(){
 		if (checkLogin()) {
 			$this->redirect("Index/index",'',0);
@@ -123,22 +130,45 @@ class UserController extends BaseController{
 		}
 	}
 
-	//重置密码
+	/**
+	 * 重置密码
+	 */
 	public function resetpw(){
 		if (checkLogin()) {
 			$this->redirect("Index/index",'',0);
 		}
 		if(I('get.hash')){  //如果存在hash参数
 			$hash = I('get.hash');
-			if(session('?'.$hash)){ //如果session中存在此hash
-				//session(NULL);
-				$username = session($hash);  //得到hash中的用户名
+			$User = FactoryModel::createUserModel();
+			if($username = $User->checkResetpwHash($hash)){
 				$this->assign('username',$username); //将用户名输出到前端
-				$this->display();
+				if(IS_POST) {
+					if ((I('post.password')) != (I('post.password_r'))) {
+						$this->error('两次密码不一致');
+					}elseif((I('post.password'))=="" || (I('post.password')=="")){
+						$this->error('密码不能为空');
+					}else{
+						$User->updatePassword($username,I('post.password'));//更新密码
+						$User->deleteResetpwHash($hash); //删除此重置hash
+						$this->success('密码已经重置成功！','login'); //密码重置成功转向登录页
+					}
+				}else{
+					$this->display();
+				}
 			}else{
-				//session(NULL);
 				$this->error('不存在此重置密钥或已失效',U('Index/index'));
 			}
+
+
+//			if(session('?'.$hash)){ //如果session中存在此hash
+//				//session(NULL);
+//				$username = session($hash);  //得到hash中的用户名
+//				$this->assign('username',$username); //将用户名输出到前端
+//				$this->display();
+//			}else{
+//				//session(NULL);
+//				$this->error('不存在此重置密钥或已失效',U('Index/index'));
+//			}
 		}else{
 			$this->error('非法操作',U('Index/index'));
 		}
@@ -146,8 +176,10 @@ class UserController extends BaseController{
 
 	}
 
-	//用户信息设置
-	public function settings(){
+	/**
+	 * 用户信息设置
+	 */
+	public function setting(){
 		if (!checkLogin()) {
 			$this->redirect("Index/index",'',0);
 		}
@@ -155,18 +187,20 @@ class UserController extends BaseController{
 
 	}
 
-	//登出
+	/**
+	 * 用户登出
+	 */
 	public function logout(){
 		session('user',null);
 		session('user_id',null);
 		$this->redirect("User/login",'',0);
 	}
 
+	/**
+	 * 用户信息页
+	 */
 	public function info(){
 		$this->display();
 	}
 
-	public function setting(){
-		$this->display();
-	}
 }

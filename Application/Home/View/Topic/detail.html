@@ -95,6 +95,7 @@
 </div>
 </block>
 <block name="sidebar">
+<<<<<<< HEAD
 	 <div class="sidebar-module sidebar-module-inset">
 		 <a href="{:U('User/info',array('member'=>$_SESSION['user']))}" title="" class="info">
 			 <img src="__PUBLIC__{$data['userInfo']['imgpath']}" alt="..." class="img-rounded">
@@ -121,6 +122,34 @@
 	 <div class="sidebar-module sidebar-module-inset">
 	     <h4>最热节点</h4>
 	     <a href="#" class="item-node">PHP</a>
+=======
+	<div class="sidebar-module sidebar-module-inset">
+		<a href="#" title="">
+			<img src="__PUBLIC__{$data['userInfo']['imgpath']}" alt="..." class="img-rounded">
+		</a>
+		&nbsp;&nbsp;
+		<label><a href="#" title="">{:I('session.user')}</a></label>
+		<table class="table">
+			<tr>
+				<td align="center"><a class="info" href="#" title="" ><span class="lead">{$data['userInfo']['nodes']}</span> <br><span>节点收藏</span></a></td>
+				<td align="center"><a class="info" href="#" title="1" ><span class="lead">{$data['userInfo']['topics']}</span> <br><span>主题收藏</span></a></td>
+				<td align="center"><a class="info" href="#" title="1" ><span class="lead">{$data['userInfo']['attentions']}</span> <br><span>特别关注</span></a></td>
+			</tr>
+		</table>
+		<hr style="margin: 4px 0">
+		<a href="#" title="">
+			<span class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp;创建新主题</span>
+		</a>
+		<hr style="margin: 8px 0">
+		<a href="#" title="">
+			<small>{$data['notifications']}条未读提醒</small>
+		</a>
+		<a href="#" title=""><span class="badge badge-balance">财富: {$data['userInfo']['wealth']}</span></a>
+	</div>
+     <div class="sidebar-module sidebar-module-inset">
+         <h4>最热节点</h4>
+         <a href="#" class="item-node">PHP</a>
+>>>>>>> 75be73d39e208204aac24f00608071806b56f01a
 		 <a href="#" class="item-node">Python</a>
 		 <a href="#" class="item-node">工作</a>
 		 <a href="#" class="item-node">生活</a>

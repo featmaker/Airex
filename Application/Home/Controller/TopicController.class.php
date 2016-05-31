@@ -60,7 +60,7 @@ class TopicController extends BaseController
 		$this->assign('commentInfo',$commentInfo);
 		$this->assign('data',$data);
 		$this->display();
-		// var_dump($commentInfo);
+		//var_dump($topicInfo);
 	}
 
 	/**
