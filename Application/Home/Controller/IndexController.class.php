@@ -1,28 +1,15 @@
 <?php
+/**
+ * 首页控制器.
+ * Author:Micanss
+ * Date:2016/5/30
+ * Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
+ */
 namespace Home\Controller;
 use Home\Controller\BaseController;
 use Home\Model\FactoryModel;
 
 
-// class IndexController extends BaseController
-// {
-//     public function index(){
-//     	$Cate = FactoryModel::createCategoryModel();
-//     	$categorys = $Cate->getCategorys();
-//     	$catName = I('get.cat');
-//     	$nodes= $Cate->getNodeByCatName($catName);
-
-//     	// var_dump($categorys);
-//     	// var_dump($nodes);
-
-//         // $this->display();
-
-/**
- * 首页控制器.
- * Author:Patrick95
- * Date:2016/5/28
- * Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
- */
 class IndexController extends BaseController
 {
     public function index(){
@@ -35,14 +22,11 @@ class IndexController extends BaseController
         $categorys = $Cate->getCategorys();             //获取分类
         $catName = I('get.cat');
         $nodes= $Cate->getNodeByCatName($catName);      //获取节点
-                // var_dump($nodes);
-        $topics = $Cate->getTopicsByCat($catName);      //获取主题
-                // var_dump($topics);
+        $topics = checkNull($Cate->getTopicsByCat($catName)) ? null : $Cate->getTopicsByCat($catName);
         $this->assign('categorys',$categorys);
         $this->assign('nodes',$nodes);
         $this->assign('activeCat',$catName);
         $this->assign('topics',$topics);
         $this->display();
-        // var_dump($data);
     }
 }

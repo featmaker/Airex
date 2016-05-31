@@ -15,10 +15,10 @@
 	<div class="media">
 	  <div class="media-body">
 		<h3>{$topicInfo.title}
-		<h6><span><a href="#" title="">{$topicInfo.user_name}</a></span> . <span>{$topicInfo.publish_time}分钟前</span> . <span>{$topicInfo.comments}条回复</span> . <span>{$topicInfo.hits}次点击</span></h6></h3>
+		<h6><span><a href="{:U('User/info',array('member'=>$topicInfo['user_name']))}" title="">{$topicInfo.user_name}</a></span> . <span>{$topicInfo.publish_time}分钟前</span> . <span>{$topicInfo.comments}条回复</span> . <span>{$topicInfo.hits}次点击</span></h6></h3>
 	  </div>
 	    <div class="media-right">
-	    <a href="#">
+	    <a href="{:U('User/info',array('member'=>$topicInfo['user_name']))}">
 	      <img src="__PUBLIC__/home/img/tx.png" alt="" class="img-circle">
 	    </a>
 	  </div>
@@ -46,83 +46,36 @@
 <div class="panel panel-info">
 
 
-  <div class="panel-heading" style="">	<h6>共 3 条回复，最后回复：2016-05-23 22:37:37</h6>
+  <div class="panel-heading" style="">	<h6>共 {$topicInfo.comments} 条回复，最后回复：2016-05-23 22:37:37</h6>
   </div>
 
   <div class="panel-body" >
+  	<volist name="commentInfo" id="comment" key="key">
 	  <div class="media reply-info">
 		  <div class="media-left">
-			  <a href="#">
+			  <a href="{:U('User/info',array('member'=>$comment['user_name']))}">
 				  <img class="media-object" src="__PUBLIC__/home/img/tx.png" alt="...">
 			  </a>
 		  </div>
 		  <div class="media-body">
 			  <h5 class="media-heading">
-			  	<a href="#" class="uname">Media heading</a>
-			  	<span class="badge">1</span>
+			  	<a href="{:U('User/info',array('member'=>$comment['user_name']))}" class="uname">{$comment.user_name}</a>
+			  	<span class="badge">{$key}</span>
 				<img src="__PUBLIC__/home/img/reply.png" alt="fdsfd" class="reply">
 			  	<div class="thank-area" hidden="">
 			  	 	<h6>
 				  	 	<a href="#" title="" onclick="return confirm('将花费10金币感谢回复者？')">感谢回复者</a>			  	 		
 			  	 	</h6>
 			  	</div>
-			  	<span class="time">6 小时 43 分钟前</span>
+			  	<span class="time">{$comment.publish_time}6 小时 43 分钟前</span>
 			  </h5>
 			  <span class="reply-content">
-				  <small>你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好</small>
+				  <small>{$comment.content}</small>
 			  </span>
 		  </div>
-	  </div>
+	  </div>  		
+  	</volist>
 
-	  <div class="media reply-info" >
-		  <div class="media-left">
-			  <a href="#">
-				  <img class="media-object" src="__PUBLIC__/home/img/tx.png" alt="...">
-			  </a>
-		  </div>
-		  <div class="media-body">
-			  <h5 class="media-heading">
-			  	<a href="#" class="uname">Media heading</a> <span class="badge">2</span>
-			  	 
-			  	 <img src="__PUBLIC__/home/img/reply.png" alt="fdsfd" class="reply">
-	
-			  	 <div class="thank-area" hidden="">
-			  	 	<h6>
-				  	 	<a href="#" title="" onclick="return confirm('将花费10金币感谢回复者？')">感谢回复者</a>			  	 		
-			  	 	</h6>
-			  	 </div>
-			  	<span class="time">6 小时 43 分钟前</span>
-			  </h5>
-			  <span class="reply-content">
-				  <small>你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好</small>
-			  </span>
-		  </div>
-	  </div>
-
-	  <div class="media reply-info" >
-		  <div class="media-left">
-			  <a href="#">
-				  <img class="media-object" src="__PUBLIC__/home/img/tx.png" alt="...">
-			  </a>
-		  </div>
-		  <div class="media-body">
-			  <h5 class="media-heading">
-			  	<a href="#" class="uname">Media heading</a>
-				
-			  	 <span class="badge">3</span>
-				 <img src="__PUBLIC__/home/img/reply.png" alt="fdsfd" class="reply">
-			  	 <div class="thank-area" hidden="">
-			  	 	<h6>
-				  	 	<a href="#" title="" onclick="return confirm('将花费10金币感谢回复者？')">感谢回复者</a>			  	 		
-			  	 	</h6>
-			  	 </div>
-			  	<span class="time">6 小时 43 分钟前</span>
-			  </h5>
-			  <span class="reply-content">
-				  <small>你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好</small>
-			  </span>
-		  </div>
-	  </div>
 
 	<hr>
 
@@ -142,43 +95,43 @@
 </div>
 </block>
 <block name="sidebar">
-		 <div class="sidebar-module sidebar-module-inset">
-			 <a href="#" title="" class="info">
-				 <img src="{$data['userInfo']['imgpath']}" alt="..." class="img-rounded">
-			 </a>
-			 &nbsp;&nbsp;
-			 <label><a href="#" title="">{:I('session.user')}</a></label>
-			 <table class="table">
-				 <tr>
-					 <td align="center"><a class="info" href="#" title="" ><span class="lead">{$data['userInfo']['nodes']}</span> <br><span>节点收藏</span></a></td>
-					 <td align="center"><a class="info" href="#" title="1" ><span class="lead">{$data['userInfo']['topics']}</span> <br><span>主题收藏</span></a></td>
-					 <td align="center"><a class="info" href="#" title="1" ><span class="lead">{$data['userInfo']['attentions']}</span> <br><span>特别关注</span></a></td>
-				 </tr>
-			 </table>
-			 <hr style="margin: 4px 0">
-			 <a href="#" title="">
-				 <span class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp;创建新主题</span>
-			 </a>
-			 <hr style="margin: 8px 0">
-			 <a href="#" title="">
-				 <small>{$data['notifications']}条未读提醒</small>
-			 </a>
-			 <a href="#" title=""><span class="badge badge-balance">财富: {$data['userInfo']['wealth']}</span></a>
-		 </div>
-     <div class="sidebar-module sidebar-module-inset">
-         <h4>最热节点</h4>
-         <a href="#" class="item-node">PHP</a>
+	 <div class="sidebar-module sidebar-module-inset">
+		 <a href="{:U('User/info',array('member'=>$_SESSION['user']))}" title="" class="info">
+			 <img src="__PUBLIC__{$data['userInfo']['imgpath']}" alt="..." class="img-rounded">
+		 </a>
+		 &nbsp;&nbsp;
+		 <label><a href="{:U('User/info',array('member'=>$_SESSION['user']))}" title="">{$Think.session.user}</a></label>
+		 <table class="table">
+			 <tr>
+				 <td align="center"><a class="info" href="#" title="" ><span class="lead">{$data['userInfo']['nodes']}</span> <br><span>节点收藏</span></a></td>
+				 <td align="center"><a class="info" href="#" title="1" ><span class="lead">{$data['userInfo']['topics']}</span> <br><span>主题收藏</span></a></td>
+				 <td align="center"><a class="info" href="#" title="1" ><span class="lead">{$data['userInfo']['attentions']}</span> <br><span>特别关注</span></a></td>
+			 </tr>
+		 </table>
+		 <hr style="margin: 4px 0">
+		 <a href="#" title="">
+			 <span class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp;创建新主题</span>
+		 </a>
+		 <hr style="margin: 8px 0">
+		 <a href="#" title="">
+			 <small>{$data['notifications']}条未读提醒</small>
+		 </a>
+		 <a href="#" title=""><span class="badge badge-balance">财富: {$data['userInfo']['wealth']}</span></a>
+	 </div>
+	 <div class="sidebar-module sidebar-module-inset">
+	     <h4>最热节点</h4>
+	     <a href="#" class="item-node">PHP</a>
 		 <a href="#" class="item-node">Python</a>
 		 <a href="#" class="item-node">工作</a>
 		 <a href="#" class="item-node">生活</a>
 		 <a href="#" class="item-node">二手交易</a>
-     </div>
-     <div class="sidebar-module sidebar-module-inset">
-       	<h4>站点实况</h4>			
+	 </div>
+	 <div class="sidebar-module sidebar-module-inset">
+	   	<h4>站点实况</h4>			
 		<p>注册会员	173280</p>
 		<p>主题	275247</p>
 		<p>回复	3186640</p>
-     </div>
+	 </div>
 </block>
 <block name="js">
 	<script src="__PUBLIC__/home/js/detail.js" charset="utf-8" async defer></script>

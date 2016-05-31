@@ -72,7 +72,7 @@ class UserModel extends Model{
      */
     public function userLogin($userinfo){
         $username = $userinfo['user_name'];
-        $password = $this->password_hasher($userinfo['password']); //将密码加密 与数据库比对
+        $password = $this->passwordHasher($userinfo['password']); //将密码加密 与数据库比对
         //$data = $this->where('user_name = "'.$username.'"')->find();
         $user_id = $this->where('user_name = "'.$username.'"')->getField('id');
         $data = $this->where('user_name = "'.$username.'"')->getField('id,user_name,password'); //返回二维数组以ID为索引

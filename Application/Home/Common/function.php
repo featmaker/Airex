@@ -1,5 +1,6 @@
 <?php 
 
+//检查登陆状态
 function checkLogin(){
 	if (session('?user')) {
 		return true;
@@ -34,9 +35,7 @@ function get_real_ip(){
 	return ($ip ? $ip : $_SERVER['REMOTE_ADDR']);
 }
 
-/**
- * 邮件发送函数
- */
+//邮件发送函数
 function sendMail($to, $title, $content) {
 
 	Vendor('PHPMailer.PHPMailerAutoload');
@@ -56,4 +55,25 @@ function sendMail($to, $title, $content) {
 	$mail->Body = $content; //邮件内容
 	$mail->AltBody = "Airex是一个基于ThinkPHP的轻量级bbs社区"; //邮件正文不支持HTML的备用显示
 	return($mail->Send());
+}
+
+//判断数据是否为null
+function checkNull($data){
+	if (is_array($data)) {
+		foreach ($data as $key => $value) {
+			if ($value && !is_array($value)) {
+				return false;
+			}
+			if(!checkNull($value)){
+				return false;
+			}
+		}
+		return true;
+	}else{
+		if (!$data) {
+			return true;
+		}else{
+			return false;
+		}	
+	}
 }
