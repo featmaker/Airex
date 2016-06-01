@@ -139,4 +139,10 @@ class TopicModel extends Model
 		return true;
 	}
 
+	public function getPageData(){
+		$count = $this->count();
+		$limit = C('PAGE_SIZE');
+		
+	}
+
 }

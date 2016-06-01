@@ -107,5 +107,25 @@ h6 > a {
 .btn.btn-info.btn-sm {
     float: right;
 
-    margin: 1em 0 .5em 0;
+    margin: 1em 0 1em 0;
+}
+
+hr{
+    margin: 1em 0;
+}
+
+.well{
+    margin:2em 0;
+}
+
+.collapse{
+    display:block;
+}
+
+.media.reply-info{
+    padding:0 0 1em 0;
+}
+.time{
+    display:none;
+    padding-left: 1em;
 }
