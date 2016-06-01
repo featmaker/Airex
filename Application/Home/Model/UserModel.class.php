@@ -201,4 +201,16 @@ class UserModel extends Model{
 
         $this->where('user_name = "'.$username.'"')->save(array('password'=>$this->passwordHasher($password)));
     }
+
+    /**
+     * 获取用户信息
+     * @return array 获取的用户数据
+     */
+    public function getUserInfo($member){
+        $username = $member;
+        $data = $this->where(array('user_name'=>$username))
+            ->field('id,user_name,imgpath,gender,create_time')
+            ->select()[0];
+        return $data;
+    }
 }
