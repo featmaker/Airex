@@ -96,9 +96,9 @@
     margin-right: 50px;
 }
 .theme-hide-lock {
+    margin-top: 1em;
     margin-right: 40px;
     margin-left: 40px;
-    margin-top:1em;
 }
 .theme-hide-list {
     color: gray;
@@ -256,10 +256,10 @@
     margin-top: 5px;
 }
 
-
-
-
-
 #themeShow {
     display: none;
+}
+
+.theme-display a{
+    color:#778087;
 }
