@@ -1,7 +1,4 @@
 
-a {
-    color: #778087;
-}
 .blog-main {
     background-color: #e2e2e2;
 }
@@ -261,9 +258,7 @@ a {
 
 
 
-.navbar.navbar-fixed-top a {
-    color: #337ab7;
-}
+
 
 #themeShow {
     display: none;
