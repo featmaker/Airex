@@ -67,7 +67,7 @@
 				  	 	<a href="#" title="" onclick="return confirm('将花费10金币感谢回复者？')">感谢回复者</a>			  	 		
 			  	 	</h6>
 			  	</div>
-			  	<span class="time">{$comment.publish_time}6 小时 43 分钟前</span>
+			  	<span class="time">{$comment.publish_time}</span>
 			  </h5>
 			  <span class="reply-content">
 				  <small>{$comment.content}</small>
@@ -76,10 +76,7 @@
 	  </div>  		
   	</volist>
   <div class="media-body">
-	<hr>
-	<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse">
-	  添加一条留言!
-	</button>
+
 	<div class="collapse" id="collapse">
 	  <div class="well">
 	    <textarea name="reply" class="form-control" rows="5" placeholder="写下你的留言..."></textarea>
