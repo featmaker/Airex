@@ -10,12 +10,21 @@ $(document).ready(function() {
 		if (second < 60) {
 			$(this).text(second + " 秒以前");
 		} else if (min < 60) {
-			$(this).text(min + ' 分钟以前')
+			$(this).text(min + ' 分钟以前');
 		} else if (hour < 24) {
 			$(this).text(hour + ' 小时 ' + (min - hour * 60) + ' 分钟以前');
-		} else {
+		} else if (day < 32) {
 			$(this).text(day + ' 天以前');
+		} else if (old.getFullYear() == now.getFullYear()) {
+			if (old.getDate() > now.getDate()) {
+				$(this).text(now.getMonth() - old.getMonth() - 1 + " 个月前");
+			} else {
+				$(this).text(now.getMonth() - old.getMonth() + " 个月前");
+			}
+		} else {
+			$(this).text(now.getFullYear() - old.getFullYear() + " 年前");
 		}
+
 		$(this).show();
 
 
