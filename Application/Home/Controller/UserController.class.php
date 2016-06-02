@@ -183,7 +183,11 @@ class UserController extends BaseController{
 		if (!checkLogin()) {
 			$this->redirect("Index/index",'',0);
 		}
+		$User = FactoryModel::createUserModel();
+		$data = $User->getNowUserInfo();
+		$this->assign('data', $data);
 		$this->display();
+
 
 	}
 
