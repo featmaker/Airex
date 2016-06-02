@@ -203,7 +203,7 @@ class UserModel extends Model{
     }
 
     /**
-     * 获取用户信息
+     * 用户信息页 获取用户信息
      * @return array 获取的用户数据
      */
     public function getUserInfo($member){
@@ -211,6 +211,21 @@ class UserModel extends Model{
         $data = $this->where(array('user_name'=>$username))
             ->field('id,user_name,imgpath,gender,create_time')
             ->select()[0];
+        return $data;
+    }
+
+    /**
+     * 用户设置页 获取用户信息
+     * @return array 获取的用户数据
+     */
+    public function getNowUserInfo(){
+        $uid = session('uid');
+        $User = M("User");
+        $data['userInfo'] = $User->where(array('id'=>$uid))
+            ->field('url,resume,email,gender,imgpath,attentions,topics,wealth,nodes')
+            ->select()[0];
+        $data['notifications'] = M('reply')->where(array('to_uid'=>$uid,'is_read'=>'否'))
+            ->count();
         return $data;
     }
 }
