@@ -1,6 +1,8 @@
 $(document).ready(function() {
 	var now = new Date();
-	$('.media-heading').children('.time').each(function() {
+	console.time("each");
+
+	function getTime() {
 		var old = new Date($(this).text()),
 			dif = now - old,
 			day = Math.floor(dif / (24 * 3600 * 1000)),
@@ -9,10 +11,9 @@ $(document).ready(function() {
 			second = Math.floor(dif / (1000)),
 
 			nowYear = now.getFullYear(),
-			oldYear = old.getYear(),
+			oldYear = old.getFullYear(),
 			nowMonth = now.getMonth(),
 			oldMonth = old.getMonth();
-
 
 		if (second < 60) {
 			$(this).text(second + " 秒前");
@@ -33,11 +34,13 @@ $(document).ready(function() {
 		}
 
 		$(this).show();
+	}
+
+	$('.time').each(getTime);
+	$('.header-time').each(getTime);
 
 
-
-	});
-
+	
 	$('.reply-info').each(function() {
 		$(this).mouseover(function() {
 			$(this).find('.thank-area').show();
@@ -57,14 +60,6 @@ $(document).ready(function() {
 			}
 		});
 	});
-
-
-
-	(function() {
-
-
-
-	})();
-
+	console.timeEnd("each");
 
 });
