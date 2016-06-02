@@ -39,4 +39,7 @@ return array(
 
     //开启页面跟踪
     'SHOW_PAGE_TRACE' =>true,
+
+    //分页大小
+    'PAGE_SIZE' =>5,
 );

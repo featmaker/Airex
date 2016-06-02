@@ -41,23 +41,7 @@
 
 	<!-- 分页 -->
 	<nav class="col-md-6 col-md-offset-3">
-	  <ul class="pagination">
-	    <li>
-	      <a href="#" aria-label="Previous">
-	        <span aria-hidden="true">&laquo;</span>
-	      </a>
-	    </li>
-	    <li class="active"><a href="#" >1</a></li>
-	    <li><a href="#">2</a></li>
-	    <li><a href="#">3</a></li>
-	    <li><a href="#">4</a></li>
-	    <li><a href="#">5</a></li>
-	    <li>
-	      <a href="#" aria-label="Next">
-	        <span aria-hidden="true">&raquo;</span>
-	      </a>
-	    </li>
-	  </ul>
+        <span>加载更多</span>
 	</nav>
 
   </div>
@@ -255,9 +239,9 @@
      </div>
      <div class="sidebar-module sidebar-module-inset">
        	<h4>站点实况</h4>			
-		<p>注册会员	173280</p>
-		<p>主题	275247</p>
-		<p>回复	3186640</p>
+		<p>注册会员	{$siteInfo.member_num}</p>
+		<p>主题	{$siteInfo.topic_num}</p>
+		<p>回复	{$siteInfo.comment_num}</p>
      </div>
  </block>
  <block name="js">

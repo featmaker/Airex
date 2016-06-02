@@ -25,4 +25,16 @@ class IndexModel{
         return $data;
     }
 
+    /**
+     * 获取站点信息
+     * @return [type] [description]
+     */
+    public function getSiteInfo(){
+        $siteInfo['member_num'] = M('user as u')->field('count(u.id) as uc,count(t.id) as tc,count(c.id) as cs')->join('airex_topic as t')->join('airex_comment as c')->select();
+        // $siteInfo['topic_num'] = M('topic')->count();
+        // $siteInfo['comment_num'] = M('comment')->count();
+        var_dump($siteInfo['member_num']);
+        die;
+        return $siteInfo['member_num'];
+    }
 }

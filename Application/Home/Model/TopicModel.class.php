@@ -139,10 +139,14 @@ class TopicModel extends Model
 		return true;
 	}
 
-	public function getPageData(){
-		$count = $this->count();
-		$limit = C('PAGE_SIZE');
-		
-	}
+	// public function getPageData(){
+	// 	$p = I('get.p') ? I('get.p') : 1;
+	// 	$count = $this->count();
+	// 	$limit = C('PAGE_SIZE');
+	// 	$page = new \Org\Airex\Page($count,$limit);
+	// 	$data['show'] = $page->show();
+	// 	$data['lists'] = $this->page($p.',',C('PAGE_SIZE'))->select();
+	// 	return $data;
+	// }
 
 }

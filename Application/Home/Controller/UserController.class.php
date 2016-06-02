@@ -200,9 +200,8 @@ class UserController extends BaseController{
 	 * 用户信息页
 	 */
 	public function info($member){
-
-			$User = FactoryModel::createUserModel();
-			$data = $User->getUserInfo($member);
+		$User = FactoryModel::createUserModel();
+		$data = $User->getUserInfo($member);
 		if($data){
 			$this->assign('data',$data);
 			$this->display();
