@@ -6,20 +6,27 @@ $(document).ready(function() {
 			day = Math.floor(dif / (24 * 3600 * 1000)),
 			hour = Math.floor(dif / (3600 * 1000)),
 			min = Math.floor(dif / (60 * 1000)),
-			second = Math.floor(dif / (1000));
+			second = Math.floor(dif / (1000)),
+
+			nowYear = now.getFullYear(),
+			oldYear = old.getYear(),
+			nowMonth = now.getMonth(),
+			oldMonth = old.getMonth();
+
+
 		if (second < 60) {
-			$(this).text(second + " 秒以前");
+			$(this).text(second + " 秒前");
 		} else if (min < 60) {
-			$(this).text(min + ' 分钟以前');
+			$(this).text(min + ' 分钟前');
 		} else if (hour < 24) {
-			$(this).text(hour + ' 小时 ' + (min - hour * 60) + ' 分钟以前');
+			$(this).text(hour + ' 小时 ' + (min - hour * 60) + ' 分钟前');
 		} else if (day < 32) {
-			$(this).text(day + ' 天以前');
-		} else if (old.getFullYear() == now.getFullYear()) {
-			if (old.getDate() > now.getDate()) {
-				$(this).text(now.getMonth() - old.getMonth() - 1 + " 个月前");
+			$(this).text(day + ' 天前');
+		} else if (day < 366) {
+			if (nowYear === oldYear) {
+				$(this).text(nowMonth - oldMonth + ' 个月前');
 			} else {
-				$(this).text(now.getMonth() - old.getMonth() + " 个月前");
+				$(this).text(nowMonth - oldMonth + 12 + ' 个月前')
 			}
 		} else {
 			$(this).text(now.getFullYear() - old.getFullYear() + " 年前");

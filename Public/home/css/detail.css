@@ -110,22 +110,25 @@ h6 > a {
     margin: 1em 0 1em 0;
 }
 
-hr{
+hr {
     margin: 1em 0;
 }
 
-.well{
-    margin:2em 0;
+.well {
+    margin: 2em 0;
 }
 
-.collapse{
-    display:block;
+.collapse {
+    display: block;
 }
 
-.media.reply-info{
-    padding:0 0 1em 0;
+.media.reply-info {
+    padding: 0 0 1em 0;
 }
-.time{
-    display:none;
+.time {
+    display: none;
+
     padding-left: 1em;
+
+    color: #9c9898;
 }
