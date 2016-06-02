@@ -15,15 +15,15 @@
 	<div class="media">
 	  <div class="media-body">
 		<h3>{$topicInfo.title}
-		<h6><span><a href="{:U('User/info',array('member'=>$topicInfo['user_name']))}" title="">{$topicInfo.user_name}</a></span>&nbsp;·&nbsp;<span class="header-time">{$topicInfo.publish_time}</span>&nbsp;·&nbsp;<span>{$topicInfo.comments}条回复</span>&nbsp;·&nbsp;<span>{$topicInfo.hits}次点击</span></h6></h3>
+		<h6><span><a href="{:U('User/info',array('member'=>$topicInfo['user_name']))}" title="">{$topicInfo.user_name}</a></span>&nbsp;&nbsp;•&nbsp;&nbsp;<span class="header-time">{$topicInfo.publish_time}</span>&nbsp;&nbsp;•&nbsp;&nbsp;<span>{$topicInfo.comments}条回复</span>&nbsp;&nbsp;•&nbsp;&nbsp;<span>{$topicInfo.hits}次点击</span></h6></h3>
 	  </div>
-	    <div class="media-right">
+	    <div class="media-right">	
 	    <a href="{:U('User/info',array('member'=>$topicInfo['user_name']))}">
 	      <img src="__PUBLIC__/home/img/tx.png" alt="" class="img-circle">
 	    </a>
 	  </div>
 	</div>
-	<hr style="margin: 10px 0">
+	<hr>
 	<p class="small">
 		{$topicInfo.content}
 	</p>

@@ -132,6 +132,22 @@ hr {
 
     color: #9c9898;
 }
-.header-time{
-    display:none;
+.header-time {
+    display: none;
+}
+.media-body > h6 > span {
+    color: #a2a2a2;
+}
+
+a {
+    color: black;
+}
+
+.container-fluid a,
+.blog-footer a {
+    color: #337ab7;
+}
+
+hr {
+    margin: 6px -15px;
 }
