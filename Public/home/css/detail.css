@@ -110,9 +110,6 @@ h6 > a {
     margin: 1em 0 1em 0;
 }
 
-hr {
-    margin: 1em 0;
-}
 
 .well {
     margin: 2em 0;
@@ -139,9 +136,9 @@ hr {
     color: #a2a2a2;
 }
 
-a {
-    color: black;
-}
+/*a {*/
+    /*color: black;*/
+/*}*/
 
 .container-fluid a,
 .blog-footer a {
@@ -150,4 +147,14 @@ a {
 
 hr {
     margin: 6px -15px;
+}
+
+index-img{
+    position:relative;
+    top:10px;
+
+}
+
+.media-left{
+    position:relative;
 }

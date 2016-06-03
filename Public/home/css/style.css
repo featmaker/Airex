@@ -5,66 +5,79 @@
 
 
 body {
-  font-family: Georgia, "Times New Roman", Times, serif;
-  color: #555;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 
+    color: #555;
 }
 
 
 
 
 
-h1, .h1,
-h2, .h2,
-h3, .h3,
-h4, .h4,
-h5, .h5,
-h6, .h6 {
-  margin-top: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: normal;
-  color: #333;
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: normal;
+
+    margin-top: 0;
+
+    color: #333;
 }
 
-*{
-  font-family: "Microsoft Yahei";
+* {
+    font-family: 'Microsoft Yahei';
 }
 
-.navbar.navbar-fixed-top{
-  border:0px;
+hr {
+    margin: .2em -1.5em;
+    margin-top:.5em;
+}
+.navbar.navbar-fixed-top {
+    border: 0;
 }
 
 #logo {
-  margin-top:10px;
-  margin-left:-25px;
+    margin-top: 10px;
+    margin-left: -25px;
 }
 
-.navbar{
-	background-color:white;
-box-shadow: 0 1px 4px 0 #9F9F9F;
+.navbar {
+    background-color: white;
+    box-shadow: 0 1px 4px 0 #9f9f9f;
 }
 
-.container-fluid{
-	width:85%;
+.container-fluid {
+    width: 85%;
 }
-.bggrey{
-  background-color:#E2E2E2;
+.bggrey {
+    background-color: #e2e2e2;
 }
-  .container {
-  margin-top:5px;
+.container {
+    margin-top: 5px;
+}
 
+.item-node {
+    font-size: 12px;
+    line-height: 12px;
 
-  }
-  
-  .item-node{
-   font-size: 12px;
-  line-height: 12px;
-  padding: 4px 10px 4px 10px;
-  margin: 0px 5px 5px 0px;
-  border-radius: 16px;
-  display: inline-block;
-  border: 1px solid #e5e5e5;
-  }
+    display: inline-block;
+
+    margin: 0 5px 5px 0;
+    padding: 4px 10px 4px 10px;
+
+    border: 1px solid #e5e5e5;
+    border-radius: 16px;
+}
 
 
 /*
@@ -72,9 +85,9 @@ box-shadow: 0 1px 4px 0 #9F9F9F;
  */
 
 @media (min-width: 1200px) {
-  .container {
-    width: 1170px;
-  }
+    .container {
+        width: 1170px;
+    }
 }
 
 
@@ -84,41 +97,49 @@ box-shadow: 0 1px 4px 0 #9F9F9F;
  */
 
 .blog-masthead {
-  background-color: #428bca;
-  -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
-          box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+    background-color: #428bca;
+    -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+            box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
 }
 
 /* Nav links */
 .blog-nav-item {
-  position: relative;
-  display: inline-block;
-  padding: 10px;
-  font-weight: 500;
-  color: #cdddeb;
+    font-weight: 500;
+
+    position: relative;
+
+    display: inline-block;
+
+    padding: 10px;
+
+    color: #cdddeb;
 }
 .blog-nav-item:hover,
 .blog-nav-item:focus {
-  color: #fff;
-  text-decoration: none;
+    text-decoration: none;
+
+    color: #fff;
 }
 
 /* Active state gets a caret at the bottom */
 .blog-nav .active {
-  color: #fff;
+    color: #fff;
 }
 .blog-nav .active:after {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 0;
-  margin-left: -5px;
-  vertical-align: middle;
-  content: " ";
-  border-right: 5px solid transparent;
-  border-bottom: 5px solid;
-  border-left: 5px solid transparent;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+
+    width: 0;
+    height: 0;
+    margin-left: -5px;
+
+    content: ' ';
+    vertical-align: middle;
+
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid;
+    border-left: 5px solid transparent;
 }
 
 
@@ -127,18 +148,20 @@ box-shadow: 0 1px 4px 0 #9F9F9F;
  */
 
 .blog-header {
-  padding-top: 20px;
-  padding-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 .blog-title {
-  margin-top: 30px;
-  margin-bottom: 0;
-  font-size: 60px;
-  font-weight: normal;
+    font-size: 60px;
+    font-weight: normal;
+
+    margin-top: 30px;
+    margin-bottom: 0;
 }
 .blog-description {
-  font-size: 20px;
-  color: #999;
+    font-size: 20px;
+
+    color: #999;
 }
 
 
@@ -147,62 +170,66 @@ box-shadow: 0 1px 4px 0 #9F9F9F;
  */
 
 .blog-main {
-  font-size: 18px;
-  line-height: 1.5;
-  margin: 70px 20px;
-  padding-top:20px;
-  padding-bottom: 20px;
-  background-color:white;
-	  
+    font-size: 18px;
+    line-height: 1.5;
+
+    margin: 70px 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    background-color: white;
 }
 
 /* Sidebar modules for boxing content */
 
-.blog-sidebar{
-  margin-top:70px;
+.blog-sidebar {
+    margin-top: 70px;
 }
 .sidebar-module {
-
-  padding: 15px;
-  margin: 0 -15px 15px;
+    margin: 0 -15px 15px;
+    padding: 15px;
 }
 .sidebar-module-inset {
+    padding: 15px;
 
-  padding: 15px;
-  background-color: white;
-  border-radius: 4px;
+    border-radius: 4px;
+    background-color: white;
 }
-.sidebar-module-inset h4{
-	border-bottom:1px solid grey;
-	padding-bottom:10px;
+.sidebar-module-inset h4 {
+    padding-bottom: 10px;
+
+    border-bottom: 1px solid grey;
 }
 
 .sidebar-module-inset p:last-child,
 .sidebar-module-inset ul:last-child,
 .sidebar-module-inset ol:last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 
 /* 用户信息侧边栏 */
-.table{
-  margin-top:15px;
+.table {
+    margin-top: 15px;
 }
-.badge-balance{
-  float:right;
+.badge-balance {
+    float: right;
 }
 
 
 /* Pagination */
 .pager {
-  margin-bottom: 60px;
-  text-align: left;
+    margin-bottom: 60px;
+
+    text-align: left;
 }
 .pager > li > a {
-  width: 140px;
-  padding: 10px 20px;
-  text-align: center;
-  border-radius: 30px;
+    width: 140px;
+    padding: 10px 20px;
+
+    text-align: center;
+
+    border-radius: 30px;
 }
 
 
@@ -211,147 +238,167 @@ box-shadow: 0 1px 4px 0 #9F9F9F;
  */
 
 .blog-post {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 .blog-post-title {
-  margin-bottom: 5px;
-  font-size: 40px;
+    font-size: 40px;
+
+    margin-bottom: 5px;
 }
 .blog-post-meta {
-  margin-bottom: 20px;
-  color: #999;
+    margin-bottom: 20px;
+
+    color: #999;
 }
-.post-header{
-  border-bottom: 1px solid #bfbfbf;
+.post-header {
+    border-bottom: 1px solid #bfbfbf;
 }
-.breadcrumb{
-  margin:-20px 0 0 -10px;
-  background-color: white;
-  font-size: 14px;
+.breadcrumb {
+    font-size: 14px;
+
+    margin: -20px 0 0 -10px;
+
+    background-color: white;
 }
 
 /*
   * sign form (register and login)
 */
-.signform{
-
-  font-size:14px;
+.signform {
+    font-size: 14px;
 }
 .signform form {
-  margin-top:20px;
-  padding: 20px 50px 40px 50px;
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
-  -moz-box-shadow: 0 1px 5px 0 rgba(0,0,0,.3);
-  -webkit-box-shadow: 0 1px 5px 0 rgba(0,0,0,.3);
-  box-shadow: 0 1px 5px 0 rgba(0,0,0,.3);
-  font-size: 14px;
+    font-size: 14px;
 
+    margin-top: 20px;
+    padding: 20px 50px 40px 50px;
+
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
+    -webkit-box-shadow: 0 1px 5px 0 rgba(0,0,0,.3);
+       -moz-box-shadow: 0 1px 5px 0 rgba(0,0,0,.3);
+            box-shadow: 0 1px 5px 0 rgba(0,0,0,.3);
 }
 
-.signform table td{
-  padding:5px 0;
-
+.signform table td {
+    padding: 5px 0;
 }
 
 
 .signform form input {
-  width: 50%;
-  height: 30px;
-  background: #fcfcfc;
-  border: 1px solid #ddd;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  -moz-box-shadow: 0 1px 3px 0 rgba(0,0,0,.1) inset;
-  -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.1) inset;
-  box-shadow: 0 1px 3px 0 rgba(0,0,0,.1) inset;
-  font-family: 'PT Sans', Helvetica, Arial, sans-serif;
-  color: #888;
-  font-size: 14px;
-  margin-left:10px;
-  padding:0 6px;
+    font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+
+    width: 50%;
+    height: 30px;
+    margin-left: 10px;
+    padding: 0 6px;
+
+    color: #888;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 2px;
+       -moz-border-radius: 2px;
+            border-radius: 2px;
+    background: #fcfcfc;
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.1) inset;
+       -moz-box-shadow: 0 1px 3px 0 rgba(0,0,0,.1) inset;
+            box-shadow: 0 1px 3px 0 rgba(0,0,0,.1) inset;
 }
 
 .signform form input:focus {
-  border: 1px solid #ccc;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
+    border: 1px solid #ccc;
+    -webkit-box-shadow: none;
+       -moz-box-shadow: none;
+            box-shadow: none;
 }
 
 .signform form label {
-  margin: 7px 0 10px 0;
-  font-size: 14px;
-  font-weight: normal;
-  text-align: left;
+    font-size: 14px;
+    font-weight: normal;
+
+    margin: 7px 0 10px 0;
+
+    text-align: left;
 }
 
 .signform form span {
-  color: #a3a3a3;
-  font-size:12px;
-  line-height: 30px;
-  margin:30px 10px;
+    font-size: 12px;
+    line-height: 30px;
+
+    margin: 30px 10px;
+
+    color: #a3a3a3;
 }
-.signform a,.signform img{
-  margin-left: 10px;
+.signform a,
+.signform img {
+    margin-left: 10px;
 }
 
-.signform form input:-moz-placeholder { color: #aaa; }
-.signform form input:-ms-input-placeholder { color: #aaa; }
-.signform form input::-webkit-input-placeholder { color: #aaa; }
+.signform form input:-moz-placeholder {
+    color: #aaa;
+}
+.signform form input:-ms-input-placeholder {
+    color: #aaa;
+}
+.signform form input::-webkit-input-placeholder {
+    color: #aaa;
+}
 
 .signform form button {
-  cursor: pointer;
-  width: 50%;
-  height: 42px;
-  margin-top: 5px;
-  margin-left:10px;
-  padding: 0;
-  background: #eb4141;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  border: 0;
-  -moz-box-shadow: 0 15px 30px 0 rgba(255,255,255,.1) inset;
-  -webkit-box-shadow: 0 15px 30px 0 rgba(255,255,255,.1) inset;
-  box-shadow: 0 15px 30px 0 rgba(255,255,255,.1) inset;
-  font-family: 'PT Sans', Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  color: #fff;
-  text-shadow: 0 1px 2px rgba(0,0,0,.1);
-  -o-transition: all .2s;
-  -moz-transition: all .2s;
-  -webkit-transition: all .2s;
-  -ms-transition: all .2s;
+    font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+
+    width: 50%;
+    height: 42px;
+    margin-top: 5px;
+    margin-left: 10px;
+    padding: 0;
+
+    cursor: pointer;
+    -webkit-transition: all .2s;
+       -moz-transition: all .2s;
+        -ms-transition: all .2s;
+         -o-transition: all .2s;
+
+    color: #fff;
+    border: 0;
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+    background: #eb4141;
+    -webkit-box-shadow: 0 15px 30px 0 rgba(255,255,255,.1) inset;
+       -moz-box-shadow: 0 15px 30px 0 rgba(255,255,255,.1) inset;
+            box-shadow: 0 15px 30px 0 rgba(255,255,255,.1) inset;
+    text-shadow: 0 1px 2px rgba(0,0,0,.1);
 }
 
 .signform form button:hover {
-  -moz-box-shadow: 0 -15px 30px 0 rgba(255,255,255,.05) inset;
-  -webkit-box-shadow: 0 -15px 30px 0 rgba(255,255,255,.05) inset;
-  box-shadow: 0 -15px 30px 0 rgba(255,255,255,.05) inset;
+    -webkit-box-shadow: 0 -15px 30px 0 rgba(255,255,255,.05) inset;
+       -moz-box-shadow: 0 -15px 30px 0 rgba(255,255,255,.05) inset;
+            box-shadow: 0 -15px 30px 0 rgba(255,255,255,.05) inset;
 }
 
 .signform form button:active {
-  -moz-box-shadow:
-          0 -15px 30px 0 rgba(255,255,255,.05) inset,
-          0 5px 8px 0 rgba(0,0,0,.1) inset;
-  -webkit-box-shadow:
-          0 -15px 30px 0 rgba(255,255,255,.05) inset,
-          0 5px 8px 0 rgba(0,0,0,.1) inset;
-  box-shadow:
-          0 -15px 30px 0 rgba(255,255,255,.05) inset,
-          0 5px 8px 0 rgba(0,0,0,.1) inset;
+    -webkit-box-shadow: 0 -15px 30px 0 rgba(255,255,255,.05) inset,
+    0 5px 8px 0 rgba(0,0,0,.1) inset;
+       -moz-box-shadow: 0 -15px 30px 0 rgba(255,255,255,.05) inset,
+    0 5px 8px 0 rgba(0,0,0,.1) inset;
+            box-shadow: 0 -15px 30px 0 rgba(255,255,255,.05) inset,
+    0 5px 8px 0 rgba(0,0,0,.1) inset;
 }
 
 /*
  * Register tips
  */
 
-.error { color:red !important; }
-.correct { color:green !important;}
+.error {
+    color: red !important;
+}
+.correct {
+    color: green !important;
+}
 
 
 
@@ -360,8 +407,7 @@ box-shadow: 0 1px 4px 0 #9F9F9F;
  */
 
 .reply-content {
-
-  font-size: 85%;
+    font-size: 85%;
 }
 
 
@@ -372,66 +418,92 @@ box-shadow: 0 1px 4px 0 #9F9F9F;
  */
 
 .blog-footer {
-  padding: 40px 0;
-  color: #999;
-  text-align: center;
-  background-color: #f9f9f9;
-  border-top: 1px solid #e5e5e5;
+    padding: 40px 0;
 
+    text-align: center;
+
+    color: #999;
+    border-top: 1px solid #e5e5e5;
+    background-color: #f9f9f9;
 }
 .blog-footer p:last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
-.nav-tags li{
-margin: 0px 10px 10px 10px;
+.nav-tags li {
+    margin: 0 10px 10px 10px;
 }
-.nav-tags li a{
-  padding: 2px 3px;
-  font-size: 14px;
-  color: #000000;
+.nav-tags li a {
+    font-size: 14px;
+
+    padding: 2px 3px;
+
+    color: #000;
 }
-.nav-nodes{
-  padding: 2px 3px;
-  font-size: 10px;
-  color: #000000;
+.nav-nodes {
+    font-size: 10px;
+
+    padding: 2px 3px;
+
+    color: #000;
 }
 
-.panel-heading{
-  padding:0px;
+.panel-heading {
+    padding: 0;
 }
-.panel{
-  border: 0;
+.panel {
+    border: 0;
 }
-.media-heading{
-  padding-top: 5px;
-  padding-bottom: 5px;
+.media-heading {
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
-.media-heading a{
-  color: black;
+.media-heading a {
+    color: black;
 }
-.tag p{
-  font-size: 5px;
+.tag p {
+    font-size: 5px;
 }
-td a{
-  font-size: 14px;
-  color: #778087;
-  margin-top: 0;
+td a {
+    font-size: 14px;
+
+    margin-top: 0;
+
+    color: #778087;
 }
-.info:hover{
-  text-decoration: none;
+.info:hover {
+    text-decoration: none;
 }
-.nav-active{
-  background-color: #ECF0F1;
+.nav-active {
+    background-color: #ecf0f1;
 }
-.nav-active a{
-  color: #22313F;
+.nav-active a {
+    color: #22313f;
 }
 
-#logo{
-  float:left;
+#logo {
+    float: left;
 }
-.logo{
-  width:1080px;
-  margin:0 auto;
+.logo {
+    width: 1080px;
+    margin: 0 auto;
+}
+
+.media-left {
+    position: relative;
+}
+
+.index-img {
+    position: relative;
+    top: 5px;
+}
+
+.media-left {
+    position: relative;
+}
+.index-title{
+  margin-bottom:0px;
+}
+.each-area{
+  margin-top:10px;
 }
