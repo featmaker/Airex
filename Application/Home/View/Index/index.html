@@ -16,17 +16,17 @@
 	  	<a class="nav-nodes" href="#">{$node.node_name}</a>
 	  </volist>
 	  </div>
-  <div class="panel-body" style="padding: 2;">
+  <div class="panel-body">
 <!--  展示该分类下部分文章 -->
   <volist name="topics" id="topic" empty="暂时没有数据">
-	<div class="media">
+	<div class="media each-area">
 		  <div class="media-left">
 		    <a href="{:U('User/info',array('member'=>$topic['user_name']))}">
-		      <img class="media-object" src="__PUBLIC__{$topic.imgpath}" alt="...">
+		      <img class="media-object index-img" src="__PUBLIC__{$topic.imgpath}" alt="...">
 		    </a>
 		  </div>
 		  <div class="media-body">
-		    <h4 class="media-heading">
+		    <h4 class="media-heading index-title">
 		    	<a href="{:U('topic/detail',array('tid'=>$topic['tid']))}" title="">{$topic.title}</a>
 		    </h4>
 		    <a href="{:U('Category/find',array('node'=>$topic['node_name']))}" title="程序员" style="font-size:10px;background: #f5f5f5">{$topic.node_name}</a><em>.</em>
