@@ -56,4 +56,9 @@ class CategoryModel extends Model {
 
 		return $topics;
 	}
+
+	public function getHotNodes(){
+		$nodes = M('node')->field('node_name')->order('hits desc')->limit(10)->select();
+		return $nodes;
+	}
 }

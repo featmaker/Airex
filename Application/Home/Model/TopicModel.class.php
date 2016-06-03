@@ -104,7 +104,7 @@ class TopicModel extends Model
 	public function getInfoById($tid){
 		$topicInfo = $this
 				->where(array('airex_topic.id'=>$tid))
-				->field('title,content,publish_time,user_name,hits,collections,comments,node_name')
+				->field('title,content,publish_time,user_name,airex_topic.hits as hits,collections,comments,node_name')
 				->join('airex_user as u on u.id = airex_topic.uid')
 				->join('airex_node as n on n.id = airex_topic.node_id')
 				->select()[0];
@@ -139,14 +139,15 @@ class TopicModel extends Model
 		return true;
 	}
 
-	// public function getPageData(){
-	// 	$p = I('get.p') ? I('get.p') : 1;
-	// 	$count = $this->count();
-	// 	$limit = C('PAGE_SIZE');
-	// 	$page = new \Org\Airex\Page($count,$limit);
-	// 	$data['show'] = $page->show();
-	// 	$data['lists'] = $this->page($p.',',C('PAGE_SIZE'))->select();
-	// 	return $data;
-	// }
+	public function getPageData(){
+		$p = I('get.p') ? I('get.p') : 1;
+		$count = $this->count();
+		$limit = C('PAGE_SIZE');
+		$page = new \Org\Airex\Page($count,$limit);
+		// $page = new \Think\Page($count,$limit);
+		$data['show'] = $page->show();
+		$data['lists'] = $this->page($p.',',C('PAGE_SIZE'))->select();
+		return $data;
+	}
 
 }

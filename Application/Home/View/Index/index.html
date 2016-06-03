@@ -41,7 +41,7 @@
 
 	<!-- 分页 -->
 	<nav class="col-md-6 col-md-offset-3">
-        <span>加载更多</span>
+        {$page.show}
 	</nav>
 
   </div>
@@ -231,11 +231,14 @@
 
      <div class="sidebar-module sidebar-module-inset">
          <h4>最热节点</h4>
-         <a href="#" class="item-node">PHP</a>
+         <volist name="hotNodes" id="hot">
+             <a href="#" class="item-node">{$hot['node_name']}</a>
+         </volist>
+<!--          <a href="#" class="item-node">PHP</a>
 		 <a href="#" class="item-node">Python</a>
 		 <a href="#" class="item-node">工作</a>
 		 <a href="#" class="item-node">生活</a>
-		 <a href="#" class="item-node">二手交易</a>
+		 <a href="#" class="item-node">二手交易</a> -->
      </div>
      <div class="sidebar-module sidebar-module-inset">
        	<h4>站点实况</h4>			

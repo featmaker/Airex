@@ -9,12 +9,14 @@ use Home\Model\FactoryModel;
 class TopicController extends BaseController
 {
 	
+	public $Topic;
 	function __construct()
 	{
 		parent::__construct();
 		if (!checkLogin()) {
 			$this->redirect("User/login",'',0);
 		}
+		$this->Topic = D('Topic');
 	}
 
 	public function index(){
@@ -30,12 +32,10 @@ class TopicController extends BaseController
 			$date['content'] = I('post.content','','trim');
 			$data['node_id'] = I('post.nodeid','','intval');
 			$data['uid'] = session('uid');
-			$Topic = FactoryModel::createTopicModel();
-			$Topic->addTopic($data);
-			if ($Topic->addTopic($data)) {
+			if ($this->Topic->addTopic($data)) {
 				$this->success('发布主题成功');
 			}else{
-				$this->error($Topic->getError());
+				$this->error($this->Topic->getError());
 			}
 		}else{
 			$this->display();
@@ -48,14 +48,12 @@ class TopicController extends BaseController
 	 */
 	public function detail(){
 		$tid = I('get.tid','','intval');
-		$Topic = FactoryModel::createTopicModel();
-		if (!$Topic->checkTid($tid)) {
+		if (!$this->Topic->checkTid($tid)) {
 			$this->error('传输参数错误');
 		}
-		$topicInfo = $Topic->getInfoById($tid);		//根据tid获取详情
-		$commentInfo = $Topic->getCommentById($tid);	//根据tid获取评论
-		$Index = FactoryModel::createIndexModel();
-		$data = $Index->getUserInfo();			//获取登陆用户信息
+		$topicInfo = $this->Topic->getInfoById($tid);		//根据tid获取详情
+		$commentInfo = $this->Topic->getCommentById($tid);	//根据tid获取评论
+		$data = D('Index')->getUserInfo();			//获取登陆用户信息
 		$this->assign('topicInfo',$topicInfo);
 		$this->assign('commentInfo',$commentInfo);
 		$this->assign('data',$data);
@@ -73,12 +71,11 @@ class TopicController extends BaseController
 												 $this->error('追加信息不能为空') :
 												 I('post.append','','trim');
 			$tid = I('post.tid','','intval');
-			$Topic = FactoryModel::createTopicModel();
-			if (!$Topic->checkTid($tid)) {
+			if (!$this->Topic->checkTid($tid)) {
 				$this->error('不要修改tid值');
 			}
-			if (!$Topic->appendContent($tid,$content)) {
-				$this->error($Topic->getError());
+			if (!$this->Topic->appendContent($tid,$content)) {
+				$this->error($this->Topic->getError());
 			}
 		}else{
 			$this->display();
