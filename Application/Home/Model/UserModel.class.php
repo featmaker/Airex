@@ -12,6 +12,7 @@ use Think\Model;
  */
 class UserModel extends Model{
 
+
     //自动验证注册表单
     protected $_validate = array(
         array('user_name','require','用户名不能为空',1),
