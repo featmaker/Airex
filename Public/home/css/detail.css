@@ -136,9 +136,9 @@ h6 > a {
     color: #a2a2a2;
 }
 
-a {
-    color: black;
-}
+/*a {*/
+    /*color: black;*/
+/*}*/
 
 .container-fluid a,
 .blog-footer a {

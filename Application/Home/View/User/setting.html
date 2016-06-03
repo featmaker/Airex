@@ -5,7 +5,7 @@
 
 <block name="css">
 
-	<link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/setting.css"></block>
 
 <block name="page-main">
@@ -14,8 +14,8 @@
 	<div class="col-sm-12">
 		<div class="panel panel-default">
 
-			<div class="panel-heading">
-				<span>设置 - Airex</span>
+			<div class="panel-heading" style="height:32px;">
+				<span style="font-size:14px;margin:10px;line-height:32px;">用户信息设置</span>
 			</div>
 			<div class="panel-body">
 
@@ -25,55 +25,43 @@
 					<div class="form-group form-group-sm">
 						<label class="col-sm-2 control-label" for="new-username">用户名</label>
 						<div class="col-sm-10">
-							小王
+							<span style="font-size:12px;">{$Think.session.user}</span>
 							</div>
-					</div>
-					<!--    性别    -->
-					<div class="form-group form-group-sm">
-						<label class="col-sm-2 control-label">性别</label>
-						<select class="form-control">
-							<option >保密</option>
-							<option >男</option>
-							<option >女</option>
-						</select>
 					</div>
 					<!--    邮件    -->
 					<div class="form-group form-group-sm">
 						<label class="col-sm-2 control-label" for="new-email">电子邮件</label>
 						<div class="col-sm-10">
-							<input type="email" name="new-email" class="form-control" id="new-email" placeholder="请输入新的Email地址"></div>
+							<span style="font-size:12px;">{$data['userInfo']['email']}</span>
+							</div>
 					</div>
-					
-					<!--    密码    -->
+					<!--    性别    -->
 					<div class="form-group form-group-sm">
-						<label class="col-sm-2 control-label" for="new-psw">修改密码</label>
-						<div class="col-sm-10">
-							<input type="password" name="new-psw" class="form-control" id="new-psw" placeholder="请输入新密码"></div>
-					</div>
-					<div class="form-group form-group-sm">
-						<label class="col-sm-2 control-label" for="new-psw-repeat">确认新的密码</label>
-						<div class="col-sm-10">
-							<input type="password" name="new-psw-repeat" class="form-control" id="new-psw-repeat" placeholder="请再次输入新密码"></div>
+						<label class="col-sm-2 control-label">性别</label>
+						<select name="gender" class="form-control">
+								<option value="保密" <if condition="$data['userInfo']['gender'] eq '保密'">selected="selected"</if> >保密</option>
+								<option value="男" <if condition="$data['userInfo']['gender'] eq '男'">selected="selected"</if>>男</option>
+								<option value="女" <if condition="$data['userInfo']['gender'] eq '女'">selected="selected"</if>>女</option>
+						</select>
 					</div>
 					<!--   个人网站    -->
 					<div class="form-group form-group-sm">
 						<label class="col-sm-2 control-label" for="new-site">个人网站</label>
 						<div class="col-sm-10">
-							<input type="text" name="new-site" class="form-control" id="new-site" placeholder="请输入新的URL"></div>
+							<input type="text" name="url" class="form-control" id="new-site" value="{$data['userInfo']['url']}" placeholder="您的个人网站URL，可不填"></div>
 					</div>
 					<!--   个人简介    -->
 					<div class="form-group form-group-sm">
 						<label class="col-sm-2 control-label" for="new-site">个人简介</label>
 						<div class="col-sm-10">
-							<textarea rows="5" cols="20" type="text" name="new-sintro" class="form-control" id="new-site" 
-							placeholder="请输入个人简介">
-							</textarea>
+							<textarea rows="5" cols="20" type="text" name="resume" class="form-control" id="new-site"
+							placeholder="您50字以内的个人简介，可不填">{$data['userInfo']['resume']}</textarea>
 							</div>
 					</div>
 
 					<!-- 表单提交按钮 -->
-					<button formmethod="post" formaction="?.php" class="btn btn-primary" type="submit" id="submit-btn">
-						<span>提交</span>
+					<button formmethod="post" formaction=" " class="btn btn-primary" type="submit" id="submit-btn">
+						<span>修改</span>
 					</button>
 
 				</form>
@@ -86,8 +74,8 @@
 
 		<!--      上传头像     -->
 		<div class="panel panel-default">
-			<div class="panel-heading">
-				<span>修改头像</span>
+			<div class="panel-heading" style="height:32px;">
+				<span style="font-size:14px;margin:10px;line-height:32px;">修改头像</span>
 			</div>
 			<div class="panel-body">
 				<form class="form-horizontal">
@@ -95,7 +83,7 @@
 						<label class="col-sm-2 control-label icon-up">头像上传</label>
 						<div class="col-sm-10">
 							<div>
-								<img src="__PUBLIC__/home/img/icon-default.png"></div>
+								<img src="__PUBLIC__{$data['userInfo']['imgpath']}"></div>
 							<input type="file" name="new-icon" class="input-sm"></div>
 					</div>
 				</form>
@@ -103,6 +91,78 @@
 		</div>
 	</div>
 
+	<div class="col-sm-12">
+
+		<!--      上传头像     -->
+		<div class="panel panel-default">
+			<div class="panel-heading" style="height:32px;">
+				<span style="font-size:14px;margin:10px;line-height:32px;">修改密码</span>
+			</div>
+			<div class="panel-body">
+				<!--    表单    -->
+				<form class="form-horizontal">
+
+					<!--    密码    -->
+					<div class="form-group form-group-sm">
+						<label class="col-sm-2 control-label" for="new-psw">修改密码</label>
+						<div class="col-sm-10">
+							<input type="password" name="password" class="form-control" id="new-psw" placeholder="请输入新密码"></div>
+					</div>
+					<div class="form-group form-group-sm">
+						<label class="col-sm-2 control-label" for="new-psw-repeat">确认新的密码</label>
+						<div class="col-sm-10">
+							<input type="password" name="password_r" class="form-control" id="new-psw-repeat" placeholder="请再次输入新密码"></div>
+					</div>
+
+					<!-- 表单提交按钮 -->
+					<button formmethod="post" formaction="" class="btn btn-primary" type="submit" id="submit-btn">
+						<span>提交</span>
+					</button>
+
+				</form>
+			</div>
+		</div>
+	</div>
+
+</block>
+<block name="sidebar">
+	<div class="sidebar-module sidebar-module-inset">
+		<a href="{:U('User/info',array('member'=>$_SESSION['user']))}" title="" class="info">
+			<img src="__PUBLIC__{$data['userInfo']['imgpath']}" alt="..." class="img-rounded">
+		</a>
+		&nbsp;&nbsp;
+		<label><a href="{:U('User/info',array('member'=>$_SESSION['user']))}" title="">{$Think.session.user}</a></label>
+		<table class="table">
+			<tr>
+				<td align="center"><a class="info" href="#" title="" ><span class="lead">{$data['userInfo']['nodes']}</span> <br><span>节点收藏</span></a></td>
+				<td align="center"><a class="info" href="#" title="1" ><span class="lead">{$data['userInfo']['topics']}</span> <br><span>主题收藏</span></a></td>
+				<td align="center"><a class="info" href="#" title="1" ><span class="lead">{$data['userInfo']['attentions']}</span> <br><span>特别关注</span></a></td>
+			</tr>
+		</table>
+		<hr style="margin: 4px 0">
+		<a href="#" title="">
+			<span class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp;创建新主题</span>
+		</a>
+		<hr style="margin: 8px 0">
+		<a href="#" title="">
+			<small>{$data['notifications']}条未读提醒</small>
+		</a>
+		<a href="#" title=""><span class="badge badge-balance">财富: {$data['userInfo']['wealth']}</span></a>
+	</div>
+	<div class="sidebar-module sidebar-module-inset">
+		<h4>最热节点</h4>
+		<a href="#" class="item-node">PHP</a>
+		<a href="#" class="item-node">Python</a>
+		<a href="#" class="item-node">工作</a>
+		<a href="#" class="item-node">生活</a>
+		<a href="#" class="item-node">二手交易</a>
+	</div>
+	<div class="sidebar-module sidebar-module-inset">
+		<h4>站点实况</h4>
+		<p>注册会员	173280</p>
+		<p>主题	275247</p>
+		<p>回复	3186640</p>
+	</div>
 </block>
 <block name="js">
 	<script type="text/javascript">
