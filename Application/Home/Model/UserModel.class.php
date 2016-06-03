@@ -218,14 +218,43 @@ class UserModel extends Model{
      * 用户设置页 获取用户信息
      * @return array 获取的用户数据
      */
-    public function getNowUserInfo(){
+    public function getSettingUserInfo(){
         $uid = session('uid');
-        $User = M("User");
-        $data['userInfo'] = $User->where(array('id'=>$uid))
+        $data['userInfo'] = $this->where(array('id'=>$uid))
             ->field('url,resume,email,gender,imgpath,attentions,topics,wealth,nodes')
             ->select()[0];
         $data['notifications'] = M('reply')->where(array('to_uid'=>$uid,'is_read'=>'否'))
             ->count();
         return $data;
+    }
+
+    /**
+     * 用户设置页 更新用户信息
+     * @return boolean
+     */
+    public function updateUserInfo($data){
+        $rules = array(
+            array('gender','checkGender','性别不合法',1,'callback'),
+            array('url','url','url不合法',2),
+            array('resume','0,50','个人简介长度50字以内',2,'length'),
+        );
+        $uid = I('session.uid');
+        if ($this->validate($rules)->create()){
+            $this->where('id = '.$uid)->save($data);
+            return true;
+        }
+    }
+
+    /**
+     * 检查性别是否合法
+     * @return boolean
+     */
+    public function checkGender($gender){
+        $gender_arr = array('男','女','保密');
+        if(in_array($gender,$gender_arr)){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

@@ -28,38 +28,39 @@
 							<span style="font-size:12px;">{$Think.session.user}</span>
 							</div>
 					</div>
-					<!--    性别    -->
-					<div class="form-group form-group-sm">
-						<label class="col-sm-2 control-label">性别</label>
-						<select class="form-control">
-								<option <if condition="$data['userInfo']['gender'] eq '保密'">selected="selected"</if> >保密</option>
-								<option <if condition="$data['userInfo']['gender'] eq '男'">selected="selected"</if>>男</option>
-								<option <if condition="$data['userInfo']['gender'] eq '女'">selected="selected"</if>>女</option>
-						</select>
-					</div>
 					<!--    邮件    -->
 					<div class="form-group form-group-sm">
 						<label class="col-sm-2 control-label" for="new-email">电子邮件</label>
 						<div class="col-sm-10">
-							<input type="email" name="new-email" class="form-control" id="new-email" value="{$data['userInfo']['email']}" placeholder="请输入新的Email地址"></div>
+							<span style="font-size:12px;">{$data['userInfo']['email']}</span>
+							</div>
+					</div>
+					<!--    性别    -->
+					<div class="form-group form-group-sm">
+						<label class="col-sm-2 control-label">性别</label>
+						<select name="gender" class="form-control">
+								<option value="保密" <if condition="$data['userInfo']['gender'] eq '保密'">selected="selected"</if> >保密</option>
+								<option value="男" <if condition="$data['userInfo']['gender'] eq '男'">selected="selected"</if>>男</option>
+								<option value="女" <if condition="$data['userInfo']['gender'] eq '女'">selected="selected"</if>>女</option>
+						</select>
 					</div>
 					<!--   个人网站    -->
 					<div class="form-group form-group-sm">
 						<label class="col-sm-2 control-label" for="new-site">个人网站</label>
 						<div class="col-sm-10">
-							<input type="text" name="new-site" class="form-control" id="new-site" value="{$data['userInfo']['url']}" placeholder="请输入新的URL"></div>
+							<input type="text" name="url" class="form-control" id="new-site" value="{$data['userInfo']['url']}" placeholder="请输入新的URL"></div>
 					</div>
 					<!--   个人简介    -->
 					<div class="form-group form-group-sm">
 						<label class="col-sm-2 control-label" for="new-site">个人简介</label>
 						<div class="col-sm-10">
-							<textarea rows="5" cols="20" type="text" name="new-sintro" class="form-control" id="new-site" 
+							<textarea rows="5" cols="20" type="text" name="resume" class="form-control" id="new-site"
 							placeholder="请输入个人简介">{$data['userInfo']['resume']}</textarea>
 							</div>
 					</div>
 
 					<!-- 表单提交按钮 -->
-					<button formmethod="post" formaction="?.php" class="btn btn-primary" type="submit" id="submit-btn">
+					<button formmethod="post" formaction=" " class="btn btn-primary" type="submit" id="submit-btn">
 						<span>修改</span>
 					</button>
 
@@ -101,21 +102,20 @@
 				<!--    表单    -->
 				<form class="form-horizontal">
 
-
 					<!--    密码    -->
 					<div class="form-group form-group-sm">
 						<label class="col-sm-2 control-label" for="new-psw">修改密码</label>
 						<div class="col-sm-10">
-							<input type="password" name="new-psw" class="form-control" id="new-psw" placeholder="请输入新密码"></div>
+							<input type="password" name="password" class="form-control" id="new-psw" placeholder="请输入新密码"></div>
 					</div>
 					<div class="form-group form-group-sm">
 						<label class="col-sm-2 control-label" for="new-psw-repeat">确认新的密码</label>
 						<div class="col-sm-10">
-							<input type="password" name="new-psw-repeat" class="form-control" id="new-psw-repeat" placeholder="请再次输入新密码"></div>
+							<input type="password" name="password_r" class="form-control" id="new-psw-repeat" placeholder="请再次输入新密码"></div>
 					</div>
 
 					<!-- 表单提交按钮 -->
-					<button formmethod="post" formaction="?.php" class="btn btn-primary" type="submit" id="submit-btn">
+					<button formmethod="post" formaction="" class="btn btn-primary" type="submit" id="submit-btn">
 						<span>提交</span>
 					</button>
 

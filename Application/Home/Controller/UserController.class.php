@@ -6,7 +6,6 @@
  */
 namespace Home\Controller;
 use Home\Controller\BaseController;
-use Home\Model\FactoryModel;
 /**
  * 用户控制器.
  */
@@ -31,7 +30,7 @@ class UserController extends BaseController{
 			$this->redirect("Index/index",'',0);
 		}
 		if (IS_POST){
-			$User = FactoryModel::createUserModel();
+			$User = new \Home\Model\UserModel();
 			$postinfo=array("user_name"=>I('post.username'),"password"=>I('post.password'));
 			switch($User->userLogin($postinfo)){
 				case 0: //无此用户
@@ -59,7 +58,7 @@ class UserController extends BaseController{
 		if (checkLogin()) {
 			$this->redirect("Index/index",'',0);
 		}
-		$User = FactoryModel::createUserModel();
+		$User = new \Home\Model\UserModel();
 		if (IS_POST){
 			if(check_verify(I('post.captcha'))){
 
@@ -87,8 +86,7 @@ class UserController extends BaseController{
 	 * AJAX检查占用用户名接口
 	 */
 	public function checkUsername(){
-		$User = FactoryModel::createUserModel();
-		// $User = new \Home\Model\UserModel();
+		$User = new \Home\Model\UserModel();
 		$username = I('post.username');
 		echo $User->checkUsername($username);
 
@@ -98,8 +96,7 @@ class UserController extends BaseController{
 	 * AJAX检查占用Email接口
 	 */
 	public function checkEmail(){
-		$User = FactoryModel::createUserModel();
-		// $User = new \Home\Model\UserModel();
+		$User = new \Home\Model\UserModel();
 		$email = I('post.email');
 		echo $User->checkEmail($email);
 
@@ -113,7 +110,7 @@ class UserController extends BaseController{
 			$this->redirect("Index/index",'',0);
 		}
 		if(IS_POST){
-			$User = FactoryModel::createUserModel();
+			$User = new \Home\Model\UserModel();
 			$email = I('post.email'); //得到参数email
 			if($username = $User->getUsernameByEmail($email)){ //此email是否存在数据库中
 				if($User->sendResetpwEmail($email,$username)){  //发送邮件给此email
@@ -139,7 +136,7 @@ class UserController extends BaseController{
 		}
 		if(I('get.hash')){  //如果存在hash参数
 			$hash = I('get.hash');
-			$User = FactoryModel::createUserModel();
+			$User = new \Home\Model\UserModel();
 			if($username = $User->checkResetpwHash($hash)){
 				$this->assign('username',$username); //将用户名输出到前端
 				if(IS_POST) {
@@ -147,6 +144,8 @@ class UserController extends BaseController{
 						$this->error('两次密码不一致');
 					}elseif((I('post.password'))=="" || (I('post.password')=="")){
 						$this->error('密码不能为空');
+					}elseif(strlen(I('post.password'))<6){
+						$this->error('密码长度不得小于6位');
 					}else{
 						$User->updatePassword($username,I('post.password'));//更新密码
 						$User->deleteResetpwHash($hash); //删除此重置hash
@@ -183,10 +182,40 @@ class UserController extends BaseController{
 		if (!checkLogin()) {
 			$this->redirect("Index/index",'',0);
 		}
-		$User = FactoryModel::createUserModel();
-		$data = $User->getNowUserInfo();
-		$this->assign('data', $data);
-		$this->display();
+
+		if($_POST['gender']){
+			if (!preg_match("/^(http|ftp):/", $_POST['url'])){
+   			$_POST['url'] = 'http://'.$_POST['url'];
+			}   //检测是否有http头，若无则加上
+			$data = array("id" => I('session.uid'),
+			"gender" => I('post.gender'),
+			"url" => I('post.url'),
+			"resume" => I('post.resume'));
+			$User = new \Home\Model\UserModel();
+			if($User->updateUserInfo($data)){
+				$this->success('用户信息更新成功！');
+			}else{
+				$this->error($User->getError());
+			}
+		}elseif($_POST['password']){
+			if ((I('post.password')) != (I('post.password_r'))) {
+				$this->error('两次密码不一致');
+			}elseif((I('post.password'))=="" || (I('post.password')=="")){
+				$this->error('密码不能为空');
+			}elseif(strlen(I('post.password'))<6){
+				$this->error('密码长度不得小于6位');
+			}else{
+				$username = I('session.user');
+				$User = new \Home\Model\UserModel();
+				$User->updatePassword($username,I('post.password'));//更新密码
+				$this->success('密码已经重置成功！'); //密码重置成功转向登录页
+			}
+		}else{
+			$User = new \Home\Model\UserModel();
+			$data = $User->getSettingUserInfo();
+			$this->assign('data', $data);
+			$this->display();
+		}
 
 
 	}
@@ -205,7 +234,7 @@ class UserController extends BaseController{
 	 */
 	public function info($member){
 
-			$User = FactoryModel::createUserModel();
+			$User = new \Home\Model\UserModel();
 			$data = $User->getUserInfo($member);
 		if($data){
 			$this->assign('data',$data);
