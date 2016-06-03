@@ -5,7 +5,7 @@
 
 <block name="css">
 
-	<link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/setting.css"></block>
 
 <block name="page-main">
@@ -14,8 +14,8 @@
 	<div class="col-sm-12">
 		<div class="panel panel-default">
 
-			<div class="panel-heading">
-				<span style="font-size:14px;">设置 - Airex</span>
+			<div class="panel-heading" style="height:32px;">
+				<span style="font-size:14px;margin:10px;line-height:32px;">用户信息设置</span>
 			</div>
 			<div class="panel-body">
 
@@ -48,14 +48,14 @@
 					<div class="form-group form-group-sm">
 						<label class="col-sm-2 control-label" for="new-site">个人网站</label>
 						<div class="col-sm-10">
-							<input type="text" name="url" class="form-control" id="new-site" value="{$data['userInfo']['url']}" placeholder="请输入新的URL"></div>
+							<input type="text" name="url" class="form-control" id="new-site" value="{$data['userInfo']['url']}" placeholder="您的个人网站URL，可不填"></div>
 					</div>
 					<!--   个人简介    -->
 					<div class="form-group form-group-sm">
 						<label class="col-sm-2 control-label" for="new-site">个人简介</label>
 						<div class="col-sm-10">
 							<textarea rows="5" cols="20" type="text" name="resume" class="form-control" id="new-site"
-							placeholder="请输入个人简介">{$data['userInfo']['resume']}</textarea>
+							placeholder="您50字以内的个人简介，可不填">{$data['userInfo']['resume']}</textarea>
 							</div>
 					</div>
 
@@ -74,8 +74,8 @@
 
 		<!--      上传头像     -->
 		<div class="panel panel-default">
-			<div class="panel-heading">
-				<span style="font-size:14px;">修改头像</span>
+			<div class="panel-heading" style="height:32px;">
+				<span style="font-size:14px;margin:10px;line-height:32px;">修改头像</span>
 			</div>
 			<div class="panel-body">
 				<form class="form-horizontal">
@@ -95,8 +95,8 @@
 
 		<!--      上传头像     -->
 		<div class="panel panel-default">
-			<div class="panel-heading">
-				<span style="font-size:14px;">修改密码</span>
+			<div class="panel-heading" style="height:32px;">
+				<span style="font-size:14px;margin:10px;line-height:32px;">修改密码</span>
 			</div>
 			<div class="panel-body">
 				<!--    表单    -->

@@ -191,9 +191,11 @@ class UserController extends BaseController{
 		}
 
 		if($_POST['gender']){
-			if (!preg_match("/^(http|ftp):/", $_POST['url'])){
-   			$_POST['url'] = 'http://'.$_POST['url'];
-			}   //检测是否有http头，若无则加上
+			if($_POST['url'] != ""){
+				if (!preg_match("/^(http|ftp):/", $_POST['url'])){
+					$_POST['url'] = 'http://'.$_POST['url'];
+				}   //检测是否有http头，若无则加上
+			}
 			$data = array("id" => I('session.uid'),
 			"gender" => I('post.gender'),
 			"url" => I('post.url'),
