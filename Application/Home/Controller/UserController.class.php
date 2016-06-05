@@ -255,7 +255,7 @@ class UserController extends BaseController{
 	 */
 	public function logout(){
 		session('user',null);
-		session('user_id',null);
+		session('uid',null);
 		$this->redirect("User/login",'',0);
 	}
 

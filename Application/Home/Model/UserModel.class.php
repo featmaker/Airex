@@ -212,7 +212,7 @@ class UserModel extends Model{
     public function getUserInfo($member){
         $username = $member;
         $data = $this->where(array('user_name'=>$username))
-            ->field('id,user_name,imgpath,gender,create_time')
+            ->field('id,url,resume,user_name,imgpath,gender,create_time')
             ->select()[0];
         return $data;
     }

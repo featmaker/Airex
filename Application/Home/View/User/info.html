@@ -265,7 +265,7 @@
 				<div class="media-head media-left">
 					<img width="18" src="__PUBLIC__/home/img/comment.png"></div>
 				<div class="media-body">
-					<span>{$data.user_name} 最近的时间轴更新</span>
+					<span>{$data.user_name} 的更多资料</span>
 				</div>
 			</div>
 		</div>
@@ -273,12 +273,19 @@
 		<div class="col-sm-12 question">
 			<div class="media">
 				<div class="media-body">
-					<span>有没有用 libcurl 过的，遇到问题了，求教</span>
+					<span>网　　站：<if condition="$data.url eq ''">暂无<else /><a href="{$data.url}" target="_blank">{$data.url}</a></if>
+					</span>
 				</div>
-				<div class="light-color">
-					<span>4天前</span>
-				</div>
+
 			</div>
+			<div class="media">
+				<div class="media-body">
+					<span>个人简介：<if condition="$data.resume eq ''">暂无<else />{$data.resume}</if>
+					</span>
+				</div>
+
+			</div>
+
 		</div>
 
 	</block>
