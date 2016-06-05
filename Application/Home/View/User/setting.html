@@ -84,7 +84,11 @@
 						<div class="col-sm-10">
 							<div>
 								<img src="__PUBLIC__{$data['userInfo']['imgpath']}"></div>
-							<input type="file" name="new-icon" class="input-sm"></div>
+							<!--<input type="file" name="new-icon" class="input-sm">-->
+							<a href="{:U('User/avatar')}"><button class="btn btn-primary" type="button">
+								<span>修改头像</span>
+							</button></a>
+						</div>
 					</div>
 				</form>
 			</div>
@@ -93,7 +97,7 @@
 
 	<div class="col-sm-12">
 
-		<!--      上传头像     -->
+		<!--      修改密码     -->
 		<div class="panel panel-default">
 			<div class="panel-heading" style="height:32px;">
 				<span style="font-size:14px;margin:10px;line-height:32px;">修改密码</span>

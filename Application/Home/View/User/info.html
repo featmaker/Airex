@@ -11,9 +11,9 @@
 	<div class="col-sm-12 header-up">
 		<div class="media">
 			<div class="media-left">
-				<img src="__PUBLIC__{$data.imgpath}" alt="{$data.user_name}"></div>
+				<img src="__PUBLIC__{$data.imgpath}" alt="{$data.user_name}" style="margin-top:5px"></div>
 			<div class="media-body">
-				<div class="media-heading">
+				<div class="media-heading" style="padding-bottom:0;margin-bottom:0">
 					<span>
 						<big>{$data.user_name}</big>
 					</span>
@@ -22,7 +22,7 @@
 				<span class="info-number">
 					<small>Airex 第 {$data.id} 号会员，性别：{$data.gender}，加入于 {$data.create_time}</small>
 				</span>
-				<button type="button" class="btn btn-sm">Block</button>
+				<!--<button type="button" class="btn btn-sm">Block</button>-->
 			</div>
 		</div>
 	</div>
@@ -44,7 +44,7 @@
 					<ul class="nav navbar-nav navbar-left">
 
 						<li class="active">
-							<a href="#">{$data.user_name} 创建的所有主题</a>
+							<a href="#">查看 {$data.user_name} 创建的所有主题</a>
 						</li>
 
 					</ul>
@@ -55,19 +55,8 @@
 
 		</div>
 
-		<div class="col-sm-12 theme-hide" id="themeShow">
-			<div class="media theme-hide-list">
-				<div class="media-left">
-					<img class="theme-hide-lock" width="128" src="__PUBLIC__/home/img/lock.png"></div>
-				<div class="media-body media-middle">
-					<span>
-						<small>根据 Mr.Trump 的设置，主题列表被隐藏</small>
-					</span>
-				</div>
-			</div>
-		</div>
 
-		<div class="col-sm-12 theme-display" id="themeHide" >
+		<div class="col-sm-12 theme-display">
 			<ul class="list-group">
 				<li class="list-group-item">
 					<span>
@@ -131,6 +120,7 @@
 				</li>
 
 			</ul>
+
 		</div>
 
 		<div class="col-sm-12 divider"></div>
@@ -293,6 +283,3 @@
 
 	</block>
 
-	<block name="js">
-		<script src="__PUBLIC__/home/js/info.js"></script>
-	</block>
