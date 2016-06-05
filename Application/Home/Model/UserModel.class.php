@@ -283,7 +283,7 @@ class UserModel extends Model{
             $avatarPath = './Public/Home/img/avatar/'.$info['savename'];
             $image = new \Think\Image();  //实例化图片操作类 裁剪头像为48*48
             $image->open($avatarPath);
-            $image->thumb(48, 48,$image::IMAGE_THUMB_FILLED)->save($avatarPath);
+            $image->thumb(48, 48,$image::IMAGE_THUMB_FIXED)->save($avatarPath);
             $this->where('id='.I('session.uid'))->setField('imgpath','/home/img/avatar/'.$info['savename']); //数据库更新头像字段
             return true;
         }
