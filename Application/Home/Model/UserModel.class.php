@@ -72,6 +72,8 @@ class UserModel extends Model{
         if($this->create($userinfo)){
             if ($this->add()) {
                 //session('user',$userinfo['user_name']); //session 注册后进入已登录状态
+//                $siteInfo = M('siteinfo');
+//                $siteInfo->setField($data);
                 return true;
             }
         }
@@ -258,4 +260,34 @@ class UserModel extends Model{
             return false;
         }
     }
+
+    /**
+     * 上传头像
+     * @param  file $avatar [description]
+     * @return boolean
+     */
+    public function uploadAvatar($avatar){
+
+        $upload = new \Think\Upload();// 实例化上传类
+        $upload->maxSize   =     3145728 ;// 设置允许上传大小 默认3M
+        $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置上传类型
+        $upload->rootPath  =      './Public/Home/img/avatar/'; // 设置上传根目录
+        $upload->autoSub = false;
+        $upload->saveName = I('session.uid'); //以用户ID保存头像文件名
+        $upload->replace = true;
+        // 上传单个文件
+        $info   =   $upload->uploadOne($avatar);
+        if(!$info) {
+            return $upload->getError();
+        }else{
+            $avatarPath = './Public/Home/img/avatar/'.$info['savename'];
+            $image = new \Think\Image();  //实例化图片操作类 裁剪头像为48*48
+            $image->open($avatarPath);
+            $image->thumb(48, 48,$image::IMAGE_THUMB_FILLED)->save($avatarPath);
+            $this->where('id='.I('session.uid'))->setField('imgpath','/home/img/avatar/'.$info['savename']); //数据库更新头像字段
+            return true;
+        }
+
+    }
+
 }

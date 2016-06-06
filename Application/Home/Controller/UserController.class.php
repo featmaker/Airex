@@ -15,9 +15,7 @@ class UserController extends BaseController{
 
 	function __construct(){
 		parent::__construct();
-		$this->User = new \Home\Model\UserModel();
-
-		$this->User = D('user');
+		$this->User = D('User');
 	}
 
 	/**
@@ -232,6 +230,27 @@ class UserController extends BaseController{
 	}
 
 	/**
+	 * 用户头像修改页
+	 */
+	public function avatar(){
+		if (!checkLogin()) {
+			$this->redirect("Index/index",'',0);
+		}
+		if(IS_POST){
+			$msg = $this->User->uploadAvatar($_FILES['avatar']);
+			if($msg === true){
+				$this->success('头像已成功更换！');
+			}else{
+				$this->error($msg);
+			}
+		}else{
+			$data = $this->User->getSettingUserInfo();
+			$this->assign('data', $data);
+			$this->display();
+		}
+	}
+
+	/**
 	 * 用户登出
 	 */
 	public function logout(){
@@ -254,5 +273,7 @@ class UserController extends BaseController{
 		}
 
 	}
+
+
 
 }
