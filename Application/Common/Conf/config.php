@@ -41,5 +41,5 @@ return array(
     'SHOW_PAGE_TRACE' =>true,
 
     //分页大小
-    'PAGE_SIZE' =>5,
+    'PAGE_SIZE' =>20,
 );

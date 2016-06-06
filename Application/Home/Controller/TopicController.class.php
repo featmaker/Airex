@@ -2,7 +2,7 @@
 namespace Home\Controller;
 
 use Home\Controller\BaseController;
-use Home\Model\FactoryModel;
+// use Home\Model\FactoryModel;
 /**
 * 主题控制器
 */
@@ -26,7 +26,7 @@ class TopicController extends BaseController
 	/**
 	 * 发布新主题
 	 */
-	public function addTopic(){
+	public function add(){
 		if (IS_POST) {
 			$data['title'] = I('post.title','','trim');
 			$date['content'] = I('post.content','','trim');
@@ -38,7 +38,7 @@ class TopicController extends BaseController
 				$this->error($this->Topic->getError());
 			}
 		}else{
-			$this->display();
+			$this->display('new');
 		}
 	}
 
@@ -65,7 +65,7 @@ class TopicController extends BaseController
 	 * 追加主题内容
 	 * @return [type] [description]
 	 */
-	public function appendTopic(){
+	public function append(){
 		if (IS_POST) {
 			$content = I('post.append','','trim') == '' ?
 												 $this->error('追加信息不能为空') :
@@ -81,4 +81,6 @@ class TopicController extends BaseController
 			$this->display();
 		}
 	}
+
+	// public function 
 }

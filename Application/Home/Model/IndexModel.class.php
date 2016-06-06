@@ -31,9 +31,6 @@ class IndexModel{
      */
     public function getSiteInfo(){
         $siteInfo = M('siteinfo')->field('member_num,topic_num,comment_num')->select();
-        // $siteInfo['member_num'] = M('user')->count();
-        // $siteInfo['comment_num'] = M('comment')->count();
-        // $siteInfo['topic_num'] = M('topic')->count();
         return $siteInfo[0];
     }
 }

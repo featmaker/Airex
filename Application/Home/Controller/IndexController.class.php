@@ -7,14 +7,13 @@
  */
 namespace Home\Controller;
 use Home\Controller\BaseController;
-use Home\Model\FactoryModel;
 
 
 class IndexController extends BaseController
 {
-    public $Cate; 
-    public $Topic;
-    public $Node;
+    public $Cate; //分类模型
+    public $Topic;  //主题模型
+    public $Node;   //节点模型
     function __construct(){
         parent::__construct();
         $this->Cate = D('Category');
@@ -32,11 +31,17 @@ class IndexController extends BaseController
             $data = $Index->getUserInfo();   
             $this->assign('data',$data);           
         }
-        $catName = I('get.cat');   
+        $catName = I('get.cat');
+        if ($catName != null) {
+            if (!catValidate($catName)) {
+                $this->error('传输参数错误');
+            }  
+        }
+
         $categorys = $this->Cate->getCategorys();             //获取导航栏分类
         $nodes=$this->Node->getNodeByCatName($catName);      //根据分类获取节点
         $topics = $this->Topic->getTopicsByCat($catName);      //根据分类获取文章
-        $topics =  checkNull($topics) ? null : $topics;
+        // $topics =  checkNull($topics) ? null : $topics;
         $siteInfo = D('Index')->getSiteInfo();                 //站点信息
         $hotNodes= $this->Node->getHotNodes();                  //热门节点
         $this->assign('categorys',$categorys);

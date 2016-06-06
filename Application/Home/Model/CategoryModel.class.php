@@ -17,7 +17,18 @@ class CategoryModel extends Model {
 		return $cats;
 	}
 
+	/**
+	 * 添加分类
+	 */
 	public function addCategory(){
 
+	}
+
+	public function editCategory(){
+
+	}
+
+	public function delCategory(){
+		
 	}
 }

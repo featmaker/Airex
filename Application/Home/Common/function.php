@@ -77,3 +77,21 @@ function checkNull($data){
 		}	
 	}
 }
+
+//验证节点
+function nodeValidate($node){
+	$nodes = M('node')->getField('node_name',true);
+	if (!in_array($node, $nodes)) {
+		return false;
+	}
+	return true;
+}
+
+//验证分类
+function catValidate($catName){
+	$categorys = M('category')->getField('cat_name',true);
+	if (!in_array($catName, $categorys)) {
+		return false;
+	}
+	return true;
+}
