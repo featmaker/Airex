@@ -30,7 +30,7 @@ class TopicController extends BaseController
 		if (IS_POST) {
 			$data['title'] = I('post.title','','trim');
 			$date['content'] = I('post.content','','trim');
-			$data['node_id'] = I('post.nodeid','','intval');
+			$data['node_name'] = I('post.node_name','','trim');
 			$data['uid'] = session('uid');
 			if ($this->Topic->addTopic($data)) {
 				$this->success('发布主题成功');
@@ -51,7 +51,7 @@ class TopicController extends BaseController
 		if (!$this->Topic->checkTid($tid)) {
 			$this->error('传输参数错误');
 		}
-		$topicInfo = $this->Topic->getInfoById($tid);		//根据tid获取详情
+		$topicInfo = $this->Topic->getDataById($tid);		//根据tid获取详情
 		$commentInfo = $this->Topic->getCommentById($tid);	//根据tid获取评论
 		$data = D('Index')->getUserInfo();			//获取登陆用户信息
 		$this->assign('topicInfo',$topicInfo);

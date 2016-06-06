@@ -22,7 +22,7 @@ return array(
 
     'SESSION_OPTIONS'         =>  array(
         'name'                =>  'PHPSESSID',                    //设置session名
-        'expire'              =>  3600*24*15,                      //SESSION保存15天
+        'expire'              =>  3600*24*1,                      //SESSION保存15天
         'use_trans_sid'       =>  1,                               //跨页传递
         'use_cookies'    =>  1,                               //是否只开启基于cookies的session的会话方式
     ),

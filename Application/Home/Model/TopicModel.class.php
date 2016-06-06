@@ -18,7 +18,7 @@ class TopicModel extends Model
 		array('title','checkLength_t','标题不要超过120个字符',1,'callback'),
 		array('content','require','主题内容不能为空',1),
 		array('content','checkLength_c','话题内容不要超过2000个字符',1,'callback'),
-		array('node_id','checkNodeId','请不要修改node值.',1,'callback'),
+		array('node_name','checkNodeName','请不要修改node值.',1,'callback'),
 		);
 
 	//自动完成
@@ -56,9 +56,9 @@ class TopicModel extends Model
 	 * @param  [type] $nodeId [description]
 	 * @return [type]         [description]
 	 */
-	function checkNodeId($nodeId){
-		$nodeIds = M('node')->getField('id',true);
-		if (!in_array($nodeId, $nodeIds)) {
+	function checkNodeName($nodeName){
+		$nodeNames = M('node')->getField('node_name',true);
+		if (!in_array($nodeName, $nodeNames)) {
 			return false;
 		}
 		return true;
@@ -101,12 +101,11 @@ class TopicModel extends Model
 	 * @param  [type] $tid [description]
 	 * @return [type]      [description]
 	 */
-	public function getInfoById($tid){
+	public function getDataById($tid){
 		$topicInfo = $this
 				->where(array('airex_topic.id'=>$tid))
 				->field('title,content,publish_time,user_name,airex_topic.hits as hits,collections,comments,node_name')
 				->join('airex_user as u on u.id = airex_topic.uid')
-				->join('airex_node as n on n.id = airex_topic.node_id')
 				->select()[0];
 		return $topicInfo;
 	}
@@ -139,15 +138,39 @@ class TopicModel extends Model
 		return true;
 	}
 
-	public function getPageData(){
+	// public function getPageData(){
+	// 	$p = I('get.p') ? I('get.p') : 1;
+	// 	$count = $this->count();
+	// 	$limit = C('PAGE_SIZE');
+	// 	// $page = new \Org\Airex\Page($count,$limit);
+	// 	$page = new \Think\Page($count,$limit);
+	// 	$data['show'] = $page->show();
+	// 	$data['lists'] = $this->page($p.','.$limit)->select();
+	// 	return $data;
+	// }
+
+	/**
+	 * 根据分类获取相应主题
+	 * @param  [type] $cat [description]
+	 * @return [type]      [description]
+	 */
+	public function getTopicsByCat($catName = ''){
+		if ($catName == '') {
+			$catName = M('category')->getField('cat_name');
+		}
 		$p = I('get.p') ? I('get.p') : 1;
-		$count = $this->count();
+		$count = $this->where(array('cat_name'=>$catName))
+					  ->count();
 		$limit = C('PAGE_SIZE');
-		$page = new \Org\Airex\Page($count,$limit);
-		// $page = new \Think\Page($count,$limit);
-		$data['show'] = $page->show();
-		$data['lists'] = $this->page($p.',',C('PAGE_SIZE'))->select();
-		return $data;
+		$page = new \Think\Page($count,$limit);
+		$topics['show'] = $page->show();
+		$topics['lists'] =$this->where(array('cat_name'=>$catName))
+							   ->join('left join airex_user as u on u.id = airex_topic.uid')
+							   ->field('publish_time,title,imgpath,comments,user_name,node_name,airex_topic.id as tid')
+							   ->page($p.','.$limit)
+							   ->select();
+
+		return $topics;
 	}
 
 }
