@@ -30,14 +30,20 @@ class TopicController extends BaseController
 		if (IS_POST) {
 			$data['title'] = I('post.title','','trim');
 			$date['content'] = I('post.content','','trim');
-			$data['node_name'] = I('post.node_name','','trim');
+			$data['node_id'] = I('post.node_id','','intval');
 			$data['uid'] = session('uid');
 			if ($this->Topic->addTopic($data)) {
+				$this->trigger();
 				$this->success('发布主题成功');
 			}else{
 				$this->error($this->Topic->getError());
 			}
 		}else{
+			$Node = D('Node');
+			$nodes = $Node->getAllNodes();
+			$hotNodes = $Node->getHotNodes();
+			$this->assign('nodes',$nodes);
+			$this->assign('hotNodes',$hotNodes);
 			$this->display('new');
 		}
 	}
@@ -82,5 +88,11 @@ class TopicController extends BaseController
 		}
 	}
 
-	// public function 
+	/**
+	 * 触发更新
+	 * @return [type] [description]
+	 */
+	public function trigger(){
+		
+	}
 }

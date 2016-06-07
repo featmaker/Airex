@@ -12,10 +12,18 @@ class NodeModel extends Model
 	 * @return [type] [description]
 	 */
 	public function getHotNodes(){
-		$nodes = M('node')->field('node_name')->order('hits desc')->limit(10)->select();
+		$nodes =$this->field('node_name')->order('hits desc')->limit(10)->select();
 		return $nodes;
 	}
 
+	/**
+	 * 获取全部节点
+	 * @return [type] [description]
+	 */
+	public function getAllNodes(){
+		$nodes = $this->field('id,node_name')->select();
+		return $nodes;
+	}
 	/**
 	 * 根据分类名获取节点
 	 * @param  [type] $catName [description]

@@ -13,7 +13,7 @@
 				<div class="form-group">
 					<label class="with-tips" for="theme">标题</label>
 					<span class="tip" id="tips-theme">请填写主题</span>
-					<input id="theme" class="form-control" placeholder="在这里输入标题" type="text" name="theme">
+					<input id="theme" class="form-control" placeholder="在这里输入标题" type="text" name="title">
 				</div>
 				<div class="form-group">
 					<label class="with-tips" for="content">内容</label>
@@ -25,24 +25,20 @@
 					<label for="node">选择一个节点</label>
 					<select id="node" class="form-control">
 					<!-- php -->
-						<option>好玩</option>
-						<option>找工作</option>
-						<option>3DS</option>
-						<option>二手交易</option>
-						<option>编程语言</option>
+					<volist name="nodes" id="node">
+						<option value="{$$node.id}" name="node_id">{$node.node_name}</option>
+					</volist>
 					</select>
 				</div>
 				<div class="form-group">
 					<label class="hotnode-label">最热节点</label><br>
-					<button type="button" class="btn btn-default btn-sm hotnode">找工作</button>
-					<button type="button" class="btn btn-default btn-sm hotnode">好玩</button>
-					<button type="button" class="btn btn-default btn-sm hotnode">编程语言</button>
-					<button type="button" class="btn btn-default btn-sm hotnode">二手交易</button>
-					<button type="button" class="btn btn-default btn-sm hotnode">3DS</button>
+					<volist name="hotNodes" id="hot">
+						<button type="button" class="btn btn-default btn-sm hotnode">{$hot.node_name}</button>
+					</volist>
+
 				</div>
 				<!--  提交按钮  -->
 				<button id="submit" class="btn btn-primary">发布主题</button>
-				
 			</form>
 		</div>
 	</div>

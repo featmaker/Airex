@@ -17,7 +17,7 @@ class TopicModel extends Model
 		array('title','checkLength_t','标题不要超过120个字符',1,'callback'),
 		array('content','require','主题内容不能为空',1),
 		array('content','checkLength_c','话题内容不要超过2000个字符',1,'callback'),
-		array('node_name','checkNodeName','请不要修改node值.',1,'callback'),
+		array('node_id','checkNodeId','请不要修改node值.',1,'callback'),
 		);
 
 	//自动完成
@@ -55,8 +55,8 @@ class TopicModel extends Model
 	 * @param  [type] $nodeId [description]
 	 * @return [type]         [description]
 	 */
-	function checkNodeName($nodeName){
-		$nodeNames = M('node')->getField('node_name',true);
+	function checkNodeId($nodeId){
+		$nodeNames = M('node')->getField('id',true);
 		if (!in_array($nodeName, $nodeNames)) {
 			return false;
 		}
