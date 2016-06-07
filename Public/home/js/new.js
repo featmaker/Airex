@@ -20,10 +20,16 @@ $(document).ready(function() {
 
 		//标题空白
 		if ((theme.val() === "") || (theme.val().match(/^\s*$/))) {
+			$('body').animate({
+				scrollTop: theme.position().top - 200
+			}, 300);
 			theme.focus();
 			tip = $('#tips-theme');
 			//内容空白
 		} else if ((content.val() === "") || content.val().match(/^\s*$/)) {
+			$('body').animate({
+				scrollTop: content.position().top - 200
+			}, 300);
 			content.focus();
 			tip = $('#tips-content');
 		}
