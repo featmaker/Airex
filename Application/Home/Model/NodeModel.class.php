@@ -1,7 +1,7 @@
 <?php 
 namespace Home\Model;
 use Think\Model;
-use Home\Model\PublicModel;
+
 /**
 * 节点模型
 */
@@ -58,5 +58,15 @@ class NodeModel extends Model
 					 ->where(array('node_name'=>$node))
 					 ->select()[0];
 		return $data;
+	}
+
+	/**
+	 * 根据分类id获取节点id
+	 * @param  [type] $nodeId [description]
+	 * @return [type]         [description]
+	 */
+	public function getCatIdByNodeId($nodeId){
+		$catId = $this->where(array('id'=>$nodeId))->getField('pid');
+		return $catId;
 	}
 }

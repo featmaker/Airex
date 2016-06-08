@@ -29,14 +29,14 @@ class TopicController extends BaseController
 	public function add(){
 		if (IS_POST) {
 			$data['title'] = I('post.title','','trim');
-			$date['content'] = I('post.content','','trim');
+			$data['content'] = I('post.content','','trim');
 			$data['node_id'] = I('post.node_id','','intval');
+			$data['cat_id'] = D('Node')->getCatIdByNodeId($data['node_id']);
 			$data['uid'] = session('uid');
 			if ($this->Topic->addTopic($data)) {
-				$this->trigger();
 				$this->success('发布主题成功');
 			}else{
-				$this->error($this->Topic->getError());
+				$this->error('发布新主题失败,请稍后重试');
 			}
 		}else{
 			$Node = D('Node');
@@ -88,11 +88,4 @@ class TopicController extends BaseController
 		}
 	}
 
-	/**
-	 * 触发更新
-	 * @return [type] [description]
-	 */
-	public function trigger(){
-		
-	}
 }

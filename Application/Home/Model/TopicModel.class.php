@@ -15,7 +15,6 @@ class TopicModel extends Model
 	protected $_validate = array(
 		array('title','require','主题标题不能为空.',1),
 		array('title','checkLength_t','标题不要超过120个字符',1,'callback'),
-		array('content','require','主题内容不能为空',1),
 		array('content','checkLength_c','话题内容不要超过2000个字符',1,'callback'),
 		array('node_id','checkNodeId','请不要修改node值.',1,'callback'),
 		);
@@ -26,11 +25,24 @@ class TopicModel extends Model
 		);
 		
 	
-	//添加主题
+	/**
+	 * 添加主题
+	 * @param [type] $data [description]
+	 */
 	public function addTopic($data){
 		if ($this->create($data)) {
+			$this->startTrans();
 			if ($this->add()) {
-				return true;
+				if ($this->addTrigger($data['node_id'])) {
+					$this->commit();
+					return true;
+				}else{
+					$this->rollback();
+					return false;
+				}
+			}else{
+				$this->rollback();
+				return false;
 			}
 		}
 	}
@@ -56,8 +68,8 @@ class TopicModel extends Model
 	 * @return [type]         [description]
 	 */
 	function checkNodeId($nodeId){
-		$nodeNames = M('node')->getField('id',true);
-		if (!in_array($nodeName, $nodeNames)) {
+		$nodeIds = M('node')->getField('id',true);
+		if (!in_array($nodeId, $nodeIds)) {
 			return false;
 		}
 		return true;
@@ -89,7 +101,7 @@ class TopicModel extends Model
 	 * @return [type]        [description]
 	 */
 	function checkLength_t($title){
-		if (mb_strlen($title) > 120) {
+		if (mb_strlen($title) > 30) {
 			return false;
 		}
 		return true;
@@ -104,7 +116,7 @@ class TopicModel extends Model
 		$topicInfo = $this
 				->where(array('airex_topic.id'=>$tid))
 				->join('airex_node as n on n.id = airex_topic.node_id')
-				->field('title,content,publish_time,user_name,airex_topic.hits as hits,collections,comments,node_name')
+				->field('title,content,publish_time,user_name,airex_topic.hits as hits,collections,comments,node_name,imgpath')
 				->join('airex_user as u on u.id = airex_topic.uid')
 				->select()[0];
 		return $topicInfo;
@@ -198,4 +210,19 @@ class TopicModel extends Model
 		}
 		return $topics;
 	}
+
+	/**
+	 * 触发更新
+	 * @return [type] [description]
+	 */
+	public function addTrigger($nodeId){
+		if (!M('node')->where(array('id'=>$nodeId))->setInc('topic_num')) {
+			return false;
+		}
+		if (!M('siteinfo')->where('id=1')->setInc('topic_num')) {
+			return false;
+		}
+		return true;
+	}
+
 }

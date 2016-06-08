@@ -31,4 +31,5 @@ class CategoryModel extends Model {
 	public function delCategory(){
 		
 	}
+
 }
