@@ -158,3 +158,8 @@ index-img{
 .media-left{
     position:relative;
 }
+.add-message{
+    margin-left:6px;
+    color:black;
+    background-color:#f0f0f0;
+}

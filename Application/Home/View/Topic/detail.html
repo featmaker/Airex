@@ -15,7 +15,11 @@
 	<div class="media">
 	  <div class="media-body">
 		<h3>{$topicInfo.title}
-		<h6><span><a href="{:U('User/info',array('member'=>$topicInfo['user_name']))}" title="">{$topicInfo.user_name}</a></span>&nbsp;&nbsp;•&nbsp;&nbsp;<span class="header-time">{$topicInfo.publish_time}</span>&nbsp;&nbsp;•&nbsp;&nbsp;<span>{$topicInfo.comments}条回复</span>&nbsp;&nbsp;•&nbsp;&nbsp;<span>{$topicInfo.hits}次点击</span></h6></h3>
+		<h6><span><a href="{:U('User/info',array('member'=>$topicInfo['user_name']))}" title="">{$topicInfo.user_name}</a></span>&nbsp;&nbsp;•&nbsp;&nbsp;<span class="header-time">{$topicInfo.publish_time}</span>&nbsp;&nbsp;•&nbsp;&nbsp;<span>{$topicInfo.comments}条回复</span>&nbsp;&nbsp;•&nbsp;&nbsp;<span>{$topicInfo.hits}次点击</span>
+
+		<!--   追加留言   -->
+		<button class="add-message btn btn-default btn-xs">追加留言</button></h6></h3>
+
 	  </div>
 	    <div class="media-right">	
 	    <a href="{:U('User/info',array('member'=>$topicInfo['user_name']))}">
