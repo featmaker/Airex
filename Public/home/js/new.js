@@ -1,40 +1,48 @@
 $(document).ready(function() {
 	var t;
 
-	// 验证
+	function showTip(tip) {
+		$('.tip').hide();
+		clearTimeout(t);
+		if (tip.is(':hidden')) {
+			tip.show();
+			t = setTimeout(function() {
+				tip.hide();
+			}, 2000);
+		}
+	}
+
+	function scrollTowhere(which) {
+		$('body').animate({
+			scrollTop: which.position().top - 200
+		}, 300);
+		which.focus();
+	}
+
+	// 验证表单
 	$('#submit').click(function() {
 		var theme = $('#theme'),
 			content = $('#content'),
 			tip = null;
 
-		function showTip(tip) {
-			$('.tip').hide();
-			clearTimeout(t);
-			if (tip.is(':hidden')) {
-				tip.show();
-				t = setTimeout(function() {
-					tip.hide();
-				}, 2000);
-			}
-		}
-
-		//标题空白
+		// 标题空白
 		if ((theme.val() === "") || (theme.val().match(/^\s*$/))) {
-			$('body').animate({
-				scrollTop: theme.position().top - 200
-			}, 300);
-			theme.focus();
+			scrollTowhere(theme);
 			tip = $('#tips-theme');
-			//内容空白
+			// 内容空白
 		} else if ((content.val() === "") || content.val().match(/^\s*$/)) {
-			$('body').animate({
-				scrollTop: content.position().top - 200
-			}, 300);
-			content.focus();
+			scrollTowhere(content);
 			tip = $('#tips-content');
+			// 主题长度
+		} else if (theme.val().length > 60) {
+			scrollTowhere(theme);
+			tip = $('#tips-theme-length');
+			//内容长度
+		} else if (content.val().length > 2000) {
+			scrollTowhere(content);
+			tip = $('#tips-content-length');
 		}
 		if (tip) {
-
 			showTip(tip);
 			return false;
 		}
