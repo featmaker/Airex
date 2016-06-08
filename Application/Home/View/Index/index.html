@@ -18,7 +18,7 @@
 	  </div>
   <div class="panel-body">
 <!--  展示该分类下部分文章 -->
-  <volist name="topics" id="topic" empty="暂时没有数据">
+  <volist name="topics['lists']" id="topic" empty="暂时没有数据">
 	<div class="media each-area">
 		  <div class="media-left">
 		    <a href="{:U('User/info',array('member'=>$topic['user_name']))}">
@@ -29,7 +29,7 @@
 		    <h4 class="media-heading index-title">
 		    	<a href="{:U('topic/detail',array('tid'=>$topic['tid']))}" title="">{$topic.title}</a>
 		    </h4>
-		    <a href="{:U('Category/find',array('node'=>$topic['node_name']))}" title="程序员" style="font-size:10px;background: #f5f5f5">{$topic.node_name}</a><em>.</em>
+		    <a href="{:U('node/topics',array('node'=>$topic['node_name']))}" title="" style="font-size:10px;background: #f5f5f5">{$topic.node_name}</a><em>.</em>
 		    <strong><a href="{:U('User/info',array('member'=>$topic['user_name']))}" title="" style="font-size:12px;color: black;">{$topic.user_name}</a></strong><em>.</em>
 		    <span style="font-size:10px;color: #CDCFD7">{$topic.publish_time} 分钟前</span><em>.</em>
 		    <span style="font-size:10px;color: #CDCFD7">最后回复来自:<strong><a href="{:U('User/info',array('member'=>$topic['user_name']))}" title="" style="color: black;">admin</a></strong></span>
@@ -41,152 +41,12 @@
 
 	<!-- 分页 -->
 	<nav class="col-md-6 col-md-offset-3">
-        {$page.show}
+        {$topics.show}
 	</nav>
 
   </div>
 </div>
-<div class="panel panel-default">
-  <div class="panel-heading" style="font-size: 14px;color: #BDC3C7">Airex\节点导航 <a href="#" style="float:right;color: #ABB7B7;font-size:12px" title="">浏览全部节点</a></div>
-  <div class="panel-body">
-    <table class="table">
-    <tr>
-    	<td colspan="" rowspan="" headers="" style="font-size:13px;" align="right">分享与探索</td>
-    	<td colspan="" rowspan="" headers="" style="font-size: 13px;">
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    	 </td>
-    </tr>
-    </table>
 
-    <table class="table">
-    <tr>
-    	<td colspan="" rowspan="" headers="" style="font-size:13px;" align="right">分享与探索</td>
-    	<td colspan="" rowspan="" headers="" style="font-size: 13px;">
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    	 </td>
-    </tr>
-    </table>
-
-    <table class="table">
-    <tr>
-    	<td colspan="" rowspan="" headers="" style="font-size:13px;" align="right">分享与探索</td>
-    	<td colspan="" rowspan="" headers="" style="font-size: 13px;">
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    	 </td>
-    </tr>
-    </table>
-
-    <table class="table">
-    <tr>
-    	<td colspan="" rowspan="" headers="" style="font-size:13px;" align="right">分享与探索</td>
-    	<td colspan="" rowspan="" headers="" style="font-size: 13px;">
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    	 </td>
-    </tr>
-    </table>
-
-    <table class="table">
-    <tr>
-    	<td colspan="" rowspan="" headers="" style="font-size:13px;" align="right">分享与探索</td>
-    	<td colspan="" rowspan="" headers="" style="font-size: 13px;">
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    	 </td>
-    </tr>
-    </table>
-
-    <table class="table">
-    <tr>
-    	<td colspan="" rowspan="" headers="" style="font-size:13px;" align="right">分享与探索</td>
-    	<td colspan="" rowspan="" headers="" style="font-size: 13px;">
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    	 </td>
-    </tr>
-    </table>
-
-    <table class="table">
-    <tr>
-    	<td colspan="" rowspan="" headers="" width="100" style="font-size:13px;" align="right">分享与探索</td>
-    	<td colspan="" rowspan="" headers="" style="font-size: 13px;">
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    		<a href="#" title="">点导航</a>&nbsp;&nbsp;
-    	 </td>
-    </tr>
-    </table>
-
-  </div>
-</div>
 </block>
 
  <block name="sidebar">
@@ -218,7 +78,7 @@
 			 </table>
 			 <hr style="margin: 4px 0">
 			 <a href="#" title="">
-				 <span class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp;<a href="/index.php/Home/topic/new.html">创建新主题</a></span>
+				 <span class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp;<a href="{:U('topic/add')}">创建新主题</a></span>
 			 </a>
 			 <hr style="margin: 8px 0">
 			 <a href="#" title="">

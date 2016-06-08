@@ -6,7 +6,6 @@
 // +----------------------------------------------------------------------
 namespace Home\Model;
 use Think\Model;
-
 /**
 * 后台主题控制器
 */
@@ -57,8 +56,8 @@ class TopicModel extends Model
 	 * @return [type]         [description]
 	 */
 	function checkNodeId($nodeId){
-		$nodeIds = M('node')->getField('id',true);
-		if (!in_array($nodeId, $nodeIds)) {
+		$nodeNames = M('node')->getField('id',true);
+		if (!in_array($nodeName, $nodeNames)) {
 			return false;
 		}
 		return true;
@@ -101,12 +100,12 @@ class TopicModel extends Model
 	 * @param  [type] $tid [description]
 	 * @return [type]      [description]
 	 */
-	public function getInfoById($tid){
+	public function getDataById($tid){
 		$topicInfo = $this
 				->where(array('airex_topic.id'=>$tid))
+				->join('airex_node as n on n.id = airex_topic.node_id')
 				->field('title,content,publish_time,user_name,airex_topic.hits as hits,collections,comments,node_name')
 				->join('airex_user as u on u.id = airex_topic.uid')
-				->join('airex_node as n on n.id = airex_topic.node_id')
 				->select()[0];
 		return $topicInfo;
 	}
@@ -139,15 +138,64 @@ class TopicModel extends Model
 		return true;
 	}
 
-	public function getPageData(){
-		$p = I('get.p') ? I('get.p') : 1;
-		$count = $this->count();
+	/**
+	 * 根据分类获取相应主题
+	 * @param  [type] $cat [description]
+	 * @return [type]      [description]
+	 */
+	public function getTopicsByCat($catName){
+		if ($catName == null) {
+			$catName = M('category')->getField('cat_name');
+		}
+		$p = I('get.p') ? I('get.p') : 0;
+		$count = M('category as c')->where(array('cat_name'=>$catName))
+							  ->join('airex_topic as t on t.cat_id = c.id')
+							  ->count();
 		$limit = C('PAGE_SIZE');
-		$page = new \Org\Airex\Page($count,$limit);
-		// $page = new \Think\Page($count,$limit);
-		$data['show'] = $page->show();
-		$data['lists'] = $this->page($p.',',C('PAGE_SIZE'))->select();
-		return $data;
+		$Page = new \Think\Page($count,$limit);
+		//获取分页数据
+		$topics['lists'] = M('category as c')->where(array('cat_name'=>$catName))
+										->join('airex_topic as t on t.cat_id = c.id')
+										->join('airex_user as u on u.id = t.uid')
+										->field('publish_time,title,imgpath,comments,user_name,node_name,t.id as tid,t.hits as hits')
+										->join('airex_node as n on n.id = t.node_id')
+									    ->page($p.','.$limit)
+									    ->order('t.publish_time desc')
+									    ->select();
+		$show = $Page->show();
+		if ($Page->totalPages > 1) {
+			$topics['show'] = $show;
+		}else{
+			$topics['show'] = null;
+		}
+		return $topics;
 	}
 
+	/**
+	 * 根据节点获取主题
+	 * @param  string $nodeName [description]
+	 * @return [type]           [description]
+	 */
+	public function getTopicsByNode($nodeName = ''){
+		$p = I('get.p') ? I('get.p') : 0;
+		$limit = C('PAGE_SIZE');
+		$count = M('node as n')->join('airex_topic as t on t.node_id = n.id')
+							   ->where(array('node_name'=>$nodeName))
+							   ->count();
+		$Page = new \Think\Page($count,$limit);
+		$topics['lists'] = M('node as n')->where(array('node_name'=>$nodeName))
+						 ->join('airex_topic as t on t.node_id = n.id')
+						 ->join('airex_user as u on u.id = t.uid')
+						 ->field('publish_time,title,imgpath,comments,user_name,node_name,t.id as tid,t.hits as hits')
+						 ->page($p.','.$limit)
+						 ->order('t.publish_time desc')
+						 ->select();
+		$show = $Page->show();
+		if ($Page->totalPages > 1) {
+			$topics['show'] = $show;
+		}else{
+			$topics['show'] = null;
+		}
+		return $topics;
+	}
 }
