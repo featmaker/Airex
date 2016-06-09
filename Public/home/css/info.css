@@ -1,4 +1,6 @@
-
+.nav.navbar-nav.navbar-right li:nth-child(2){
+    
+}
 .blog-main {
     background-color: #e2e2e2;
 }

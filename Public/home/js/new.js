@@ -48,6 +48,18 @@ $(document).ready(function() {
 		}
 	});
 
+	$(document).ready(function() {
+		var content = $('#submit');
+		$('#submit').click(function() {
+			$('.tip').hide();
+			if (content.val() === "") {
+				$('#space').show();
+			} else if (content.val().length > 1000) {
+				$('#space').show();
+			}
+		});
+	});
+
 	// 节点选择
 	$('#node-button').click(function(e) {
 		var node = e.target.textContent;
