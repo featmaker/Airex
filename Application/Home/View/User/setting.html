@@ -217,12 +217,12 @@
 		$(document).ready(function() {
 			var setting = {
 
-				active: function active() {
+				active: function() {
 					var actives = $('#navbar ul li');
 					actives.eq(2).addClass('nav-active');
 				},
 
-				isEnoughLength: function isEnoughLength() {
+				isEnoughLength: function() {
 					var psw = $('#new-psw'),
 						tip = $('#psw-tip-length');
 					if (psw.val().length < 6) {
@@ -238,7 +238,7 @@
 					}
 				},
 
-				isSamePsw: function isSamePsw() {
+				isSamePsw: function() {
 					var psw = $('#new-psw').val(),
 						psw2 = $('#new-psw-repeat').val(),
 						notice = $('#psw-tip'),
@@ -277,5 +277,4 @@
 			});
 		});
 	</script>
-	<script type="text/javascript" src=""></script>
 </block>
