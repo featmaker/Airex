@@ -12,10 +12,14 @@ use Home\Controller\BaseController;
 class UserController extends BaseController{
 
 	private $User;
+	private $Cate;
+	private $Node;
 
 	function __construct(){
 		parent::__construct();
 		$this->User = D('User');
+		$this->Cate = D('Category');
+		$this->Node = D('Node');
 	}
 
 	/**
@@ -190,10 +194,10 @@ class UserController extends BaseController{
 			$this->redirect("Index/index",'',0);
 		}
 
-		if($_POST['gender']){
-			if($_POST['url'] != ""){
-				if (!preg_match("/^(http|ftp):/", $_POST['url'])){
-					$_POST['url'] = 'http://'.$_POST['url'];
+		if(I('post.gender')){
+			if(I('post.url') != ""){
+				if (!preg_match("/^(http|ftp):/", I('post.url'))){
+					$_POST['url'] = 'http://'.I('post.url');
 				}   //检测是否有http头，若无则加上
 			}
 			$data = array("id" => I('session.uid'),
@@ -206,7 +210,7 @@ class UserController extends BaseController{
 			}else{
 				$this->error($this->User->getError());
 			}
-		}elseif($_POST['password']){
+		}elseif(I('post.password')){
 			if ((I('post.password')) != (I('post.password_r'))) {
 				$this->error('两次密码不一致');
 			}elseif((I('post.password'))=="" || (I('post.password')=="")){
@@ -222,6 +226,10 @@ class UserController extends BaseController{
 		}else{
 			//$User = new \Home\Model\UserModel();
 			$data = $this->User->getSettingUserInfo();
+			$siteInfo = D('Index')->getSiteInfo();                 //站点信息
+			$hotNodes= $this->Node->getHotNodes();                  //热门节点
+			$this->assign('siteInfo',$siteInfo);
+			$this->assign('hotNodes',$hotNodes);
 			$this->assign('data', $data);
 			$this->display();
 		}
@@ -245,7 +253,11 @@ class UserController extends BaseController{
 			}
 		}else{
 			$data = $this->User->getSettingUserInfo();
+			$siteInfo = D('Index')->getSiteInfo();                 //站点信息
+			$hotNodes= $this->Node->getHotNodes();                  //热门节点
 			$this->assign('data', $data);
+			$this->assign('siteInfo',$siteInfo);
+			$this->assign('hotNodes',$hotNodes);
 			$this->display();
 		}
 	}
@@ -266,6 +278,8 @@ class UserController extends BaseController{
 			//$User = new \Home\Model\UserModel();
 			$data = $this->User->getUserInfo($member);
 		if($data){
+			$userInfo = $this->User->getSidebarUserInfo();
+			$this->assign('userInfo', $userInfo);
 			$this->assign('data',$data);
 			$this->display();
 		}else{
