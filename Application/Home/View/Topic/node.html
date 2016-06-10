@@ -54,12 +54,12 @@
 				<span class="comments-num badge">{$topic.comments}</span>
 
 				<!--  主题链接  -->
-				<a class="theme-link" href="{:U('Topic/detail',array('tid'=>$topic['tid']))}"><h5 class="media-heading">{$topic.title}</h5></a>
+				<a class="theme-link" href="{:U('Topic/detail',['tid'=>$topic['tid']])}"><h5 class="media-heading">{$topic.title}</h5></a>
 
 				<div class="theme-info">
 
 					<!--  创建主题用户  -->
-					<a class="links theme-creater" href="{:U('User/info',array('member'=>$topic['user_name']))}"><strong>{$topic.user_name}</strong></a>  •  
+					<a class="links theme-creater" href="{:U('User/info',['member'=>$topic['user_name']])}"><strong>{$topic.user_name}</strong></a>  •  
 
 					<!--    最后回复时间     -->
 					<span class="time">{$topic.publish_time}</span> 天前  •  最后回复来自 
@@ -71,8 +71,6 @@
 		</div>		
 	</volist>
 
-
-	<!--  -->
 	
 
 
@@ -92,11 +90,11 @@
 
 		 <!-- 用户信息侧边栏需要和/topic/detail/里样式一致，请把样式从detail.css移至style.css -->
 		 <div class="sidebar-module sidebar-module-inset">
-			 <a href="{:U('User/info',array('member'=>$_SESSION['user']))}" title="" class="info">
+			 <a href="{:U('User/info',['member'=>$_SESSION['user']])}" title="" class="info">
 				 <img src="__PUBLIC__{$data['userInfo']['imgpath']}" alt="..." class="img-rounded">
 			 </a>
 			 &nbsp;&nbsp;
-			 <label><a href="{:U('User/info',array('member'=>$_SESSION['user']))}" title="">{$Think.session.user}</a></label>
+			 <label><a href="{:U('User/info',['member'=>$_SESSION['user']])}" title="">{$Think.session.user}</a></label>
 
 			 <table class="table">
 				 <tr>

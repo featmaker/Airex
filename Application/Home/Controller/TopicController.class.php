@@ -58,7 +58,7 @@ class TopicController extends BaseController
 			$this->error('传输参数错误');
 		}
 		$topicInfo = $this->Topic->getDataById($tid);		//根据tid获取详情
-		$commentInfo = $this->Topic->getCommentById($tid);	//根据tid获取评论
+		$commentInfo = D('Comment')->getCommentByTid($tid);	//根据tid获取评论
 		$data = D('Index')->getUserInfo();			//获取登陆用户信息
 		$this->assign('topicInfo',$topicInfo);
 		$this->assign('commentInfo',$commentInfo);

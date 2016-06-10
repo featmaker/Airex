@@ -123,21 +123,6 @@ class TopicModel extends Model
 	}
 
 	/**
-	 * 根据tid获取相应评论
-	 * @param  [type] $tid [description]
-	 * @return [type]      [description]
-	 */
-	public function getCommentById($tid){
-		$commentInfo = M('comment as c')
-					->where(array('tid'=>$tid))
-					->field('user_name,content,publish_time,imgpath')
-					->join('airex_user as u on u.id = c.uid')
-					->order('publish_time desc')
-					->select();
-		return $commentInfo;
-	}
-
-	/**
 	 * 检查tid是否存在
 	 * @param  [type] $tid [description]
 	 * @return [type]      [description]
@@ -198,6 +183,7 @@ class TopicModel extends Model
 		$topics['lists'] = M('node as n')->where(array('node_name'=>$nodeName))
 						 ->join('airex_topic as t on t.node_id = n.id')
 						 ->join('airex_user as u on u.id = t.uid')
+						 ->join('airex_user.id = t.last ')
 						 ->field('publish_time,title,imgpath,comments,user_name,node_name,t.id as tid,t.hits as hits')
 						 ->page($p.','.$limit)
 						 ->order('t.publish_time desc')

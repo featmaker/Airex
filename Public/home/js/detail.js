@@ -1,7 +1,6 @@
 $(document).ready(function() {
 	var now = new Date();
 	console.time("each");
-
 	function getTime() {
 		var old = new Date($(this).text()),
 			dif = now - old,
@@ -39,8 +38,6 @@ $(document).ready(function() {
 	$('.time').each(getTime);
 	$('.header-time').each(getTime);
 
-
-	
 	$('.reply-info').each(function() {
 		$(this).mouseover(function() {
 			$(this).find('.thank-area').show();
@@ -61,5 +58,4 @@ $(document).ready(function() {
 		});
 	});
 	console.timeEnd("each");
-
 });
