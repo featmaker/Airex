@@ -24,7 +24,8 @@
 
 
 .panel-heading {
-    font-size: .9em;
+    font-size: 14px;
+    padding: 10px;
 }
 .panel.panel-default {
     margin-bottom: 0;
@@ -76,20 +77,32 @@ select {
 .control-labl {
     width: 20% !important;
 }
-#avatar-btn{
-    margin:14px 0;
+#avatar-btn {
+    margin: 14px 0;
 }
-#psw-btn{
-    margin-left:-8px;
+#psw-btn {
+    margin-left: -8px;
 }
-.psw{
-    width:50%;
+.psw {
     display: inline-block;
-}
-.tip{
-    color:red;
-    font-size:14px;
-    margin-left: 6px;
-    display:none;
 
+    width: 50%;
+}
+.tip {
+    font-size: 14px;
+
+    display: none;
+
+    margin-left: 6px;
+
+    color: red;
+}
+.asdasda {
+    margin-top: 17px;
+}
+.stable{
+    font-size:14px;
+}
+hr{
+    margin: 8px 0;
 }

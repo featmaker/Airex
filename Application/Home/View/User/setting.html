@@ -14,8 +14,8 @@
 	<div class="col-sm-12">
 		<div class="panel panel-default">
 
-			<div class="panel-heading" style="height:32px;">
-				<span style="font-size:14px;margin:10px;line-height:32px;">用户信息设置</span>
+			<div class="panel-heading">
+				<span ">用户信息设置</span>
 			</div>
 			<div class="panel-body">
 
@@ -25,14 +25,14 @@
 					<div class="form-group form-group-sm">
 						<label class="col-sm-3 control-label" for="new-username">用户名</label>
 						<div class="col-sm-9">
-							<span style="font-size:12px;">{$Think.session.user}</span>
+							<span class="stable">{$Think.session.user}</span>
 							</div>
 					</div>
 					<!--    邮件    -->
 					<div class="form-group form-group-sm">
 						<label class="col-sm-3 control-label" for="new-email">电子邮件</label>
 						<div class="col-sm-9">
-							<span style="font-size:12px;">{$data['userInfo']['email']}</span>
+							<span class="stable">{$data['userInfo']['email']}</span>
 							</div>
 					</div>
 					<!--    性别    -->
@@ -109,8 +109,8 @@
 
 		<!--      上传头像     -->
 		<div class="panel panel-default">
-			<div class="panel-heading" style="height:32px;">
-				<span style="font-size:14px;margin:10px;line-height:32px;">修改头像</span>
+			<div class="panel-heading">
+				<span">修改头像</span>
 			</div>
 			<div class="panel-body">
 				<form class="form-horizontal">
@@ -134,8 +134,8 @@
 
 		<!--      修改密码     -->
 		<div class="panel panel-default">
-			<div class="panel-heading" style="height:32px;">
-				<span style="font-size:14px;margin:10px;line-height:32px;">修改密码</span>
+			<div class="panel-heading">
+				<span>修改密码</span>
 			</div>
 			<div class="panel-body">
 				<!--    表单    -->
@@ -187,11 +187,11 @@
 				<td align="center"><a class="info" href="#" title="1" ><span class="lead">{$data['userInfo']['attentions']}</span> <br><span>特别关注</span></a></td>
 			</tr>
 		</table>
-		<hr style="margin: 4px 0">
+		<hr>
 		<a href="#" title="">
 			<span class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp;创建新主题</span>
 		</a>
-		<hr style="margin: 8px 0">
+		<hr>
 		<a href="#" title="">
 			<small>{$data['notifications']}条未读提醒</small>
 		</a>
@@ -222,10 +222,10 @@
 					actives.eq(2).addClass('nav-active');
 				},
 
-				isEnoughLength: function() {
+				isEnoughLength: function(pswlength) {
 					var psw = $('#new-psw'),
 						tip = $('#psw-tip-length');
-					if (psw.val().length < 6) {
+					if (psw.val().length < pswlength) {
 						tip.show();
 						psw.click(function() {
 							if (tip.is(":visible")) {
@@ -244,7 +244,7 @@
 						notice = $('#psw-tip'),
 						length = $('#psw-tip-length');
 					console.log("第一次输入为： " + psw);
-					console.log("第二次输入： " + psw2);
+					console.log("第二次输入为： " + psw2);
 					if (psw !== psw2) {
 						length.hide();
 						notice.show();
@@ -260,17 +260,17 @@
 			setting.active();
 
 			$('#new-psw-repeat').keyup(function() {
-				if (setting.isEnoughLength()) {
+				if (setting.isEnoughLength(6)) {
 					setting.isSamePsw();
 				}
 			});
 
 			$('#new-psw-repeat').click(function() {
-				setting.isEnoughLength();
+				setting.isEnoughLength(6);
 			});
 
 			$('#psw-btn').click(function() {
-				if (!(setting.isSamePsw() && setting.isEnoughLength())) {
+				if (!(setting.isSamePsw() && setting.isEnoughLength(6))) {
 					$('#psw-tip').show();
 					return false;
 				}
