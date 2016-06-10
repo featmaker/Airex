@@ -13,7 +13,7 @@
 	  <div class="panel-heading">
 	 <!-- 相应节点展示 -->
 	  <volist name="nodes" id="node">
-	  	<a class="nav-nodes" href="#">{$node.node_name}</a>
+	  	<a class="nav-nodes" href="{:U('node/topics',array('node'=>$node['node_name']))}">{$node.node_name}</a>
 	  </volist>
 	  </div>
   <div class="panel-body">
@@ -92,13 +92,8 @@
      <div class="sidebar-module sidebar-module-inset">
          <h4>最热节点</h4>
          <volist name="hotNodes" id="hot">
-             <a href="#" class="item-node">{$hot['node_name']}</a>
+             <a href="{:U('node/topics',array('node'=>$hot['node_name']))}" class="item-node">{$hot.node_name}</a>
          </volist>
-<!--          <a href="#" class="item-node">PHP</a>
-		 <a href="#" class="item-node">Python</a>
-		 <a href="#" class="item-node">工作</a>
-		 <a href="#" class="item-node">生活</a>
-		 <a href="#" class="item-node">二手交易</a> -->
      </div>
      <div class="sidebar-module sidebar-module-inset">
        	<h4>站点实况</h4>			

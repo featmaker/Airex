@@ -225,4 +225,20 @@ class TopicModel extends Model
 		return true;
 	}
 
+	/**
+	 * 根据tid获取字段信息
+	 * @param  [type] $tid    [description]
+	 * @param  [type] $fields [description]
+	 * @return [type]         [description]
+	 */
+	public function getFieldByTid($tid,$fields){
+		if (is_array($fields)) {
+			$fields = implode(',',$fields);
+		}
+		$result = $this->where(array('id'=>$tid))
+					 ->field($fields)
+					 ->select()[0];
+		return $result;
+	}
+
 }

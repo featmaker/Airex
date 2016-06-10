@@ -63,6 +63,7 @@ class TopicController extends BaseController
 		$this->assign('topicInfo',$topicInfo);
 		$this->assign('commentInfo',$commentInfo);
 		$this->assign('data',$data);
+		$this->assign('tid',$tid);
 		$this->display();
 		//var_dump($topicInfo);
 	}
@@ -84,6 +85,10 @@ class TopicController extends BaseController
 				$this->error($this->Topic->getError());
 			}
 		}else{
+			$data['tid'] = I('get.tid','','intval');
+			$data['title'] = $this->Topic->getFieldByTid($data['tid'],'title');
+			$data['node'] = D('node')->getNodeByTid($data['tid']);
+			$this->assign('data',$data);
 			$this->display();
 		}
 	}

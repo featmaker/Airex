@@ -28,8 +28,12 @@ class NodeController extends BaseController
 		}
 		$nodeInfo =$this->Node->getNodeInfo($node);
 		$topics =D('Topic')->getTopicsByNode($node);
+		$this->assign('nodeInfo',$nodeInfo);
+		$this->assign('topics',$topics);
+		$this->assign('node',$node);
 
-		var_dump($nodeInfo);
-		var_dump($topics);
+		// var_dump($nodeInfo);
+		// var_dump($topics);
+		$this->display('Topic/node');
 	}
 }

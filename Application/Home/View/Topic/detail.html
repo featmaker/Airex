@@ -16,9 +16,12 @@
 	  <div class="media-body">
 		<h3>{$topicInfo.title}
 		<h6><span><a href="{:U('User/info',array('member'=>$topicInfo['user_name']))}" title="">{$topicInfo.user_name}</a></span>&nbsp;&nbsp;•&nbsp;&nbsp;<span class="header-time">{$topicInfo.publish_time}</span>&nbsp;&nbsp;•&nbsp;&nbsp;<span>{$topicInfo.comments}条回复</span>&nbsp;&nbsp;•&nbsp;&nbsp;<span>{$topicInfo.hits}次点击</span>
-
+	
+		<if condition="$topicInfo['user_name'] == session('user')">
 		<!--   追加留言   -->
-		<button class="add-message btn btn-default btn-xs">追加留言</button></h6></h3>
+			<a href="{:U('Topic/append',array('tid'=>$tid))}" class="add-message btn btn-default btn-xs">追加留言</a>
+		</if>
+		</h6></h3>
 
 	  </div>
 	    <div class="media-right">	
