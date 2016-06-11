@@ -14,12 +14,14 @@ class UserController extends BaseController{
 	private $User;
 	private $Cate;
 	private $Node;
+	private $Topic;
 
 	function __construct(){
 		parent::__construct();
 		$this->User = D('User');
 		$this->Cate = D('Category');
 		$this->Node = D('Node');
+		$this->Topic = D('Topic');
 	}
 
 	/**
@@ -277,6 +279,26 @@ class UserController extends BaseController{
 	public function info($member){
 			//$User = new \Home\Model\UserModel();
 			$data = $this->User->getUserInfo($member);
+		if($data){
+			$userInfo = $this->User->getSidebarUserInfo();
+			$topics = $this->Topic->getTopicsByUser($member);//根据用户名获取文章
+			//var_dump($topics);
+			$this->assign('topics',$topics);
+			$this->assign('userInfo', $userInfo);
+			$this->assign('data',$data);
+			$this->display();
+		}else{
+			$this->error('此用户不存在！');
+		}
+
+	}
+
+	/**
+	 * 用户所有主题列表页
+	 */
+	public function topic($member){
+		//$User = new \Home\Model\UserModel();
+		$data = $this->User->getUserInfo($member);
 		if($data){
 			$userInfo = $this->User->getSidebarUserInfo();
 			$this->assign('userInfo', $userInfo);
