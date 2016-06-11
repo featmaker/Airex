@@ -13,7 +13,7 @@
 	  <div class="panel-heading">
 	 <!-- 相应节点展示 -->
 	  <volist name="nodes" id="node">
-	  	<a class="nav-nodes" href="#">{$node.node_name}</a>
+	  	<a class="nav-nodes" href="{:U('node/topics',['node'=>$node['node_name']])}">{$node.node_name}</a>
 	  </volist>
 	  </div>
   <div class="panel-body">
@@ -21,18 +21,18 @@
   <volist name="topics['lists']" id="topic" empty="暂时没有数据">
 	<div class="media each-area">
 		  <div class="media-left">
-		    <a href="{:U('User/info',array('member'=>$topic['user_name']))}">
+		    <a href="{:U('User/info',['member'=>$topic['user_name']])}">
 		      <img class="media-object index-img" src="__PUBLIC__{$topic.imgpath}" alt="...">
 		    </a>
 		  </div>
 		  <div class="media-body">
 		    <h4 class="media-heading index-title">
-		    	<a href="{:U('topic/detail',array('tid'=>$topic['tid']))}" title="">{$topic.title}</a>
+		    	<a href="{:U('topic/detail',['tid'=>$topic['tid']])}" title="">{$topic.title}</a>
 		    </h4>
-		    <a href="{:U('node/topics',array('node'=>$topic['node_name']))}" title="" style="font-size:10px;background: #f5f5f5">{$topic.node_name}</a><em>.</em>
-		    <strong><a href="{:U('User/info',array('member'=>$topic['user_name']))}" title="" style="font-size:12px;color: black;">{$topic.user_name}</a></strong><em>.</em>
+		    <a href="{:U('node/topics',['node'=>$topic['node_name']])}" title="" style="font-size:10px;background: #f5f5f5">{$topic.node_name}</a><em>.</em>
+		    <strong><a href="{:U('User/info',['member'=>$topic['user_name']])}" title="" style="font-size:12px;color: black;">{$topic.user_name}</a></strong><em>.</em>
 		    <span style="font-size:10px;color: #CDCFD7">{$topic.publish_time} 分钟前</span><em>.</em>
-		    <span style="font-size:10px;color: #CDCFD7">最后回复来自:<strong><a href="{:U('User/info',array('member'=>$topic['user_name']))}" title="" style="color: black;">admin</a></strong></span>
+		    <span style="font-size:10px;color: #CDCFD7">最后回复来自:<strong><a href="{:U('User/info',['member'=>$topic['user_name']])}" title="" style="color: black;">admin</a></strong></span>
 			 <span class="badge" style="float:right">{$topic.comments}</span>
 		  </div>
 	</div>
@@ -63,11 +63,11 @@
 
 		 <!-- 用户信息侧边栏需要和/topic/detail/里样式一致，请把样式从detail.css移至style.css -->
 		 <div class="sidebar-module sidebar-module-inset">
-			 <a href="{:U('User/info',array('member'=>$_SESSION['user']))}" title="" class="info">
+			 <a href="{:U('User/info',['member'=>$_SESSION['user']])}" title="" class="info">
 				 <img src="__PUBLIC__{$data['userInfo']['imgpath']}" alt="..." class="img-rounded">
 			 </a>
 			 &nbsp;&nbsp;
-			 <label><a href="{:U('User/info',array('member'=>$_SESSION['user']))}" title="">{$Think.session.user}</a></label>
+			 <label><a href="{:U('User/info',['member'=>$_SESSION['user']])}" title="">{$Think.session.user}</a></label>
 
 			 <table class="table">
 				 <tr>
@@ -92,13 +92,8 @@
      <div class="sidebar-module sidebar-module-inset">
          <h4>最热节点</h4>
          <volist name="hotNodes" id="hot">
-             <a href="#" class="item-node">{$hot['node_name']}</a>
+             <a href="{:U('node/topics',['node'=>$hot['node_name']])}" class="item-node">{$hot.node_name}</a>
          </volist>
-<!--          <a href="#" class="item-node">PHP</a>
-		 <a href="#" class="item-node">Python</a>
-		 <a href="#" class="item-node">工作</a>
-		 <a href="#" class="item-node">生活</a>
-		 <a href="#" class="item-node">二手交易</a> -->
      </div>
      <div class="sidebar-module sidebar-module-inset">
        	<h4>站点实况</h4>			

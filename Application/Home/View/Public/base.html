@@ -53,7 +53,7 @@
               <a href="__ROOT__/">首页</a>
             </li>
             <li>
-              <a href="{:U('User/info',array('member'=>$_SESSION['user']))}">{$Think.session.user}</a>
+              <a href="{:U('User/info',['member'=>$_SESSION['user']])}">{$Think.session.user}</a>
             </li>
             <li>
               <a href="{:U('User/setting')}">设置</a>
@@ -106,7 +106,7 @@
       $(document).ready(function() {
         $(function(){
           $(window).scroll(function() {
-            if ($(window).scrollTop() > 300) {
+            if ($(window).scrollTop() > 500) {
               $("#toTop").attr('src','__PUBLIC__/home/img/totop.png');
               $("#toTop").fadeIn(200);
               $("#toTop").css({position:'fixed',cursor:'pointer'});

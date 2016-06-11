@@ -1,7 +1,7 @@
 <?php 
 namespace Home\Model;
 use Think\Model;
-use Home\Model\PublicModel;
+
 /**
 * 节点模型
 */
@@ -54,9 +54,31 @@ class NodeModel extends Model
 	 * @return [type]       [description]
 	 */
 	public function getNodeInfo($node){
-		$data = $this->field('desc,logo_path,topic_num')
+		$data = $this->field('desc,logo_path,topic_num,desc')
 					 ->where(array('node_name'=>$node))
 					 ->select()[0];
 		return $data;
+	}
+
+	/**
+	 * 根据分类id获取分类节点id
+	 * @param  [type] $nodeId [description]
+	 * @return [type]         [description]
+	 */
+	public function getCatIdByNodeId($nodeId){
+		$catId = $this->where(array('id'=>$nodeId))->getField('pid');
+		return $catId;
+	}
+
+	/**
+	 * 根据tid获取其节点名
+	 * @param  [type] $tid [description]
+	 * @return [type]      [description]
+	 */
+	public function getNodeByTid($tid){
+		$node = $this->join('airex_topic as t on t.node_id = airex_node.id')
+					 ->where(array('t.id'=>$tid))
+					 ->getField('node_name');
+		return $node;
 	}
 }

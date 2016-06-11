@@ -281,14 +281,14 @@ class UserController extends BaseController{
 			$data = $this->User->getUserInfo($member);
 		if($data){
 			$userInfo = $this->User->getSidebarUserInfo();
-			$topics = $this->Topic->getTopicsByUser($member);//根据用户名获取文章
+			$topics = $this->Topic->getTopicsByUser($member,5);//根据用户名获取文章
 			//var_dump($topics);
 			$this->assign('topics',$topics);
 			$this->assign('userInfo', $userInfo);
 			$this->assign('data',$data);
 			$this->display();
 		}else{
-			$this->error('此用户不存在！');
+
 		}
 
 	}
@@ -301,8 +301,29 @@ class UserController extends BaseController{
 		$data = $this->User->getUserInfo($member);
 		if($data){
 			$userInfo = $this->User->getSidebarUserInfo();
-			$this->assign('userInfo', $userInfo);
+			$topics = $this->Topic->getTopicsByUser($member);//根据用户名获取文章
+			$this->assign('topics',$topics);
 			$this->assign('data',$data);
+			$this->assign('userInfo', $userInfo);
+			$this->display();
+		}else{
+			$this->error('此用户不存在！');
+		}
+
+	}
+
+	/**
+	 * 用户所有回复列表页
+	 */
+	public function reply($member){
+		//$User = new \Home\Model\UserModel();
+		$data = $this->User->getUserInfo($member);
+		if($data){
+			$userInfo = $this->User->getSidebarUserInfo();
+			//$topics = $this->Topic->getTopicsByUser($member);//根据用户名获取文章
+			//$this->assign('topics',$topics);
+			$this->assign('data',$data);
+			$this->assign('userInfo', $userInfo);
 			$this->display();
 		}else{
 			$this->error('此用户不存在！');

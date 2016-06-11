@@ -20,7 +20,7 @@ $(document).ready(function() {
 	}
 
 	// 验证表单
-	$('#submit').click(function() {
+	$('#submit').click(function(theme,content) {
 		var theme = $('#theme'),
 			content = $('#content'),
 			tip = null;
@@ -38,7 +38,7 @@ $(document).ready(function() {
 			scrollTowhere(theme);
 			tip = $('#tips-theme-length');
 			//内容长度
-		} else if (content.val().length > 2000) {
+		} else if (content.val().length > 1000) {
 			scrollTowhere(content);
 			tip = $('#tips-content-length');
 		}
@@ -46,18 +46,6 @@ $(document).ready(function() {
 			showTip(tip);
 			return false;
 		}
-	});
-
-	$(document).ready(function() {
-		var content = $('#submit');
-		$('#submit').click(function() {
-			$('.tip').hide();
-			if (content.val() === "") {
-				$('#space').show();
-			} else if (content.val().length > 1000) {
-				$('#space').show();
-			}
-		});
 	});
 
 	// 节点选择

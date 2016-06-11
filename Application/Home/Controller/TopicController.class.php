@@ -29,14 +29,14 @@ class TopicController extends BaseController
 	public function add(){
 		if (IS_POST) {
 			$data['title'] = I('post.title','','trim');
-			$date['content'] = I('post.content','','trim');
+			$data['content'] = I('post.content','','trim');
 			$data['node_id'] = I('post.node_id','','intval');
+			$data['cat_id'] = D('Node')->getCatIdByNodeId($data['node_id']);
 			$data['uid'] = session('uid');
 			if ($this->Topic->addTopic($data)) {
-				$this->trigger();
 				$this->success('发布主题成功');
 			}else{
-				$this->error($this->Topic->getError());
+				$this->error('发布新主题失败,请稍后重试');
 			}
 		}else{
 			$Node = D('Node');
@@ -58,11 +58,12 @@ class TopicController extends BaseController
 			$this->error('传输参数错误');
 		}
 		$topicInfo = $this->Topic->getDataById($tid);		//根据tid获取详情
-		$commentInfo = $this->Topic->getCommentById($tid);	//根据tid获取评论
+		$commentInfo = D('Comment')->getCommentByTid($tid);	//根据tid获取评论
 		$data = D('Index')->getUserInfo();			//获取登陆用户信息
 		$this->assign('topicInfo',$topicInfo);
 		$this->assign('commentInfo',$commentInfo);
 		$this->assign('data',$data);
+		$this->assign('tid',$tid);
 		$this->display();
 		//var_dump($topicInfo);
 	}
@@ -84,15 +85,12 @@ class TopicController extends BaseController
 				$this->error($this->Topic->getError());
 			}
 		}else{
+			$data['tid'] = I('get.tid','','intval');
+			$data['title'] = $this->Topic->getFieldByTid($data['tid'],'title');
+			$data['node'] = D('node')->getNodeByTid($data['tid']);
+			$this->assign('data',$data);
 			$this->display();
 		}
 	}
 
-	/**
-	 * 触发更新
-	 * @return [type] [description]
-	 */
-	public function trigger(){
-		
-	}
 }

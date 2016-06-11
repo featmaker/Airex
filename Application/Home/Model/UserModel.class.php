@@ -74,6 +74,8 @@ class UserModel extends Model{
                 //session('user',$userinfo['user_name']); //session 注册后进入已登录状态
 //                $siteInfo = M('siteinfo');
 //                $siteInfo->setField($data);
+                $siteInfo = M('siteinfo');
+                $siteInfo->where('id=1')->setInc('member_num',1); //站点信息用户数加1
                 return true;
             }
         }

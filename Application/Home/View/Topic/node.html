@@ -13,7 +13,7 @@
 			<span class="node-num">主题总数 
 
 				<!--    主题总数     -->
-				<a class="links" href=""><strong>10</strong></a>&nbsp;•&nbsp;
+				<a class="links" href=""><strong>{$nodeInfo.topic_num}</strong></a>&nbsp;•&nbsp;
 
 				<button class="add-favorite btn btn-link btn-xs">加入收藏</button>
 			</span>	
@@ -24,225 +24,115 @@
 
 			<!--    节点图片     -->
 			<a href="#">
-				<img width="73" src="__PUBLIC__/home/img/node_Q&A.png">
+				<img width="73" src="__PUBLIC__{$nodeInfo.logo_path}">
 			</a>
 
 		</div>
 		<div class="media-body ">
 
 			<!--    节点名称     -->
-			<h5 class="media-heading"><a href="/">Airex</a>&nbsp; › 问与答</h5>
+			<h5 class="media-heading"><a href="__ROOT__/">Airex</a>&nbsp; › {$node}</h5>
 
 			<!--    节点简介     -->
-			<span class="des">一个更好的世界需要你持续地提出好问题。</span>
+			<span class="des">{$nodeInfo.desc}</span>
 
-			<button class="newtheme btn btn-primary btn-xs">新建主题</button>
+			<a href="{:U('topic/add')}" class="newtheme btn btn-primary btn-xs">新建主题</a href="{:U('topic/add')}">
 		</div>
 	</div>
 
-	<!--  上分页  -->
-	<div class="btn-toolbar btn-page" role="toolbar" >
-		<div class="arrow-up"></div>
-		<button id="pre-page" class="btn btn-default"> << </button>
-		<button id="next-page" class="btn btn-default"> >> </button>
-		 <div class="btn-group" role="group">
-		 	<button type="button" class="btn btn-default ">1</button>
-		 </div>	
-		 <div class="btn-group" role="group">
-		 	<button type="button" class="btn btn-default ">2</button>
-		 </div>
-		 <div class="btn-group" role="group">
-		 	<button type="button" class="btn btn-default ">3</button>
-		 </div>
-		 <div class="btn-group" role="group">
-		 	<button type="button" class="btn btn-default ">4</button>
-		 </div>
-		 <div class="btn-group" role="group">
-		 	<button type="button" class="btn btn-default ">5</button>
-		 	&nbsp;&nbsp;...&nbsp;&nbsp;
-		 </div>
-		 <div id="page-total" class="btn-group" role="group">
-
-		 	<!--    节点总页数     -->
-		 	<button type="button" class="btn btn-default ">999</button>
-
-		 </div>
-		 <label class="label-goto" for="gotopage">跳转至</label>
-
-		 <!--    跳转     -->
-		 <input id="gotopage" type="text" class="form-control" placeholder="1">	 
-	</div>
 
 	<!--   主题模板   -->
-	<div class="node-theme media">	
-
-		<div class="media-left">
-
-			<!--    头像     -->
-			<a href="#">
-				<img width="48" class="img-rounded" src="__PUBLIC__/home/img/theme.png">
-			</a>
-
-		</div>
-		<div class="theme-contain media-body">
-			<span class="comments-num badge">12</span>
-
-			<!--  主题链接  -->
-			<a class="theme-link" href=""><h5 class="media-heading">有免费的类似于 cloud9 的服务么</h5></a>
-
-			<div class="theme-info">
-
-				<!--  创建主题用户  -->
-				<a class="links theme-creater"><strong>0nlyy0u</strong></a>  •  
-
-				<!--    最后回复时间     -->
-				<span class="time">54</span> 天前  •  最后回复来自 
-
-				<!--  最后回复用户  -->
-				<a class="links last-user"><strong>Livid</strong></a>
-			</div>
-		</div>
-	</div>
-
-	<!--   主题实例（可删去） -->
-	<div class="none-none-none-none">
+	<volist name="topics['lists']" id="topic">
 		<div class="node-theme media">	
 			<div class="media-left">
-			<a href="#">
-				<img width="48" class="img-rounded" src="__PUBLIC__/home/img/theme.png">
-			</a>
-			</div>
-			<div class="theme-contain media-body">
-			<span class="comments-num badge">12</span>
-			<a class="theme-link" href=""><h5 class="media-heading">有免费的类似于 cloud9 的服务么</h5></a>
-			<div class="theme-info">
-				<a class="links theme-creater"><strong>0nlyy0u</strong></a>  •  
-				<span class="time">54</span> 天前  •  最后回复来自 
-				<a class="links last-user"><strong>Livid</strong></a>
-			</div>
-			</div>
-		</div>
-		<div class="node-theme media">	
-			<div class="media-left">
+				<!--    头像     -->
 				<a href="#">
-					<img width="48" class="img-rounded" src="__PUBLIC__/home/img/theme.png">
+					<img width="48" class="img-rounded" src="__PUBLIC__{$topic.imgpath}">
 				</a>
 			</div>
 			<div class="theme-contain media-body">
-				<span class="comments-num badge">12</span>
-				<a class="theme-link" href=""><h5 class="media-heading">有免费的类似于 cloud9 的服务么</h5></a>
-				<div class="theme-info">
-					<a class="links theme-creater"><strong>0nlyy0u</strong></a>  •  
-					<span class="time">54</span> 天前  •  最后回复来自 
-					<a class="links last-user"><strong>Livid</strong></a>
-				</div>
-			</div>
-		</div>
-		<div class="node-theme media">	
-			<div class="media-left">
-				<a href="#">
-					<img width="48" class="img-rounded" src="__PUBLIC__/home/img/theme.png">
-				</a>
-			</div>
-			<div class="theme-contain media-body">
-				<span class="comments-num badge">12</span>
-				<a class="theme-link" href=""><h5 class="media-heading">有免费的类似于 cloud9 的服务么</h5></a>
-				<div class="theme-info">
-					<a class="links theme-creater"><strong>0nlyy0u</strong></a>  •  
-					<span class="time">54</span> 天前  •  最后回复来自 
-					<a class="links last-user"><strong>Livid</strong></a>
-				</div>
-			</div>
-		</div>
-		<div class="node-theme media">	
-			<div class="media-left">
-				<a href="#">
-					<img width="48" class="img-rounded" src="__PUBLIC__/home/img/theme.png">
-				</a>
-			</div>
-			<div class="theme-contain media-body">
-				<span class="comments-num badge">12</span>
-				<a class="theme-link" href=""><h5 class="media-heading">有免费的类似于 cloud9 的服务么</h5></a>
-				<div class="theme-info">
-					<a class="links theme-creater"><strong>0nlyy0u</strong></a>  •  
-					<span class="time">54</span> 天前  •  最后回复来自 
-					<a class="links last-user"><strong>Livid</strong></a>
-				</div>
-			</div>
-		</div>
-		<div class="node-theme media">	
-			<div class="media-left">
-				<a href="#">
-					<img width="48" class="img-rounded" src="__PUBLIC__/home/img/theme.png">
-				</a>
-			</div>
-			<div class="theme-contain media-body">
-				<span class="comments-num badge">12</span>
-				<a class="theme-link" href=""><h5 class="media-heading">有免费的类似于 cloud9 的服务么</h5></a>
-				<div class="theme-info">
-					<a class="links theme-creater"><strong>0nlyy0u</strong></a>  •  
-					<span class="time">54</span> 天前  •  最后回复来自 
-					<a class="links last-user"><strong>Livid</strong></a>
-				</div>
-			</div>
-		</div>
-		<div class="node-theme media">	
-			<div class="media-left">
-				<a href="#">
-					<img width="48" class="img-rounded" src="__PUBLIC__/home/img/theme.png">
-				</a>
-			</div>
-			<div class="theme-contain media-body">
-				<span class="comments-num badge">12</span>
-				<a class="theme-link" href=""><h5 class="media-heading">有免费的类似于 cloud9 的服务么</h5></a>
-				<div class="theme-info">
-					<a class="links theme-creater"><strong>0nlyy0u</strong></a>  •  
-					<span class="time">54</span> 天前  •  最后回复来自 
-					<a class="links last-user"><strong>Livid</strong></a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--   主题实例结束  -->
+				<span class="comments-num badge">{$topic.comments}</span>
 
-	<!--   下分页   -->
-	<div class="btn-toolbar btn-page" role="toolbar" >
-		<div class="arrow-up"></div>
-		<button id="pre-page" class="btn btn-default"> << </button>
-		<button id="next-page" class="btn btn-default"> >> </button>
-		 <div class="btn-group" role="group">
-		 	<button type="button" class="btn btn-default ">1</button>
-		 </div>	
-		 <div class="btn-group" role="group">
-		 	<button type="button" class="btn btn-default ">2</button>
-		 </div>
-		 <div class="btn-group" role="group">
-		 	<button type="button" class="btn btn-default ">3</button>
-		 </div>
-		 <div class="btn-group" role="group">
-		 	<button type="button" class="btn btn-default ">4</button>
-		 </div>
-		 <div class="btn-group" role="group">
-		 	<button type="button" class="btn btn-default ">5</button>
-		 	&nbsp;&nbsp;...&nbsp;&nbsp;
-		 </div>
-		 <div id="page-total" class="btn-group" role="group">
+				<!--  主题链接  -->
+				<a class="theme-link" href="{:U('Topic/detail',['tid'=>$topic['tid']])}"><h5 class="media-heading">{$topic.title}</h5></a>
 
-		 	<!--    节点总页数     -->
-		 	<button type="button" class="btn btn-default ">999</button>
+				<div class="theme-info">
 
-		 </div>
-		 <label class="label-goto" for="gotopage">跳转至</label>
+					<!--  创建主题用户  -->
+					<a class="links theme-creater" href="{:U('User/info',['member'=>$topic['user_name']])}"><strong>{$topic.user_name}</strong></a>  •  
 
-		 <!--    跳转     -->
-		 <input id="gotopage" type="text" class="form-control" placeholder="1"> 
-	</div>
+					<!--    最后回复时间     -->
+					<span class="time">{$topic.publish_time}</span> 天前  •  最后回复来自 
+
+					<!--  最后回复用户  -->
+					<a class="links last-user"><strong>Livid</strong></a>
+				</div>
+			</div>
+		</div>		
+	</volist>
+
 	
 
 
 </block>
 
 <block name="sidebar">
-</block>
+	 <if condition="null == session('user')">
+	     <div class="sidebar-module sidebar-module-inset">
+	        <h4>注册/登录</h4>  
+	    	<p style="font-size:12px;color:grey">Airex是一个基于ThinkPHP的轻型bbs社区.</p>
+		    <div align="center"><br>
+		      <a class="btn btn-default" href="{:U('User/login')}" role="button">立即登陆</a><br><br>
+		      <p>没有账号?前往 <a href="{:U('User/register')}">注册</a></p>
+		    </div>
+	     </div>
+	 <else />
+
+		 <!-- 用户信息侧边栏需要和/topic/detail/里样式一致，请把样式从detail.css移至style.css -->
+		 <div class="sidebar-module sidebar-module-inset">
+			 <a href="{:U('User/info',['member'=>$_SESSION['user']])}" title="" class="info">
+				 <img src="__PUBLIC__{$data['userInfo']['imgpath']}" alt="..." class="img-rounded">
+			 </a>
+			 &nbsp;&nbsp;
+			 <label><a href="{:U('User/info',['member'=>$_SESSION['user']])}" title="">{$Think.session.user}</a></label>
+
+			 <table class="table">
+				 <tr>
+					 <td align="center"><a class="info" href="#" title="" ><span class="lead">{$data['userInfo']['nodes']}</span> <br><span>节点收藏</span></a></td>
+					 <td align="center"><a class="info" href="#" title="1" ><span class="lead">{$data['userInfo']['topics']}</span> <br><span>主题收藏</span></a></td>
+					 <td align="center"><a class="info" href="#" title="1" ><span class="lead">{$data['userInfo']['attentions']}</span> <br><span>特别关注</span></a></td>
+				 </tr>
+			 </table>
+			 <hr style="margin: 4px 0">
+			 <a href="#" title="">
+				 <span class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp;<a href="{:U('topic/add')}">创建新主题</a></span>
+			 </a>
+			 <hr style="margin: 8px 0">
+			 <a href="#" title="">
+				 <small>{$data['notifications']}条未读提醒</small>
+			 </a>
+			 <a href="#" title=""><span class="badge badge-balance">财富: {$data['userInfo']['wealth']}</span></a>
+		 </div>
+
+	 </if>
+
+     <div class="sidebar-module sidebar-module-inset">
+         <h4>最热节点</h4>
+         <volist name="hotNodes" id="hot">
+             <a href="#" class="item-node">{$hot['node_name']}</a>
+         </volist>
+<!--          <a href="#" class="item-node">PHP</a>
+		 <a href="#" class="item-node">Python</a>
+		 <a href="#" class="item-node">工作</a>
+		 <a href="#" class="item-node">生活</a>
+		 <a href="#" class="item-node">二手交易</a> -->
+     </div>
+     <div class="sidebar-module sidebar-module-inset">
+       	<h4>站点实况</h4>			
+		<p>注册会员	{$siteInfo.member_num}</p>
+		<p>主题	{$siteInfo.topic_num}</p>
+		<p>回复	{$siteInfo.comment_num}</p>
+     </div>
+ </block>
 
 	

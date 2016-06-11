@@ -15,7 +15,6 @@ class TopicModel extends Model
 	protected $_validate = array(
 		array('title','require','主题标题不能为空.',1),
 		array('title','checkLength_t','标题不要超过120个字符',1,'callback'),
-		array('content','require','主题内容不能为空',1),
 		array('content','checkLength_c','话题内容不要超过2000个字符',1,'callback'),
 		array('node_id','checkNodeId','请不要修改node值.',1,'callback'),
 		);
@@ -26,11 +25,24 @@ class TopicModel extends Model
 		);
 		
 	
-	//添加主题
+	/**
+	 * 添加主题
+	 * @param [type] $data [description]
+	 */
 	public function addTopic($data){
 		if ($this->create($data)) {
+			$this->startTrans();
 			if ($this->add()) {
-				return true;
+				if ($this->addTrigger($data['node_id'])) {
+					$this->commit();
+					return true;
+				}else{
+					$this->rollback();
+					return false;
+				}
+			}else{
+				$this->rollback();
+				return false;
 			}
 		}
 	}
@@ -56,8 +68,8 @@ class TopicModel extends Model
 	 * @return [type]         [description]
 	 */
 	function checkNodeId($nodeId){
-		$nodeNames = M('node')->getField('id',true);
-		if (!in_array($nodeName, $nodeNames)) {
+		$nodeIds = M('node')->getField('id',true);
+		if (!in_array($nodeId, $nodeIds)) {
 			return false;
 		}
 		return true;
@@ -89,7 +101,7 @@ class TopicModel extends Model
 	 * @return [type]        [description]
 	 */
 	function checkLength_t($title){
-		if (mb_strlen($title) > 120) {
+		if (mb_strlen($title) > 30) {
 			return false;
 		}
 		return true;
@@ -104,25 +116,10 @@ class TopicModel extends Model
 		$topicInfo = $this
 				->where(array('airex_topic.id'=>$tid))
 				->join('airex_node as n on n.id = airex_topic.node_id')
-				->field('title,content,publish_time,user_name,airex_topic.hits as hits,collections,comments,node_name')
+				->field('title,content,publish_time,user_name,airex_topic.hits as hits,collections,comments,node_name,imgpath')
 				->join('airex_user as u on u.id = airex_topic.uid')
 				->select()[0];
 		return $topicInfo;
-	}
-
-	/**
-	 * 根据tid获取相应评论
-	 * @param  [type] $tid [description]
-	 * @return [type]      [description]
-	 */
-	public function getCommentById($tid){
-		$commentInfo = M('comment as c')
-					->where(array('tid'=>$tid))
-					->field('user_name,content,publish_time,imgpath')
-					->join('airex_user as u on u.id = c.uid')
-					->order('publish_time desc')
-					->select();
-		return $commentInfo;
 	}
 
 	/**
@@ -186,6 +183,7 @@ class TopicModel extends Model
 		$topics['lists'] = M('node as n')->where(array('node_name'=>$nodeName))
 						 ->join('airex_topic as t on t.node_id = n.id')
 						 ->join('airex_user as u on u.id = t.uid')
+						 ->join('airex_user.id = t.last ')
 						 ->field('publish_time,title,imgpath,comments,user_name,node_name,t.id as tid,t.hits as hits')
 						 ->page($p.','.$limit)
 						 ->order('t.publish_time desc')
@@ -200,21 +198,51 @@ class TopicModel extends Model
 	}
 
 	/**
+
 	 * 根据用户名获取主题
 	 * @param  string $username [description]
 	 * @return [type]           [description]
 	 */
-	public function getTopicsByUser($username){
+	public function getTopicsByUser($username,$limit=''){
 		$topics['lists'] = M('user as u')->where(array('user_name'=>$username))
 			->join('airex_topic as t on t.uid = u.id')
 			->join('airex_node as n on n.id = t.node_id')
 			->field('publish_time,title,imgpath,comments,node_name,user_name,t.id as tid,t.hits as hits')
 			->order('t.publish_time desc')
-			->limit('0,5')
+			->limit('0,'.$limit)
 			->select();
 		return $topics;
 	}
 
+
+	/**
+	 * 触发更新
+	 * @return [type] [description]
+	 */
+	public function addTrigger($nodeId){
+		if (!M('node')->where(array('id'=>$nodeId))->setInc('topic_num')) {
+			return false;
+		}
+		if (!M('siteinfo')->where('id=1')->setInc('topic_num')) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * 根据tid获取字段信息
+	 * @param  [type] $tid    [description]
+	 * @param  [type] $fields [description]
+	 * @return [type]         [description]
+	 */
+	public function getFieldByTid($tid,$fields){
+		if (is_array($fields)) {
+			$fields = implode(',',$fields);
+		}
+		$result = $this->where(array('id'=>$tid))
+					 ->field($fields)
+					 ->select()[0];
+		return $result;
+	}
+
 }
-
-
