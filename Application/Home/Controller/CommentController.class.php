@@ -41,7 +41,7 @@ class CommentController extends BaseController
 	public function trigger($Topic,$data){
 		M('siteinfo')->where(['id'=>1])->setInc('comment_num');
 		$Topic->where(['id'=>$data['tid']])->setInc('comments');
-		$Topic->last_comment_uid = $data['uid'];
+		$Topic->last_comment_user = session('user');
 		$Topic->last_comment_time = $data['publish_time'];
 		$Topic->where(['id'=>$data['tid']])->save();
 	}

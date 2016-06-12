@@ -262,9 +262,12 @@ class UserController extends BaseController{
 	/**
 	 * 用户信息页
 	 */
-	public function info($member){
+	public function info($member = null){
 			//$User = new \Home\Model\UserModel();
-			$data = $this->User->getUserInfo($member);
+		if ($member == null) {
+			$member = session('user');
+		}
+		$data = $this->User->getUserInfo($member);
 		if($data){
 			$this->assign('data',$data);
 			$this->display();

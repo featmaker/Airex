@@ -31,9 +31,12 @@
 		    </h4>
 		    <a href="{:U('node/topics',['node'=>$topic['node_name']])}" title="" style="font-size:10px;background: #f5f5f5">{$topic.node_name}</a><em>.</em>
 		    <strong><a href="{:U('User/info',['member'=>$topic['user_name']])}" title="" style="font-size:12px;color: black;">{$topic.user_name}</a></strong><em>.</em>
-		    <span style="font-size:10px;color: #CDCFD7">{$topic.publish_time} 分钟前</span><em>.</em>
-		    <span style="font-size:10px;color: #CDCFD7">最后回复来自:<strong><a href="{:U('User/info',['member'=>$topic['user_name']])}" title="" style="color: black;">admin</a></strong></span>
-			 <span class="badge" style="float:right">{$topic.comments}</span>
+		    <span style="font-size:10px;color: #CDCFD7">{$topic.publish_time} 分钟前</span>
+		    <span style="font-size:10px;color: #CDCFD7">
+			<if condition="$topic['last_comment_user'] != null">
+			   	<em>.</em>最后回复来自:<strong><a href="{:U('User/info',['member'=>$topic['last_comment_user']])}" title="" style="color: black;">{$topic.last_comment_user}</a></strong></span>
+				 <span class="badge" style="float:right">{$topic.comments}</span>				
+			</if>
 		  </div>
 	</div>
 	<hr>  	

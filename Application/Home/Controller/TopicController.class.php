@@ -34,7 +34,7 @@ class TopicController extends BaseController
 			$data['cat_id'] = D('Node')->getCatIdByNodeId($data['node_id']);
 			$data['uid'] = session('uid');
 			if ($this->Topic->addTopic($data)) {
-				$this->success('发布主题成功');
+				$this->success('发布主题成功',U("User/info"));
 			}else{
 				$this->error('发布新主题失败,请稍后重试');
 			}
@@ -64,6 +64,12 @@ class TopicController extends BaseController
 		$this->assign('commentInfo',$commentInfo);
 		$this->assign('data',$data);
 		$this->assign('tid',$tid);
+		// var_dump($commentInfo);
+		// // die;
+		// var_dump(session('user'));
+		// var_dump($commentInfo[0]['user_name']);
+		// var_dump(session('user') == $commentInfo[0]['user_name']);
+		// die;
 		$this->display();
 		//var_dump($topicInfo);
 	}
@@ -74,9 +80,9 @@ class TopicController extends BaseController
 	 */
 	public function append(){
 		if (IS_POST) {
-			$content = I('post.append','','trim') == '' ?
+			$content = I('post.content','','trim') == '' ?
 												 $this->error('追加信息不能为空') :
-												 I('post.append','','trim');
+												 I('post.content','','trim');
 			$tid = I('post.tid','','intval');
 			if (!$this->Topic->checkTid($tid)) {
 				$this->error('不要修改tid值');
@@ -84,6 +90,7 @@ class TopicController extends BaseController
 			if (!$this->Topic->appendContent($tid,$content)) {
 				$this->error($this->Topic->getError());
 			}
+			$this->success('追加信息成功!',U('User/info'));
 		}else{
 			$data['tid'] = I('get.tid','','intval');
 			$data['title'] = $this->Topic->getFieldByTid($data['tid'],'title');

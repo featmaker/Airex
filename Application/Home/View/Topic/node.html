@@ -60,12 +60,13 @@
 
 					<!--  创建主题用户  -->
 					<a class="links theme-creater" href="{:U('User/info',['member'=>$topic['user_name']])}"><strong>{$topic.user_name}</strong></a>  •  
-
 					<!--    最后回复时间     -->
-					<span class="time">{$topic.publish_time}</span> 天前  •  最后回复来自 
+					<span class="time">{$topic.publish_time}</span> 天前
 
 					<!--  最后回复用户  -->
-					<a class="links last-user"><strong>Livid</strong></a>
+					<if condition="$topic['last_comment_user'] != null">
+					   	 • 最后回复来自:<strong><a href="{:U('User/info',['member'=>$topic['last_comment_user']])}" title="" style="color: black;">{$topic.last_comment_user}</a></strong>			
+					</if>
 				</div>
 			</div>
 		</div>		

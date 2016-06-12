@@ -37,9 +37,6 @@ class NodeModel extends Model
 							  ->select();
 			return $nodes;
 		}else {
-			if (!nodeValidate($catName)) {
-				return false;
-			}
 			$nodes = $this->field('node_name')
 			              ->join('airex_category as c on c.id = pid')
 			              ->where(array('cat_name' => $catName))

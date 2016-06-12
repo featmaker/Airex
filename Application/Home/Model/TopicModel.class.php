@@ -116,7 +116,7 @@ class TopicModel extends Model
 		$topicInfo = $this
 				->where(array('airex_topic.id'=>$tid))
 				->join('airex_node as n on n.id = airex_topic.node_id')
-				->field('title,content,publish_time,user_name,airex_topic.hits as hits,collections,comments,node_name,imgpath')
+				->field('title,content,publish_time,user_name,airex_topic.hits as hits,collections,comments,node_name,imgpath,last_comment_time')
 				->join('airex_user as u on u.id = airex_topic.uid')
 				->select()[0];
 		return $topicInfo;
@@ -154,8 +154,9 @@ class TopicModel extends Model
 		$topics['lists'] = M('category as c')->where(array('cat_name'=>$catName))
 										->join('airex_topic as t on t.cat_id = c.id')
 										->join('airex_user as u on u.id = t.uid')
-										->field('publish_time,title,imgpath,comments,user_name,node_name,t.id as tid,t.hits as hits')
+										->field('publish_time,title,imgpath,comments,user_name,node_name,t.id as tid,t.hits as hits,last_comment_user')
 										->join('airex_node as n on n.id = t.node_id')
+
 									    ->page($p.','.$limit)
 									    ->order('t.publish_time desc')
 									    ->select();
@@ -180,11 +181,10 @@ class TopicModel extends Model
 							   ->where(array('node_name'=>$nodeName))
 							   ->count();
 		$Page = new \Think\Page($count,$limit);
-		$topics['lists'] = M('node as n')->where(array('node_name'=>$nodeName))
+		$topics['lists'] = M('Node as n')->where(['n.node_name'=>$nodeName])
 						 ->join('airex_topic as t on t.node_id = n.id')
 						 ->join('airex_user as u on u.id = t.uid')
-						 ->join('airex_user.id = t.last ')
-						 ->field('publish_time,title,imgpath,comments,user_name,node_name,t.id as tid,t.hits as hits')
+						 ->field('publish_time,title,imgpath,comments,user_name,node_name,t.id as tid,t.hits as hits,last_comment_user')
 						 ->page($p.','.$limit)
 						 ->order('t.publish_time desc')
 						 ->select();
