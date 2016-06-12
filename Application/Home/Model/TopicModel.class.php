@@ -198,6 +198,24 @@ class TopicModel extends Model
 	}
 
 	/**
+
+	 * 根据用户名获取主题
+	 * @param  string $username [description]
+	 * @return [type]           [description]
+	 */
+	public function getTopicsByUser($username,$limit=''){
+		$topics['lists'] = M('user as u')->where(array('user_name'=>$username))
+			->join('airex_topic as t on t.uid = u.id')
+			->join('airex_node as n on n.id = t.node_id')
+			->field('publish_time,title,imgpath,comments,node_name,user_name,t.id as tid,t.hits as hits')
+			->order('t.publish_time desc')
+			->limit('0,'.$limit)
+			->select();
+		return $topics;
+	}
+
+
+	/**
 	 * 触发更新
 	 * @return [type] [description]
 	 */

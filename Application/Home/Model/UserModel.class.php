@@ -74,6 +74,8 @@ class UserModel extends Model{
                 //session('user',$userinfo['user_name']); //session 注册后进入已登录状态
 //                $siteInfo = M('siteinfo');
 //                $siteInfo->setField($data);
+                $siteInfo = M('siteinfo');
+                $siteInfo->where('id=1')->setInc('member_num',1); //站点信息用户数加1
                 return true;
             }
         }
@@ -212,8 +214,22 @@ class UserModel extends Model{
     public function getUserInfo($member){
         $username = $member;
         $data = $this->where(array('user_name'=>$username))
-            ->field('id,user_name,imgpath,gender,create_time')
+            ->field('id,url,resume,user_name,imgpath,gender,create_time')
             ->select()[0];
+        return $data;
+    }
+
+    /**
+     * 侧边栏 获取用户信息
+     * @return array 获取的用户数据
+     */
+    public function getSidebarUserInfo(){
+        $uid = session('uid');
+        $data['userInfo'] = $this->where(array('id'=>$uid))
+            ->field('imgpath,attentions,topics,wealth,nodes')
+            ->select()[0];
+        $data['notifications'] = M('reply')->where(array('to_uid'=>$uid,'is_read'=>'否'))
+            ->count();
         return $data;
     }
 
@@ -283,7 +299,7 @@ class UserModel extends Model{
             $avatarPath = './Public/Home/img/avatar/'.$info['savename'];
             $image = new \Think\Image();  //实例化图片操作类 裁剪头像为48*48
             $image->open($avatarPath);
-            $image->thumb(48, 48,$image::IMAGE_THUMB_FILLED)->save($avatarPath);
+            $image->thumb(48, 48,$image::IMAGE_THUMB_FIXED)->save($avatarPath);
             $this->where('id='.I('session.uid'))->setField('imgpath','/home/img/avatar/'.$info['savename']); //数据库更新头像字段
             return true;
         }

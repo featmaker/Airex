@@ -51,33 +51,33 @@
 							<input type="text" name="url" class="form-control" id="new-site" value="{$data['userInfo']['url']}" placeholder="您的个人网站URL，可不填"></div>
 					</div>
 
-					<!--   社交账号   -->
-					<div class="form-group form-group-sm">
-						<label class="col-sm-3 control-label" for="twitter"><img class="social-icon" width="24" src="__PUBLIC__/home/img/social/social_twitter.png">twitter</label>
-						<div class="col-sm-9">
-							<input type="text" name="twitter" class="form-control" id="twitter" value="{$data['userInfo']['url']}" placeholder=""></div>
-					</div>
-					<div class="form-group form-group-sm">
-						<label class="col-sm-3 control-label" for="steam"><img class="social-icon" width="24" src="__PUBLIC__/home/img/social/social_steam.png">steam</label>
-						<div class="col-sm-9">
-							<input type="text" name="steam" class="form-control" id="steam" value="{$data['userInfo']['url']}" placeholder=""></div>
-					</div>
-					<div class="form-group form-group-sm">
-						<label class="col-sm-3 control-label" for="Instagram"><img class="social-icon" width="24" src="__PUBLIC__/home/img/social/social_instagram.png">Instagram</label>
-						<div class="col-sm-9">
-							<input type="text" name="Instagram" class="form-control" id="Instagram" value="{$data['userInfo']['url']}" placeholder=""></div>
-					</div>
-					<div class="form-group form-group-sm">
-						<label class="col-sm-3 control-label" for="Telegram"><img class="social-icon" width="24" src="__PUBLIC__/home/img/social/social_telegram.png">Telegram</label>
-						<div class="col-sm-9">
-							<input type="text" name="Telegram" class="form-control" id="Telegram" value="{$data['userInfo']['url']}" placeholder=""></div>
-					</div>
-					<div class="form-group form-group-sm">
-						<label class="col-sm-3 control-label" for="Github"><img class="social-icon" width="24" src="__PUBLIC__/home/img/social/social_github.png">Github</label>
-						<div class="col-sm-9">
-							<input type="text" name="Github" class="form-control" id="Github" value="{$data['userInfo']['url']}" placeholder=""></div>
-					</div>
-					<!--   社交账号end   -->
+					<!--&lt;!&ndash;   社交账号   &ndash;&gt;-->
+					<!--<div class="form-group form-group-sm">-->
+						<!--<label class="col-sm-3 control-label" for="twitter"><img class="social-icon" width="24" src="__PUBLIC__/home/img/social/social_twitter.png">twitter</label>-->
+						<!--<div class="col-sm-9">-->
+							<!--<input type="text" name="twitter" class="form-control" id="twitter" value="{$data['userInfo']['url']}" placeholder=""></div>-->
+					<!--</div>-->
+					<!--<div class="form-group form-group-sm">-->
+						<!--<label class="col-sm-3 control-label" for="steam"><img class="social-icon" width="24" src="__PUBLIC__/home/img/social/social_steam.png">steam</label>-->
+						<!--<div class="col-sm-9">-->
+							<!--<input type="text" name="steam" class="form-control" id="steam" value="{$data['userInfo']['url']}" placeholder=""></div>-->
+					<!--</div>-->
+					<!--<div class="form-group form-group-sm">-->
+						<!--<label class="col-sm-3 control-label" for="Instagram"><img class="social-icon" width="24" src="__PUBLIC__/home/img/social/social_instagram.png">Instagram</label>-->
+						<!--<div class="col-sm-9">-->
+							<!--<input type="text" name="Instagram" class="form-control" id="Instagram" value="{$data['userInfo']['url']}" placeholder=""></div>-->
+					<!--</div>-->
+					<!--<div class="form-group form-group-sm">-->
+						<!--<label class="col-sm-3 control-label" for="Telegram"><img class="social-icon" width="24" src="__PUBLIC__/home/img/social/social_telegram.png">Telegram</label>-->
+						<!--<div class="col-sm-9">-->
+							<!--<input type="text" name="Telegram" class="form-control" id="Telegram" value="{$data['userInfo']['url']}" placeholder=""></div>-->
+					<!--</div>-->
+					<!--<div class="form-group form-group-sm">-->
+						<!--<label class="col-sm-3 control-label" for="Github"><img class="social-icon" width="24" src="__PUBLIC__/home/img/social/social_github.png">Github</label>-->
+						<!--<div class="col-sm-9">-->
+							<!--<input type="text" name="Github" class="form-control" id="Github" value="{$data['userInfo']['url']}" placeholder=""></div>-->
+					<!--</div>-->
+					<!--&lt;!&ndash;   社交账号end   &ndash;&gt;-->
 
 					<!--   个人简介    -->
 					<div class="form-group form-group-sm">
@@ -199,17 +199,15 @@
 	</div>
 	<div class="sidebar-module sidebar-module-inset">
 		<h4>最热节点</h4>
-		<a href="#" class="item-node">PHP</a>
-		<a href="#" class="item-node">Python</a>
-		<a href="#" class="item-node">工作</a>
-		<a href="#" class="item-node">生活</a>
-		<a href="#" class="item-node">二手交易</a>
+		<volist name="hotNodes" id="hot">
+			<a href="#" class="item-node">{$hot['node_name']}</a>
+		</volist>
 	</div>
 	<div class="sidebar-module sidebar-module-inset">
 		<h4>站点实况</h4>
-		<p>注册会员	173280</p>
-		<p>主题	275247</p>
-		<p>回复	3186640</p>
+		<p>注册会员	{$siteInfo.member_num}</p>
+		<p>主题	{$siteInfo.topic_num}</p>
+		<p>回复	{$siteInfo.comment_num}</p>
 	</div>
 </block>
 <block name="js">

@@ -11,21 +11,24 @@
 	<div class="col-sm-12 header-up">
 		<div class="media">
 			<div class="media-left">
-				<img src="__PUBLIC__{$data.imgpath}" alt="{$data.user_name}" style="margin-top:5px"></div>
+				<img src="__PUBLIC__{$data.imgpath}" alt="{$data.user_name}" style="border-radius:6px" width=60 height=60></div>
 			<div class="media-body">
 				<div class="media-heading" style="padding-bottom:0;margin-bottom:0">
 					<span>
 						<big>{$data.user_name}</big>
 					</span>
-					<button type="button" class="btn btn-warning btn-sm">加入特别关注</button>
+					<if condition="$Think.session.user neq I('get.member')">
+						<button type="button" class="btn btn-warning btn-sm">加入特别关注</button>
+					</if>
 					<br>
 				</div>
 
 				<!--  个人简介  -->
-				<div class="person-intro">A kangaroo form Australia:)</div>
+				<div class="person-intro">{$data.resume}</div>
 				<span class="info-number">
 					<small>Airex 第 {$data.id} 号会员，性别：{$data.gender}，加入于 {$data.create_time}</small>
 				</span>
+
 			</div>
 		</div>
 	</div>
@@ -34,48 +37,16 @@
 	<div class="col-sm-12 heading-down">
 
 	<!--   个人资料网站链接   -->
-		<a href="">
-			<span class="social badge">
-				<img width="24" src="__PUBLIC__/home/img/social/social_github.png">
-				&nbsp;
-				<span>github</span>
-			</span>
-		</a>
-		<a href="">
-			<span class="social badge">
-				<img width="24" src="__PUBLIC__/home/img/social/social_twitter.png">
-				&nbsp;
-				<span>twitter</span>
-			</span>
-		</a>
-		<a href="">
+<if condition="$data.url neq ''">
+	<a href="{$data.url}" target="_blank">
 			<span class="social badge">
 				<img width="24" src="__PUBLIC__/home/img/social/social_home.png">
 				&nbsp;
-				<span>website</span>
+				<span>{$data.url}</span>
 			</span>
-		</a>
-		<a href="">
-			<span class="social badge">
-				<img width="24" src="__PUBLIC__/home/img/social/social_telegram.png">
-				&nbsp;
-				<span>telegram</span>
-			</span>
-		</a>
-		<a href="">
-			<span class="social badge">
-				<img width="24" src="__PUBLIC__/home/img/social/social_steam.png">
-				&nbsp;
-				<span>蒸汽动力</span>
-			</span>
-		</a>
-		<a href="">
-			<span class="social badge">
-				<img width="24" src="__PUBLIC__/home/img/social/social_instagram.png">
-				&nbsp;
-				<span>Instagram</span>
-			</span>
-		</a>
+	</a>
+</if>
+
 	
 	</div>
 	<div class="col-sm-12 divider"></div>
@@ -89,7 +60,7 @@
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav navbar-left">
 						<li class="active">
-							<a href="#">查看 {$data.user_name} 创建的所有主题</a>
+							<a href="{:U('User/Topic',['member'=>I('get.member')])}">查看 {$data.user_name} 创建的所有主题</a>
 						</li>
 					</ul>
 				</div>
@@ -98,72 +69,37 @@
 	</div>
 
 
-		<div class="col-sm-12 theme-display">
-			<ul class="list-group">
+	<div class="col-sm-12 theme-display">
+		<ul class="list-group">
+
+			<volist name="topics['lists']" id="topic">
+
+
 				<li class="list-group-item">
 					<span>
-						<span>想做个个人博客玩玩，求推荐框架，！ WordPress</span>
+						<span><a href="{:U('topic/detail',array('tid'=>$topic['tid']))}" target="_blank">{$topic.title}</a></span>
 						<br>
-						<span class="label label-default location">杭州</span>
+						<span class="label label-default location"><a href="{:U('node/topics',array('node'=>$topic['node_name']))}">{$topic.node_name}</a></span>
 						<span class="light-color">
-							&nbsp;•&nbsp; <strong><a href="#">Mr.Trump</a>
-								&nbsp;•&nbsp;</strong> 
-							&nbsp;15天前&nbsp;• &nbsp;最后回复来自&nbsp;
+							&nbsp;•&nbsp; <strong><a href="{:U('User/info',array('member'=>$topic['user_name']))}">{$topic.user_name}</a>
+							&nbsp;•&nbsp;</strong>
+							{$topic.publish_time} &nbsp;• &nbsp;最后回复来自&nbsp;
 							<a href="#"> <strong>tvallday</strong>
 							</a>
 						</span>
 					</span>
 
 					<a href="#">
-						<span class="badge">42</span>
-					</a>
-				</li>
-				<li class="list-group-item">
-					<span>
-						<span>想做个个人博客玩玩，求推荐框架，！ WordPress</span>
-						<br>
-						<span class="label label-default location">杭州</span>
-						<span class="light-color">
-							&nbsp;•&nbsp;
-							<strong><a href="#">Mr.Trump</a>
-								&nbsp;•&nbsp;</strong> 
-							&nbsp;15天前&nbsp;• &nbsp;最后回复来自&nbsp;
-							<a href="#">
-								<strong>tvallday</strong>
-							</a>
-						</span>
-					</span>
-
-					<a href="#">
-						<span class="badge">42</span>
-					</a>
-				</li>
-				<li class="list-group-item">
-					<span>
-						<span>想做个个人博客玩玩，求推荐框架，！ WordPress</span>
-						<br>
-						<span class="label label-default location">杭州</span>
-						<span class="light-color">
-							&nbsp;•&nbsp;
-							<strong>
-								<a href="#">Mr.Trump</a>
-								&nbsp;•&nbsp;
-							</strong>
-							&nbsp;15天前&nbsp;• &nbsp;最后回复来自&nbsp;
-							<a href="#">
-								<strong>tvallday</strong>
-							</a>
-						</span>
-					</span>
-
-					<a href="#">
-						<span class="badge">42</span>
+						<span class="badge">{$topic.comments}</span>
 					</a>
 				</li>
 
-			</ul>
+			</volist>
+		</ul>
 
-		</div>
+	</div>
+
+
 
 		<div class="col-sm-12 divider"></div>
 
@@ -184,116 +120,8 @@
 						<span>aws 中国</span>
 					</div>
 				</div>
-				<div class="panel-heading">
-					<span>回复了 loweila 创建的主题 ›</span>
-					<span class="reply-dark">云计算到底哪家稳定靠谱些啊=_=</span>
-					<span class="info-reply-time">
-						<span>15 小时 45 分钟前</span>
-					</span>
-					<img class="arrow" src="__PUBLIC__/home/img/arrow.png"></div>
-				<div class="panel-body">
-					<div class="reply-content">
-						<span>aws 中国</span>
-					</div>
-				</div>
-				<div class="panel-heading">
-					<span>回复了 loweila 创建的主题 ›</span>
-					<span class="reply-dark">云计算到底哪家稳定靠谱些啊=_=</span>
-					<span class="info-reply-time">
-						<span>15 小时 45 分钟前</span>
-					</span>
-					<img class="arrow" src="__PUBLIC__/home/img/arrow.png"></div>
-				<div class="panel-body">
-					<div class="reply-content">
-						<span>aws 中国</span>
-					</div>
-				</div>
-				<div class="panel-heading">
-					<span>回复了 loweila 创建的主题 ›</span>
-					<span class="reply-dark">云计算到底哪家稳定靠谱些啊=_=</span>
-					<span class="info-reply-time">
-						<span>15 小时 45 分钟前</span>
-					</span>
-					<img class="arrow" src="__PUBLIC__/home/img/arrow.png"></div>
-				<div class="panel-body">
-					<div class="reply-content">
-						<span>aws 中国</span>
-					</div>
-				</div>
-				<div class="panel-heading">
-					<span>回复了 loweila 创建的主题 ›</span>
-					<span class="reply-dark">云计算到底哪家稳定靠谱些啊=_=</span>
-					<span class="info-reply-time">
-						<span>15 小时 45 分钟前</span>
-					</span>
-					<img class="arrow" src="__PUBLIC__/home/img/arrow.png"></div>
-				<div class="panel-body">
-					<div class="reply-content">
-						<span>aws 中国</span>
-					</div>
-				</div>
-				<div class="panel-heading">
-					<span>回复了 loweila 创建的主题 ›</span>
-					<span class="reply-dark">云计算到底哪家稳定靠谱些啊=_=</span>
-					<span class="info-reply-time">
-						<span>15 小时 45 分钟前</span>
-					</span>
-					<img class="arrow" src="__PUBLIC__/home/img/arrow.png"></div>
-				<div class="panel-body">
-					<div class="reply-content">
-						<span>aws 中国</span>
-					</div>
-				</div>
-				<div class="panel-heading">
-					<span>回复了 loweila 创建的主题 ›</span>
-					<span class="reply-dark">云计算到底哪家稳定靠谱些啊=_=</span>
-					<span class="info-reply-time">
-						<span>15 小时 45 分钟前</span>
-					</span>
-					<img class="arrow" src="__PUBLIC__/home/img/arrow.png"></div>
-				<div class="panel-body">
-					<div class="reply-content">
-						<span>aws 中国</span>
-					</div>
-				</div>
-				<div class="panel-heading">
-					<span>回复了 loweila 创建的主题 ›</span>
-					<span class="reply-dark">云计算到底哪家稳定靠谱些啊=_=</span>
-					<span class="info-reply-time">
-						<span>15 小时 45 分钟前</span>
-					</span>
-					<img class="arrow" src="__PUBLIC__/home/img/arrow.png"></div>
-				<div class="panel-body">
-					<div class="reply-content">
-						<span>aws 中国</span>
-					</div>
-				</div>
-				<div class="panel-heading">
-					<span>回复了 loweila 创建的主题 ›</span>
-					<span class="reply-dark">云计算到底哪家稳定靠谱些啊=_=</span>
-					<span class="info-reply-time">
-						<span>15 小时 45 分钟前</span>
-					</span>
-					<img class="arrow" src="__PUBLIC__/home/img/arrow.png"></div>
-				<div class="panel-body">
-					<div class="reply-content">
-						<span>aws 中国</span>
-					</div>
-				</div>
-				<div class="panel-heading">
-					<span>回复了 loweila 创建的主题 ›</span>
-					<span class="reply-dark">云计算到底哪家稳定靠谱些啊=_=</span>
-					<span class="info-reply-time">
-						<span>15 小时 45 分钟前</span>
-					</span>
-					<img class="arrow" src="__PUBLIC__/home/img/arrow.png"></div>
-				<div class="panel-body">
-					<div class="reply-content">
-						<span>aws 中国</span>
-					</div>
-				</div>
 				<div class="panel-body reply-footer">
-					<span>» {$data.user_name}创建的更多回复</span>
+					<span>» <a href="{:U('User/Reply',['member'=>I('get.member')])}">{$data.user_name}创建的更多回复</a></span>
 				</div>
 
 			</div>
@@ -301,29 +129,44 @@
 
 	</block>
 
-	<block name="sidebar">
-		<div class="col-sm-12 timeline">
-			<div class="media">
-				<div class="media-head media-left">
-					<img width="18" src="__PUBLIC__/home/img/comment.png"></div>
-				<div class="media-body">
-					<span>{$data.user_name} 最近的时间轴更新</span>
-				</div>
+<block name="sidebar">
+
+	<if condition="null == session('user')">
+		<div class="sidebar-module sidebar-module-inset">
+			<h4>注册/登录</h4>
+			<p style="font-size:12px;color:grey">Airex是一个基于ThinkPHP的轻型bbs社区.</p>
+			<div align="center"><br>
+				<a class="btn btn-default" href="{:U('User/login')}" role="button">立即登陆</a><br><br>
+				<p>没有账号?前往 <a href="{:U('User/register')}">注册</a></p>
 			</div>
 		</div>
+		<else />
+	<div class="sidebar-module sidebar-module-inset">
+		<a href="{:U('User/info',array('member'=>$_SESSION['user']))}" title="" class="info">
+			<img src="__PUBLIC__{$userInfo['userInfo']['imgpath']}" alt="..." class="img-rounded">
+		</a>
+		&nbsp;&nbsp;
+		<label><a href="{:U('User/info',array('member'=>$_SESSION['user']))}" title="">{$Think.session.user}</a></label>
+		<table class="table">
+			<tr>
+				<td align="center"><a class="info" href="#" title="" ><span class="lead">{$userInfo['userInfo']['nodes']}</span> <br><span>节点收藏</span></a></td>
+				<td align="center"><a class="info" href="#" title="1" ><span class="lead">{$userInfo['userInfo']['topics']}</span> <br><span>主题收藏</span></a></td>
+				<td align="center"><a class="info" href="#" title="1" ><span class="lead">{$userInfo['userInfo']['attentions']}</span> <br><span>特别关注</span></a></td>
+			</tr>
+		</table>
+		<hr style="margin: 4px 0">
+		<a href="#" title="">
+			<span class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp;创建新主题</span>
+		</a>
+		<hr style="margin: 8px 0">
+		<a href="#" title="">
+			<small>{$userInfo['notifications']}条未读提醒</small>
+		</a>
+		<a href="#" title=""><span class="badge badge-balance">财富: {$userInfo['userInfo']['wealth']}</span></a>
+	</div>
+</if>
 
-		<div class="col-sm-12 question">
-			<div class="media">
-				<div class="media-body">
-					<span>有没有用 libcurl 过的，遇到问题了，求教</span>
-				</div>
-				<div class="light-color">
-					<span>4天前</span>
-				</div>
-			</div>
-		</div>
-
-	</block>
+</block>
 
 	<block name="js">
 		<script>
