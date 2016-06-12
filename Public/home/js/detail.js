@@ -30,6 +30,7 @@ $(document).ready(function() {
 			}
 		} else {
 			$(this).text(now.getFullYear() - old.getFullYear() + " 年前");
+			console.log(now.getFullYear(),old.getFullYear());
 		}
 
 		$(this).show();
