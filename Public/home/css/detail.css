@@ -26,7 +26,9 @@ img.reply:hover {
     text-indent: 16px;
 }
 
-
+.header{
+    margin:4px;
+}
 .panel-footer {
     position: relative;
     z-index: 2;

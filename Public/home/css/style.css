@@ -34,7 +34,7 @@ h6,
     color: #333;
 }
 
-* {
+div,span,p,label {
     font-family: 'Microsoft Yahei';
 }
 
@@ -211,6 +211,7 @@ hr {
 /* 用户信息侧边栏 */
 .table {
     margin-top: 15px;
+    margin-bottom: 0;
 }
 .badge-balance {
     float: right;
@@ -506,4 +507,7 @@ td a {
 }
 .each-area{
   margin-top:10px;
+}
+.time{
+    display:none;
 }
