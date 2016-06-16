@@ -45,7 +45,7 @@
 							&nbsp;•&nbsp; <strong><a href="{:U('User/info',array('member'=>$topic['user_name']))}">{$topic.user_name}</a>
                             &nbsp;•&nbsp;</strong>
 							{$topic.publish_time} &nbsp;• &nbsp;最后回复来自&nbsp;
-							<a href="#"> <strong>{$topic.last_comment_user}</strong>
+							<a href="{:U('User/info',array('member'=>$topic['last_comment_user']))}"> <strong>{$topic.last_comment_user}</strong>
                             </a>
 						</span>
 					</span>
