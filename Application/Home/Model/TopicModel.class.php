@@ -207,7 +207,7 @@ class TopicModel extends Model
 		$topics['lists'] = M('user as u')->where(array('user_name'=>$username))
 			->join('airex_topic as t on t.uid = u.id')
 			->join('airex_node as n on n.id = t.node_id')
-			->field('publish_time,title,imgpath,comments,node_name,user_name,t.id as tid,t.hits as hits')
+			->field('publish_time,title,imgpath,comments,node_name,user_name,t.id as tid,t.hits as hits,last_comment_user')
 			->order('t.publish_time desc')
 			->limit('0,'.$limit)
 			->select();

@@ -77,14 +77,14 @@
 
 				<li class="list-group-item">
 					<span>
-						<span><a href="{:U('topic/detail',array('tid'=>$topic['tid']))}" target="_blank">{$topic.title}</a></span>
+						<span><a href="{:U('topic/detail',array('tid'=>$topic['tid']))}">{$topic.title}</a></span>
 						<br>
 						<span class="label label-default location"><a href="{:U('node/topics',array('node'=>$topic['node_name']))}">{$topic.node_name}</a></span>
 						<span class="light-color">
 							&nbsp;•&nbsp; <strong><a href="{:U('User/info',array('member'=>$topic['user_name']))}">{$topic.user_name}</a>
 							&nbsp;•&nbsp;</strong>
 							{$topic.publish_time} &nbsp;• &nbsp;最后回复来自&nbsp;
-							<a href="#"> <strong>tvallday</strong>
+							<a href="#"> <strong>{$topic.last_comment_user}</strong>
 							</a>
 						</span>
 					</span>
@@ -108,23 +108,29 @@
 				<div class="panel-body reply-recent">
 					<span>{$data.user_name} 最近回复了</span>
 				</div>
-				<div class="panel-heading">
-					<span>回复了 loweila 创建的主题 ›</span>
-					<span class="reply-dark">云计算到底哪家稳定靠谱些啊=_=</span>
+
+				<volist name="comments['lists']" id="comment" empty="该用户暂未发表回复">
+
+					<div class="panel-heading">
+						<span>回复了 <a href="{:U('User/info',array('member'=>$comment['user_name']))}">{$comment.user_name}</a> 创建的主题 ›</span>
+						<span class="reply-dark"><a href="{:U('topic/detail',array('tid'=>$comment['tid']))}">{$comment.title}</a></span>
 					<span class="info-reply-time">
-						<span>15 小时 45 分钟前</span>
+						<span>{$comment.publish_time}</span>
 					</span>
-					<img class="arrow" src="__PUBLIC__/home/img/arrow.png"></div>
-				<div class="panel-body">
-					<div class="reply-content">
-						<span>aws 中国</span>
+						<img class="arrow" src="__PUBLIC__/home/img/arrow.png"></div>
+					<div class="panel-body">
+						<div class="reply-content">
+							<span>{$comment.content}</span>
+						</div>
 					</div>
-				</div>
-				<div class="panel-body reply-footer">
-					<span>» <a href="{:U('User/Reply',['member'=>I('get.member')])}">{$data.user_name}创建的更多回复</a></span>
-				</div>
+
+				</volist>
 
 			</div>
+
+			<div class="panel-body reply-footer">
+			<span>» <a href="{:U('User/Reply',['member'=>I('get.member')])}">{$data.user_name}创建的更多回复</a></span>
+		</div>
 		</div>
 
 	</block>

@@ -26,28 +26,35 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> <hr>
     </div>
 
 
     <div class="col-sm-12 info-reply">
+
+
+        <volist name="comments['lists']" id="comment" empty="该用户暂未发表回复">
+
         <div class="panel panel-default">
-            <hr>
             <div class="panel-heading">
-                <span>回复了 loweila 创建的主题 ›</span>
-                <span class="reply-dark">云计算到底哪家稳定靠谱些啊=_=</span>
+                <span>回复了 <a href="{:U('User/info',array('member'=>$comment['user_name']))}">{$comment.user_name}</a> 创建的主题 ›</span>
+                <span class="reply-dark"><a href="{:U('topic/detail',array('tid'=>$comment['tid']))}">{$comment.title}</a></span>
 					<span class="info-reply-time">
-						<span>15 小时 45 分钟前</span>
+						<span>{$comment.publish_time}</span>
 					</span>
                 <img class="arrow" src="__PUBLIC__/home/img/arrow.png"></div>
             <div class="panel-body">
                 <div class="reply-content">
-                    <span>aws 中国</span>
+                    <span>{$comment.content}</span>
                 </div>
             </div>
 
         </div>
+
+        </volist>
+
     </div>
+
 
 
 
