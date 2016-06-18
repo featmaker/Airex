@@ -38,14 +38,14 @@
 
                 <li class="list-group-item">
 					<span>
-						<span><a href="{:U('topic/detail',array('tid'=>$topic['tid']))}" target="_blank">{$topic.title}</a></span>
+						<span><a href="{:U('topic/detail',array('tid'=>$topic['tid']))}">{$topic.title}</a></span>
 						<br>
 						<span class="label label-default location"><a href="{:U('node/topics',array('node'=>$topic['node_name']))}">{$topic.node_name}</a></span>
 						<span class="light-color">
 							&nbsp;•&nbsp; <strong><a href="{:U('User/info',array('member'=>$topic['user_name']))}">{$topic.user_name}</a>
                             &nbsp;•&nbsp;</strong>
 							{$topic.publish_time} &nbsp;• &nbsp;最后回复来自&nbsp;
-							<a href="#"> <strong>tvallday</strong>
+							<a href="{:U('User/info',array('member'=>$topic['last_comment_user']))}"> <strong>{$topic.last_comment_user}</strong>
                             </a>
 						</span>
 					</span>

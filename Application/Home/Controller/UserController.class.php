@@ -15,6 +15,7 @@ class UserController extends BaseController{
 	private $Cate;
 	private $Node;
 	private $Topic;
+	private $Comment;
 
 	function __construct(){
 		parent::__construct();
@@ -22,6 +23,7 @@ class UserController extends BaseController{
 		$this->Cate = D('Category');
 		$this->Node = D('Node');
 		$this->Topic = D('Topic');
+		$this->Comment = D('Comment');
 	}
 
 	/**
@@ -286,7 +288,9 @@ class UserController extends BaseController{
 			$userInfo = $this->User->getSidebarUserInfo();
 			$topics = $this->Topic->getTopicsByUser($member,5);//根据用户名获取文章
 			//var_dump($topics);
+			$comments = $this->Comment->getCommentByUser($member,10); //获取10条最新评论
 			$this->assign('topics',$topics);
+			$this->assign('comments',$comments);
 			$this->assign('userInfo', $userInfo);
 			$this->assign('data',$data);
 			$this->display();
@@ -327,6 +331,8 @@ class UserController extends BaseController{
 			//$this->assign('topics',$topics);
 			$this->assign('data',$data);
 			$this->assign('userInfo', $userInfo);
+			$comments = $this->Comment->getCommentByUser($member);
+			$this->assign('comments',$comments);
 			$this->display();
 		}else{
 			$this->error('此用户不存在！');
