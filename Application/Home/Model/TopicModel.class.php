@@ -80,7 +80,7 @@ class TopicModel extends Model
 	 * @return [type] [description]
 	 */
 	function getTime(){
-		return date('Y-m-d h:m:s',time());
+		return date('Y-m-d H:i:s',time());
 	}
 
 	/**

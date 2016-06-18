@@ -20,7 +20,7 @@ class CommentController extends BaseController
 			if ($data['content'] == '') {
 				$this->ajaxReturn('no');
 			}
-			$data['publish_time'] = date('Y-m-d H:m:s',time());
+			$data['publish_time'] = date('Y-m-d H:i:s',time());
 			$data['uid'] = session('uid');
 			$dta['type'] = '评论';
 			if (M('Comment')->add($data)) {
