@@ -17,8 +17,9 @@
 					<span>
 						<big>{$data.user_name}</big>
 					</span>
-					<if condition="$Think.session.user neq I('get.member')">
-						<button type="button" class="btn btn-warning btn-sm">加入特别关注</button>
+					<if condition="($Think.session.user neq null) && ($Think.session.user neq I('get.member'))">
+						<input type="hidden" id="userID" value="{$data.id}">
+						<button type="button" id="addattention" class="btn btn-warning btn-sm">加入特别关注</button>
 					</if>
 					<br>
 				</div>
@@ -73,8 +74,6 @@
 		<ul class="list-group">
 
 			<volist name="topics['lists']" id="topic">
-
-
 				<li class="list-group-item">
 					<span>
 						<span><a href="{:U('topic/detail',array('tid'=>$topic['tid']))}">{$topic.title}</a></span>
@@ -93,7 +92,6 @@
 						<span class="badge">{$topic.comments}</span>
 					</a>
 				</li>
-
 			</volist>
 		</ul>
 
@@ -108,8 +106,10 @@
 				<div class="panel-body reply-recent">
 					<span>{$data.user_name} 最近回复了</span>
 				</div>
-
-				<volist name="comments['lists']" id="comment" empty="该用户暂未发表回复">
+				<if condition="$comments['lists'] eq null">
+					<span style="font-size:14px;margin-left:10px"> 该用户暂未发表任何回复</span>
+				</if>
+				<volist name="comments['lists']" id="comment">
 
 					<div class="panel-heading">
 						<span>回复了 <a href="{:U('User/info',array('member'=>$comment['user_name']))}">{$comment.user_name}</a> 创建的主题 ›</span>
@@ -178,6 +178,34 @@
 		<script>
 			$(document).ready(function() {
 				$("ul li:eq(1)").addClass("nav-active");
+				$('#addattention').bind('click',function(){
+					if($('#addattention').text() == '加入特别关注'){
+						var ID = $('#userID').val();
+						var url = "{:U('User/add_attention')}";
+						$.post(
+								url,{userID:ID},
+								function(data){
+									if(data.status){
+										$('#addattention').text('取消特别关注');
+										$('#addattention').removeClass('btn-warning');
+									}else{
+										alert('关注失败');
+									}
+								},"json")
+					}else if($('#addattention').text() == '取消特别关注'){
+						var url = "{:U('User/remove_attention')}";
+						$.post(
+								url,{userID:ID},
+								function(data){
+									if(data.status){
+										$('#addattention').text('加入特别关注');
+										$('#addattention').addClass('btn-warning');
+									}else{
+										alert('关注失败');
+									}
+								},"json")
+					}
+				});
 			});
 		</script>
 	</block>

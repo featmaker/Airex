@@ -220,6 +220,22 @@ class UserModel extends Model{
     }
 
     /**
+     * 添加用户特别关注
+     * @param int targetUserID [要关注的用户ID]
+     * @return array 获取的用户数据
+     */
+    public function addAttention($targetUserID){
+        $userID = I('session.uid');
+        $attention = M('attention');
+        $data['uid'] = $userID;
+        $data['atten_uid'] = $targetUserID;
+        if($attention->data($data)->add()){
+            $this->where('id='.$userID)->setInc('attentions',1);
+            return true;
+        }
+    }
+
+    /**
      * 侧边栏 获取用户信息
      * @return array 获取的用户数据
      */
