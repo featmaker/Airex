@@ -301,7 +301,7 @@ class UserController extends BaseController{
 	}
 
 	/**
-	 * AJAX用户特别关注
+	 * AJAX用户加入特别关注
 	 */
 	public function add_attention(){
 		if (!checkLogin()) {
@@ -314,6 +314,32 @@ class UserController extends BaseController{
 			$targetUserID = I('post.userID');
 			if($targetUserID){
 				if($this->User->addAttention($targetUserID)){
+					$data['status'] = 1; //成功
+					$this->ajaxReturn($data);
+				}else{
+					$data['status'] = 0; //失败
+					$this->ajaxReturn($data);
+				}
+			}else{
+				$this->error('非法访问');
+			}
+		}
+	}
+
+	/**
+	 * AJAX用户取消特别关注
+	 */
+	public function remove_attention(){
+		if (!checkLogin()) {
+			$data['status'] = 0; //返回失败的JSON 原因：未登录
+			$this->ajaxReturn($data);
+		}
+		if(!IS_POST){
+			$this->error('非法访问');
+		}else{
+			$targetUserID = I('post.userID');
+			if($targetUserID){
+				if($this->User->removeAttention($targetUserID)){
 					$data['status'] = 1; //成功
 					$this->ajaxReturn($data);
 				}else{

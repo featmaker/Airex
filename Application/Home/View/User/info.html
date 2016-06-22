@@ -19,7 +19,12 @@
 					</span>
 					<if condition="($Think.session.user neq null) && ($Think.session.user neq I('get.member'))">
 						<input type="hidden" id="userID" value="{$data.id}">
-						<button type="button" id="addattention" class="btn btn-warning btn-sm">加入特别关注</button>
+						<if condition="$data.attention eq 0">
+							<button type="button" id="addattention" class="btn btn-warning btn-sm">加入特别关注</button>
+							<else />
+							<button type="button" id="addattention" class="btn btn-sm">取消特别关注</button>
+						</if>
+
 					</if>
 					<br>
 				</div>
@@ -185,6 +190,7 @@
 						$.post(
 								url,{userID:ID},
 								function(data){
+									console.log(data);
 									if(data.status){
 										$('#addattention').text('取消特别关注');
 										$('#addattention').removeClass('btn-warning');
@@ -193,15 +199,17 @@
 									}
 								},"json")
 					}else if($('#addattention').text() == '取消特别关注'){
+						var ID = $('#userID').val();
 						var url = "{:U('User/remove_attention')}";
 						$.post(
 								url,{userID:ID},
 								function(data){
+									console.log(data);
 									if(data.status){
 										$('#addattention').text('加入特别关注');
 										$('#addattention').addClass('btn-warning');
 									}else{
-										alert('关注失败');
+										alert('取消关注失败');
 									}
 								},"json")
 					}
