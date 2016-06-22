@@ -226,10 +226,10 @@ class TopicModel extends Model
 			$sql .= $u.' OR uid=';
 		}
 		$sql .= $uid_last;
-		$topics['lists'] = M('topic as t')->where($sql)
-								->join('airex_user as u on u.id = t.uid')
-								->join('airex_node as n on n.id = t.node_id')
-								->field('publish_time,title,u.imgpath as imgpath,comments,n.node_name as node_name,u.user_name as user_name,t.id as tid,t.hits as hits,last_comment_user')
+		$topics['lists'] = M('Topic as t')->where($sql)
+								->join('airex_user as u on u.id = uid')
+								->join('airex_node as n on n.id = node_id')
+								->field('publish_time,title,u.imgpath as imgpath,comments,n.node_name as node_name,u.user_name as user_name,t.id as tid,last_comment_user')
 			 					->order('publish_time desc')
 								->select();
 		return $topics;
@@ -265,6 +265,24 @@ class TopicModel extends Model
 					 ->field($fields)
 					 ->select()[0];
 		return $result;
+	}
+
+	/**
+	 * 收藏主题
+	 * @param int @tid
+	 * @return bool
+	 */
+	public function collectTopic($tid){
+		$col_topic = M('col_topic');
+		$uid = I('session.uid');
+		$data['uid'] = $uid;
+		$data['tid'] = $tid;
+		if($col_topic->data($data)->add()){
+			$User = M('user');
+			$User->where('id='.$uid)->setInc('topics',1);
+			return true;
+		}
+
 	}
 
 }

@@ -79,7 +79,6 @@ class UserModel extends Model{
                 return true;
             }
         }
-
     }
 
     /**
@@ -263,7 +262,6 @@ class UserModel extends Model{
      * @return array [特别关注的用户UID数组]
      */
     public function getUserAttentions(){
-
         $uid = I('session.uid');
         $attention = M('attention');
         $attentions = $attention->where('uid='.$uid)->getField('atten_uid',TRUE);

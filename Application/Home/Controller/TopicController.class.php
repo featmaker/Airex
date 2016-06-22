@@ -100,4 +100,28 @@ class TopicController extends BaseController
 		}
 	}
 
+	/**
+	 * 收藏主题
+	 */
+	public function collect_topic(){
+		if(!IS_POST){
+			$this->error('非法访问');
+		}else{
+			$tid = I('post.tid');
+			if($tid){
+				if($this->collectTopic($tid)){
+					$data['status'] = 1; //成功
+					$this->ajaxReturn($data);
+				}else{
+					$data['status'] = 0 ; //失败
+				}
+			}else{
+				$data['status'] = 0;
+				$this->ajaxReturn($data);
+			}
+		}
+
+
+	}
+
 }
