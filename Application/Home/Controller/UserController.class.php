@@ -408,7 +408,14 @@ class UserController extends BaseController{
 		}else{
 			$this->error('此用户不存在！');
 		}
+	}
 
+	/**
+	 * 用户主题收藏列表页
+	 */
+	public function coltopic(){
+
+		$this->display;
 	}
 
 
