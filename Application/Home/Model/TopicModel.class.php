@@ -119,6 +119,12 @@ class TopicModel extends Model
 				->field('title,content,publish_time,user_name,airex_topic.hits as hits,collections,comments,node_name,imgpath,last_comment_time')
 				->join('airex_user as u on u.id = airex_topic.uid')
 				->select()[0];
+		$col_topic = M('col_topic');
+		if($col_topic->where('uid='.I('session.uid').' AND tid='.$tid)->find()){
+			$topicInfo['collected'] = 1;
+		}else{
+			$topicInfo['collected'] = 0;
+		}
 		return $topicInfo;
 	}
 
