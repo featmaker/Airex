@@ -282,7 +282,23 @@ class TopicModel extends Model
 			$User->where('id='.$uid)->setInc('topics',1);
 			return true;
 		}
+	}
 
+	/**
+	 * 取消收藏主题
+	 * @param int @tid
+	 * @return bool
+	 */
+	public function removeColTopic($tid){
+		$userID = I('session.uid');
+		$col_topic = M('col_topic');
+		$data['uid'] = $userID;
+		$data['tid'] = $tid;
+		if($col_topic->where('uid='.$userID.' AND tid='.$tid)->delete()){
+			$User = M('User');
+			$User->where('id='.$userID)->setDec('topics',1);
+			return true;
+		}
 	}
 
 }

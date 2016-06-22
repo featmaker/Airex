@@ -109,19 +109,41 @@ class TopicController extends BaseController
 		}else{
 			$tid = I('post.tid');
 			if($tid){
-				if($this->collectTopic($tid)){
+				if($this->Topic->collectTopic($tid)){
 					$data['status'] = 1; //成功
 					$this->ajaxReturn($data);
 				}else{
 					$data['status'] = 0 ; //失败
+					$this->ajaxReturn($data);
 				}
 			}else{
 				$data['status'] = 0;
 				$this->ajaxReturn($data);
 			}
 		}
-
-
 	}
 
+	/**
+	 * 取消收藏主题
+	 */
+	public function remove_col_topic(){
+		if(!IS_POST){
+			$this->error('非法访问');
+		}else{
+			$tid = I('post.tid');
+			if($tid){
+				if($this->Topic->removeColTopic($tid)){
+					$data['status'] = 1 ; //成功
+					$this->ajaxReturn($data);
+				}else{
+					$data['status'] = 0; //失败
+					$this->ajaxReturn($data);
+				}
+			}else{
+				$data['status'] = 0; //失败 没有接受到tid值
+				$this->ajaxReturn($data);
+			}
+		}
+
+	}
 }

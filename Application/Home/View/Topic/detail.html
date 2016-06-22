@@ -44,10 +44,10 @@
 		<h6>
   		<span>
 
-  			<if condition="">
+
 
 				<a href="#" id="collect" title="">加入收藏</a>
-			</if>
+
 
   			</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>
   			<a href="#" title="">感谢</a>
@@ -171,12 +171,38 @@
 		$(document).ready(function() {
 
 			$('#collect').bind('click',function(){
-				var tid = "{$tid}";
-				var url = "{:U('Topic/collect_topic')}";
-				
 
-
-
+				if($('#collect').text() == '加入收藏'){
+					var tid = "{$tid}";
+					var url = "{:U('Topic/collect_topic')}";
+					$.post(
+							url,{tid:tid},
+							function(data){
+								console.log();
+								if(data.status){
+									$('#collect').text('取消收藏');
+									alert('收藏主题成功');
+								}else{
+									alert('操作失败');
+								}
+							}
+					);
+				}else if($('#collect').text() == '取消收藏'){
+					var tid = "{$tid}";
+					var url = "{:U('Topic/remove_col_topic')}";
+					$.post(
+							url,{tid:tid},
+							function(data){
+								console.log();
+								if(data.status){
+									$('#collect').text('加入收藏');
+									alert('已经取消收藏');
+								}else{
+									alert('操作失败');
+								}
+							}
+					);
+				}
 
 			});
 
