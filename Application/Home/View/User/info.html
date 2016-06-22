@@ -87,9 +87,9 @@
 						<span class="light-color">
 							&nbsp;•&nbsp; <strong><a href="{:U('User/info',array('member'=>$topic['user_name']))}">{$topic.user_name}</a>
 							&nbsp;•&nbsp;</strong>
-							{$topic.publish_time} &nbsp;• &nbsp;最后回复来自&nbsp;
+							{$topic.publish_time} &nbsp;<if condition="$topic.last_comment_user neq null">• &nbsp;最后回复来自&nbsp;
 							<a href="{:U('User/info',array('member'=>$topic['last_comment_user']))}"> <strong>{$topic.last_comment_user}</strong>
-							</a>
+							</a></if>
 						</span>
 					</span>
 
@@ -162,7 +162,7 @@
 			<tr>
 				<td align="center"><a class="info" href="#" title="" ><span class="lead">{$userInfo['userInfo']['nodes']}</span> <br><span>节点收藏</span></a></td>
 				<td align="center"><a class="info" href="#" title="1" ><span class="lead">{$userInfo['userInfo']['topics']}</span> <br><span>主题收藏</span></a></td>
-				<td align="center"><a class="info" href="#" title="1" ><span class="lead">{$userInfo['userInfo']['attentions']}</span> <br><span>特别关注</span></a></td>
+				<td align="center"><a class="info" href="{:U('User/attentions')}" title="1" ><span class="lead">{$userInfo['userInfo']['attentions']}</span> <br><span>特别关注</span></a></td>
 			</tr>
 		</table>
 		<hr style="margin: 4px 0">

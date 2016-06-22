@@ -34,7 +34,7 @@ class TopicController extends BaseController
 			$data['cat_id'] = D('Node')->getCatIdByNodeId($data['node_id']);
 			$data['uid'] = session('uid');
 			if ($this->Topic->addTopic($data)) {
-				$this->success('发布主题成功',U("User/info"));
+				$this->success('发布主题成功',U("Index/index"));
 			}else{
 				$this->error('发布新主题失败,请稍后重试');
 			}

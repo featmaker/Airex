@@ -301,6 +301,25 @@ class UserController extends BaseController{
 	}
 
 	/**
+	 * 用户特别关注列表页
+	 */
+	public function attentions(){
+		if (!checkLogin()) {
+			$this->redirect("Index/index",'',0);
+		}
+
+		$data = $this->User->getUserInfo(I('session.user'));
+		$this->assign('data',$data);
+		$userInfo = $this->User->getSidebarUserInfo();
+		$this->assign('userInfo',$userInfo);
+		$attentions = $this->User->getUserAttentions();
+		$topics = $this->Topic->getTopicsbyUserID($attentions);
+		$this->assign('topics',$topics);
+		$this->display();
+		//var_dump($topics);
+	}
+
+	/**
 	 * AJAX用户加入特别关注
 	 */
 	public function add_attention(){

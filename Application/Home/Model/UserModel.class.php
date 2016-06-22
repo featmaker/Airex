@@ -258,6 +258,19 @@ class UserModel extends Model{
     }
 
     /**
+     * 获取用户的特别关注
+     * @param
+     * @return array [特别关注的用户UID数组]
+     */
+    public function getUserAttentions(){
+
+        $uid = I('session.uid');
+        $attention = M('attention');
+        $attentions = $attention->where('uid='.$uid)->getField('atten_uid',TRUE);
+        return $attentions;
+    }
+
+    /**
      * 侧边栏 获取用户信息
      * @return array 获取的用户数据
      */

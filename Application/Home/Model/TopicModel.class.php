@@ -80,7 +80,7 @@ class TopicModel extends Model
 	 * @return [type] [description]
 	 */
 	function getTime(){
-		return date('Y-m-d h:m:s',time());
+		return date('Y-m-d H:i:s',time());
 	}
 
 	/**
@@ -101,7 +101,7 @@ class TopicModel extends Model
 	 * @return [type]        [description]
 	 */
 	function checkLength_t($title){
-		if (mb_strlen($title) > 30) {
+		if (mb_strlen($title) > 120) {
 			return false;
 		}
 		return true;
@@ -201,7 +201,7 @@ class TopicModel extends Model
 
 	 * 根据用户名获取主题
 	 * @param  string $username [description]
-	 * @return [type]           [description]
+	 * @return [array] topics           [description]
 	 */
 	public function getTopicsByUser($username,$limit=''){
 		$topics['lists'] = M('user as u')->where(array('user_name'=>$username))
@@ -212,6 +212,28 @@ class TopicModel extends Model
 			->limit('0,'.$limit)
 			->select();
 		return $topics;
+	}
+
+	/**
+	 * 根据用户ID获取主题
+	 * @param  array $uid [description]
+	 * @return [type]           [description]
+	 */
+	public function getTopicsByUserID($uid){
+		$sql = 'uid=';
+		$uid_last = array_pop($uid);
+		foreach($uid as $u){
+			$sql .= $u.' OR uid=';
+		}
+		$sql .= $uid_last;
+		$topics['lists'] = M('topic as t')->where($sql)
+								->join('airex_user as u on u.id = t.uid')
+								->join('airex_node as n on n.id = t.node_id')
+								->field('publish_time,title,u.imgpath as imgpath,comments,n.node_name as node_name,u.user_name as user_name,t.id as tid,t.hits as hits,last_comment_user')
+			 					->order('publish_time desc')
+								->select();
+		return $topics;
+
 	}
 
 
