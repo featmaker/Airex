@@ -34,7 +34,7 @@ class TopicController extends BaseController
 			$data['cat_id'] = D('Node')->getCatIdByNodeId($data['node_id']);
 			$data['uid'] = session('uid');
 			if ($this->Topic->addTopic($data)) {
-				$this->success('发布主题成功',U("User/info"));
+				$this->success('发布主题成功',U("Index/index"));
 			}else{
 				$this->error('发布新主题失败,请稍后重试');
 			}
@@ -100,4 +100,50 @@ class TopicController extends BaseController
 		}
 	}
 
+	/**
+	 * 收藏主题
+	 */
+	public function collect_topic(){
+		if(!IS_POST){
+			$this->error('非法访问');
+		}else{
+			$tid = I('post.tid');
+			if($tid){
+				if($this->Topic->collectTopic($tid)){
+					$data['status'] = 1; //成功
+					$this->ajaxReturn($data);
+				}else{
+					$data['status'] = 0 ; //失败
+					$this->ajaxReturn($data);
+				}
+			}else{
+				$data['status'] = 0;
+				$this->ajaxReturn($data);
+			}
+		}
+	}
+
+	/**
+	 * 取消收藏主题
+	 */
+	public function remove_col_topic(){
+		if(!IS_POST){
+			$this->error('非法访问');
+		}else{
+			$tid = I('post.tid');
+			if($tid){
+				if($this->Topic->removeColTopic($tid)){
+					$data['status'] = 1 ; //成功
+					$this->ajaxReturn($data);
+				}else{
+					$data['status'] = 0; //失败
+					$this->ajaxReturn($data);
+				}
+			}else{
+				$data['status'] = 0; //失败 没有接受到tid值
+				$this->ajaxReturn($data);
+			}
+		}
+
+	}
 }

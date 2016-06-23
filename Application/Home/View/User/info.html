@@ -17,8 +17,14 @@
 					<span>
 						<big>{$data.user_name}</big>
 					</span>
-					<if condition="$Think.session.user neq I('get.member')">
-						<button type="button" class="btn btn-warning btn-sm">加入特别关注</button>
+					<if condition="($Think.session.user neq null) && ($Think.session.user neq I('get.member'))">
+						<input type="hidden" id="userID" value="{$data.id}">
+						<if condition="$data.attention eq 0">
+							<button type="button" id="addattention" class="btn btn-warning btn-sm">加入特别关注</button>
+							<else />
+							<button type="button" id="addattention" class="btn btn-sm">取消特别关注</button>
+						</if>
+
 					</if>
 					<br>
 				</div>
@@ -73,8 +79,6 @@
 		<ul class="list-group">
 
 			<volist name="topics['lists']" id="topic">
-
-
 				<li class="list-group-item">
 					<span>
 						<span><a href="{:U('topic/detail',array('tid'=>$topic['tid']))}">{$topic.title}</a></span>
@@ -83,9 +87,9 @@
 						<span class="light-color">
 							&nbsp;•&nbsp; <strong><a href="{:U('User/info',array('member'=>$topic['user_name']))}">{$topic.user_name}</a>
 							&nbsp;•&nbsp;</strong>
-							{$topic.publish_time} &nbsp;• &nbsp;最后回复来自&nbsp;
+							{$topic.publish_time} &nbsp;<if condition="$topic.last_comment_user neq null">• &nbsp;最后回复来自&nbsp;
 							<a href="{:U('User/info',array('member'=>$topic['last_comment_user']))}"> <strong>{$topic.last_comment_user}</strong>
-							</a>
+							</a></if>
 						</span>
 					</span>
 
@@ -93,7 +97,6 @@
 						<span class="badge">{$topic.comments}</span>
 					</a>
 				</li>
-
 			</volist>
 		</ul>
 
@@ -108,8 +111,10 @@
 				<div class="panel-body reply-recent">
 					<span>{$data.user_name} 最近回复了</span>
 				</div>
-
-				<volist name="comments['lists']" id="comment" empty="该用户暂未发表回复">
+				<if condition="$comments['lists'] eq null">
+					<span style="font-size:14px;margin-left:10px"> 该用户暂未发表任何回复</span>
+				</if>
+				<volist name="comments['lists']" id="comment">
 
 					<div class="panel-heading">
 						<span>回复了 <a href="{:U('User/info',array('member'=>$comment['user_name']))}">{$comment.user_name}</a> 创建的主题 ›</span>
@@ -157,11 +162,11 @@
 			<tr>
 				<td align="center"><a class="info" href="#" title="" ><span class="lead">{$userInfo['userInfo']['nodes']}</span> <br><span>节点收藏</span></a></td>
 				<td align="center"><a class="info" href="#" title="1" ><span class="lead">{$userInfo['userInfo']['topics']}</span> <br><span>主题收藏</span></a></td>
-				<td align="center"><a class="info" href="#" title="1" ><span class="lead">{$userInfo['userInfo']['attentions']}</span> <br><span>特别关注</span></a></td>
+				<td align="center"><a class="info" href="{:U('User/attentions')}" title="1" ><span class="lead">{$userInfo['userInfo']['attentions']}</span> <br><span>特别关注</span></a></td>
 			</tr>
 		</table>
 		<hr style="margin: 4px 0">
-		<a href="#" title="">
+		<a href="{:U('topic/add')}" title="">
 			<span class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp;创建新主题</span>
 		</a>
 		<hr style="margin: 8px 0">
@@ -178,6 +183,37 @@
 		<script>
 			$(document).ready(function() {
 				$("ul li:eq(1)").addClass("nav-active");
+				$('#addattention').bind('click',function(){
+					if($('#addattention').text() == '加入特别关注'){
+						var ID = $('#userID').val();
+						var url = "{:U('User/add_attention')}";
+						$.post(
+								url,{userID:ID},
+								function(data){
+									console.log(data);
+									if(data.status){
+										$('#addattention').text('取消特别关注');
+										$('#addattention').removeClass('btn-warning');
+									}else{
+										alert('关注失败');
+									}
+								},"json")
+					}else if($('#addattention').text() == '取消特别关注'){
+						var ID = $('#userID').val();
+						var url = "{:U('User/remove_attention')}";
+						$.post(
+								url,{userID:ID},
+								function(data){
+									console.log(data);
+									if(data.status){
+										$('#addattention').text('加入特别关注');
+										$('#addattention').addClass('btn-warning');
+									}else{
+										alert('取消关注失败');
+									}
+								},"json")
+					}
+				});
 			});
 		</script>
 	</block>

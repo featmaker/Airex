@@ -79,7 +79,6 @@ class UserModel extends Model{
                 return true;
             }
         }
-
     }
 
     /**
@@ -216,7 +215,57 @@ class UserModel extends Model{
         $data = $this->where(array('user_name'=>$username))
             ->field('id,url,resume,user_name,imgpath,gender,create_time')
             ->select()[0];
+        $attention = M('attention');
+        if($attention->where('uid='.I('session.uid').' AND atten_uid='.$data['id'])->find()){
+            $data['attention'] = 1;
+        }else{
+            $data['attention'] = 0;
+        }
         return $data;
+    }
+
+    /**
+     * 添加用户特别关注
+     * @param int targetUserID [要关注的用户ID]
+     * @return array 获取的用户数据
+     */
+    public function addAttention($targetUserID){
+        $userID = I('session.uid');
+        $attention = M('attention');
+        $data['uid'] = $userID;
+        $data['atten_uid'] = $targetUserID;
+        if($attention->data($data)->add()){
+            $this->where('id='.$userID)->setInc('attentions',1);
+            return true;
+        }
+    }
+
+    /**
+     * 取消用户特别关注
+     * @param int targetUserID [要关注的用户ID]
+     * @return array 获取的用户数据
+     */
+    public function removeAttention($targetUserID){
+        $userID = I('session.uid');
+        $attention = M('attention');
+        $data['uid'] = $userID;
+        $data['atten_uid'] = $targetUserID;
+        if($attention->where('uid='.$userID.' AND atten_uid='.$targetUserID)->delete()){
+            $this->where('id='.$userID)->setDec('attentions',1);
+            return true;
+        }
+    }
+
+    /**
+     * 获取用户的特别关注
+     * @param
+     * @return array [特别关注的用户UID数组]
+     */
+    public function getUserAttentions(){
+        $uid = I('session.uid');
+        $attention = M('attention');
+        $attentions = $attention->where('uid='.$uid)->getField('atten_uid',TRUE);
+        return $attentions;
     }
 
     /**

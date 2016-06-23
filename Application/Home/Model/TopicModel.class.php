@@ -101,7 +101,7 @@ class TopicModel extends Model
 	 * @return [type]        [description]
 	 */
 	function checkLength_t($title){
-		if (mb_strlen($title) > 30) {
+		if (mb_strlen($title) > 120) {
 			return false;
 		}
 		return true;
@@ -119,6 +119,12 @@ class TopicModel extends Model
 				->field('title,content,publish_time,user_name,airex_topic.hits as hits,collections,comments,node_name,imgpath,last_comment_time')
 				->join('airex_user as u on u.id = airex_topic.uid')
 				->select()[0];
+		$col_topic = M('col_topic');
+		if($col_topic->where('uid='.I('session.uid').' AND tid='.$tid)->find()){
+			$topicInfo['collected'] = 1;
+		}else{
+			$topicInfo['collected'] = 0;
+		}
 		return $topicInfo;
 	}
 
@@ -201,7 +207,7 @@ class TopicModel extends Model
 
 	 * 根据用户名获取主题
 	 * @param  string $username [description]
-	 * @return [type]           [description]
+	 * @return [array] topics           [description]
 	 */
 	public function getTopicsByUser($username,$limit=''){
 		$topics['lists'] = M('user as u')->where(array('user_name'=>$username))
@@ -212,6 +218,28 @@ class TopicModel extends Model
 			->limit('0,'.$limit)
 			->select();
 		return $topics;
+	}
+
+	/**
+	 * 根据用户ID获取主题
+	 * @param  array $uid [description]
+	 * @return [type]           [description]
+	 */
+	public function getTopicsByUserID($uid){
+		$sql = 'uid=';
+		$uid_last = array_pop($uid);
+		foreach($uid as $u){
+			$sql .= $u.' OR uid=';
+		}
+		$sql .= $uid_last;
+		$topics['lists'] = M('Topic as t')->where($sql)
+								->join('airex_user as u on u.id = uid')
+								->join('airex_node as n on n.id = node_id')
+								->field('publish_time,title,u.imgpath as imgpath,comments,n.node_name as node_name,u.user_name as user_name,t.id as tid,last_comment_user')
+			 					->order('publish_time desc')
+								->select();
+		return $topics;
+
 	}
 
 
@@ -243,6 +271,40 @@ class TopicModel extends Model
 					 ->field($fields)
 					 ->select()[0];
 		return $result;
+	}
+
+	/**
+	 * 收藏主题
+	 * @param int @tid
+	 * @return bool
+	 */
+	public function collectTopic($tid){
+		$col_topic = M('col_topic');
+		$uid = I('session.uid');
+		$data['uid'] = $uid;
+		$data['tid'] = $tid;
+		if($col_topic->data($data)->add()){
+			$User = M('user');
+			$User->where('id='.$uid)->setInc('topics',1);
+			return true;
+		}
+	}
+
+	/**
+	 * 取消收藏主题
+	 * @param int @tid
+	 * @return bool
+	 */
+	public function removeColTopic($tid){
+		$userID = I('session.uid');
+		$col_topic = M('col_topic');
+		$data['uid'] = $userID;
+		$data['tid'] = $tid;
+		if($col_topic->where('uid='.$userID.' AND tid='.$tid)->delete()){
+			$User = M('User');
+			$User->where('id='.$userID)->setDec('topics',1);
+			return true;
+		}
 	}
 
 }
