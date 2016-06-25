@@ -104,21 +104,20 @@ class TopicController extends BaseController
 	 * 收藏主题
 	 */
 	public function collect_topic(){
-		if(!IS_POST){
+		if(!IS_AJAX){
 			$this->error('非法访问');
 		}else{
 			$tid = I('post.tid');
 			if($tid){
 				if($this->Topic->collectTopic($tid)){
-					$data['status'] = 1; //成功
-					$this->ajaxReturn($data);
+					//成功
+					$this->ajaxReturn('1');
 				}else{
-					$data['status'] = 0 ; //失败
-					$this->ajaxReturn($data);
+					//失败
+					$this->ajaxReturn('0');
 				}
 			}else{
-				$data['status'] = 0;
-				$this->ajaxReturn($data);
+				$this->ajaxReturn('0');
 			}
 		}
 	}
@@ -127,21 +126,21 @@ class TopicController extends BaseController
 	 * 取消收藏主题
 	 */
 	public function remove_col_topic(){
-		if(!IS_POST){
+		if(!IS_AJAX){
 			$this->error('非法访问');
 		}else{
 			$tid = I('post.tid');
 			if($tid){
 				if($this->Topic->removeColTopic($tid)){
-					$data['status'] = 1 ; //成功
-					$this->ajaxReturn($data);
+					//成功
+					$this->ajaxReturn('1');
 				}else{
-					$data['status'] = 0; //失败
-					$this->ajaxReturn($data);
+					//失败
+					$this->ajaxReturn('0');
 				}
 			}else{
-				$data['status'] = 0; //失败 没有接受到tid值
-				$this->ajaxReturn($data);
+				//失败 没有接受到tid值
+				$this->ajaxReturn('0');
 			}
 		}
 

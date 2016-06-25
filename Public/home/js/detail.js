@@ -47,16 +47,5 @@ $(document).ready(function() {
 			$(this).find('.thank-area').hide();
 		});
 	});
-
-	$('.reply').each(function() {
-		$(this).click(function() {
-			var par = $(this).parents('.reply-info');
-			if (par.children(".media-body").next().hasClass('reply-box')) {
-				par.children(".media-body").next().remove();
-			} else {
-				par.children(".media-body").after('<form action="#" method="post" accept-charset="utf-8" class="reply-box"><br/><textarea name="reply" class="form-control" rows="2" placeholder="@ admin:"></textarea><input type="submit" id="reply-button" class="btn btn-info btn-sm"></input></form>');
-			}
-		});
-	});
 	console.timeEnd("each");
 });

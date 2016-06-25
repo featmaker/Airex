@@ -98,10 +98,7 @@ h6 > a {
     padding-bottom: 0;
     margin-right:2px;
 }
-.reply-content {
-    position: relative;
-    top: -4px;
-}
+
 .user-name a {
     color: gray;
 }

@@ -172,17 +172,6 @@ class UserController extends BaseController{
 			}else{
 				$this->error('不存在此重置密钥或已失效',U('Index/index'));
 			}
-
-
-//			if(session('?'.$hash)){ //如果session中存在此hash
-//				//session(NULL);
-//				$username = session($hash);  //得到hash中的用户名
-//				$this->assign('username',$username); //将用户名输出到前端
-//				$this->display();
-//			}else{
-//				//session(NULL);
-//				$this->error('不存在此重置密钥或已失效',U('Index/index'));
-//			}
 		}else{
 			$this->error('非法操作',U('Index/index'));
 		}

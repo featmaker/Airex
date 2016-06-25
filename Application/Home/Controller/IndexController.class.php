@@ -37,11 +37,9 @@ class IndexController extends BaseController
                 $this->error('传输参数错误');
             }  
         }
-
         $categorys = $this->Cate->getCategorys();             //获取导航栏分类
         $nodes=$this->Node->getNodeByCatName($catName);      //根据分类获取节点
         $topics = $this->Topic->getTopicsByCat($catName);      //根据分类获取文章
-        // $topics =  checkNull($topics) ? null : $topics;
         $siteInfo = D('Index')->getSiteInfo();                 //站点信息
         $hotNodes= $this->Node->getHotNodes();                  //热门节点
         $this->assign('categorys',$categorys);
