@@ -18,7 +18,7 @@ class CommentModel extends Model
 					->where(array('tid'=>$tid))
 					->field('user_name,content,publish_time,imgpath,airex_comment.id as cid,u.id as cuid')
 					->join('airex_user as u on u.id = airex_comment.uid')
-					->order('publish_time desc')
+					->order('publish_time asc')
 					->select();
 		return $commentInfo;
 	}
