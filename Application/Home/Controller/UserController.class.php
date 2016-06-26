@@ -403,8 +403,17 @@ class UserController extends BaseController{
 	 * 用户主题收藏列表页
 	 */
 	public function coltopic(){
-
-		$this->display;
+		if (!checkLogin()) {
+			$this->redirect("Index/index",'',0);
+		}
+		$data = $this->User->getUserInfo(I('session.user'));
+		$this->assign('data',$data);
+		$userInfo = $this->User->getSidebarUserInfo();
+		$this->assign('userInfo',$userInfo);
+		$uid = I('session.uid');
+		$coltopic_tid = $this->Topic->getColTopicByID($uid);
+        $topics = $this->Topic->getTopicByTID($coltopic_tid);
+		$this->assign('topics',$topics);
+		$this->display();
 	}
-
 }

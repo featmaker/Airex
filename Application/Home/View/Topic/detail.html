@@ -162,37 +162,42 @@
 		 		}
 		 	})
 		})
-		$('#collect').bind('click',function(){
-			if($('#collect').text() == '加入收藏'){
-				var tid = "{$tid}";
-				var url = "{:U('Topic/collect_topic')}";
-				$.post(
-						url,{tid:tid},
-						function(data){
-							console.log();
-							if(data == '1'){
-								$('#collect').text('取消收藏');
-							}else{
-								alert('操作失败');
+		$(document).ready(function() {
+
+			$('#collect').bind('click', function () {
+				if ($('#collect').text() == '加入收藏') {
+					var tid = "{$tid}";
+					var url = "{:U('Topic/collect_topic')}";
+					$.post(
+							url, {tid: tid},
+							function (data) {
+								console.log();
+								if (data == '1') {
+									$('#collect').text('取消收藏');
+								} else {
+									alert('操作失败');
+								}
 							}
-						}
-				);
-			}else if($('#collect').text() == '取消收藏'){
-				var tid = "{$tid}";
-				var url = "{:U('Topic/remove_col_topic')}";
-				$.post(
-						url,{tid:tid},
-						function(data){
-							console.log();
-							if(data == '1'){
-								$('#collect').text('加入收藏');
-							}else{
-								alert('操作失败');
+					);
+				} else if ($('#collect').text() == '取消收藏') {
+					var tid = "{$tid}";
+					var url = "{:U('Topic/remove_col_topic')}";
+					$.post(
+							url, {tid: tid},
+							function (data) {
+								console.log();
+								if (data == '1') {
+									$('#collect').text('加入收藏');
+								} else {
+									alert('操作失败');
+								}
 							}
-						}
-				);
-			}
+					);
+				}
+			});
+
 		});
+
 
 		$('.reply').each(function() {
 			$(this).click(function() {

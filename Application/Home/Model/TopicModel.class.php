@@ -109,7 +109,7 @@ class TopicModel extends Model
 
 	/**
 	 * 根据tid获取主题详情
-	 * @param  [type] $tid [description]
+	 * @param   $tid [description]
 	 * @return [type]      [description]
 	 */
 	public function getDataById($tid){
@@ -127,6 +127,41 @@ class TopicModel extends Model
 		}
 		return $topicInfo;
 	}
+
+	/**
+	 * 根据tid获得主题简单信息
+	 * @param [int or array] tid
+	 * @return array topics
+	 */
+	public function getTopicByTid($tid){
+		if(is_array($tid)){
+			$sql = 'airex_topic.id IN( ';
+			$tid_last = array_pop($tid);
+			foreach($tid as $t){
+
+				$sql .= "$t,";
+			}
+			$sql .= $tid_last.')';
+			$topics['lists'] = $this
+				->where($sql)
+				->join('airex_node as n on n.id = airex_topic.node_id')
+				->join('airex_user as u on u.id = airex_topic.uid')
+				->field('publish_time,title,imgpath,airex_topic.id as tid,comments,node_name,user_name,last_comment_user')
+				->order('airex_topic.publish_time desc')
+				->select();
+			return $topics;
+		}else{
+			$topics['lists'] = $this
+						->where(array('airex_topic.id'=>$tid))
+						->join('airex_node as n on n.id = airex_topic.node_id')
+						->join('airex_user as u on u.id = airex_topic.uid')
+						->field('publish_time,title,imgpath,airex_topic.id as tid,comments,node_name,user_name,last_comment_user')
+						->order('airex_topic.publish_time desc')
+						->select();
+			return $topics;
+		}
+	}
+
 
 	/**
 	 * 检查tid是否存在
@@ -162,7 +197,6 @@ class TopicModel extends Model
 										->join('airex_user as u on u.id = t.uid')
 										->field('publish_time,title,imgpath,comments,user_name,node_name,t.id as tid,t.hits as hits,last_comment_user')
 										->join('airex_node as n on n.id = t.node_id')
-
 									    ->page($p.','.$limit)
 									    ->order('t.publish_time desc')
 									    ->select();
@@ -306,5 +340,18 @@ class TopicModel extends Model
 			return true;
 		}
 	}
+
+	/**
+	 * 通过用户ID取得用户收藏的主题
+	 * @param int uid
+	 * @return array coltopic
+     */
+	public function getColtopicByID($uid){
+		$col_topic = M('col_topic');
+		$coltopic = $col_topic->where('uid='.$uid)->getField('tid',TRUE);
+		return $coltopic;
+	}
+
+
 
 }
