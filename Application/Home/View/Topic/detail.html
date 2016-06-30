@@ -53,7 +53,7 @@
 
 <div class="dividers-div"></div>
 
-  <div class="comment-heading panel-heading" style="">	<h6> {$topicInfo.comments} 回复<span><strong>&nbsp;&nbsp;|&nbsp;&nbsp;</strong></span>最后回复：{$topicInfo.last_comment_time}</h6>
+  <div class="comment-heading panel-heading" style="">	<h6> {$topicInfo.comments} 回复<span><strong>&nbsp;&nbsp;|&nbsp;&nbsp;</strong></span><if condition="$topicInfo.last_comment_time eq '0000-00-00 00:00:00'">暂无回复<else />{$topicInfo.last_comment_time}</if></h6>
   </div>
 
   <div class="panel-body" >

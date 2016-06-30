@@ -32,7 +32,7 @@
 				<!--  个人简介  -->
 				<div class="person-intro">{$data.resume}</div>
 				<span class="info-number">
-					<small>Airex 第 {$data.id} 号会员，性别：{$data.gender}，加入于 {$data.create_time}</small>
+					<small>Airex 第 {$data.id} 号会员 | 性别：{$data.gender} | 加入于 {$data.create_time}</small>
 				</span>
 
 			</div>
@@ -87,7 +87,7 @@
 						<span class="light-color">
 							&nbsp;•&nbsp; <strong><a href="{:U('User/info',array('member'=>$topic['user_name']))}">{$topic.user_name}</a>
 							&nbsp;•&nbsp;</strong>
-							{$topic.publish_time} &nbsp;<if condition="$topic.last_comment_user neq null">• &nbsp;最后回复来自&nbsp;
+							<span class="timespan">{$topic.publish_time}</span> &nbsp;<if condition="$topic.last_comment_user neq null">• &nbsp;最后回复来自&nbsp;
 							<a href="{:U('User/info',array('member'=>$topic['last_comment_user']))}"> <strong>{$topic.last_comment_user}</strong>
 							</a></if>
 						</span>
@@ -120,7 +120,7 @@
 						<span>回复了 <a href="{:U('User/info',array('member'=>$comment['user_name']))}">{$comment.user_name}</a> 创建的主题 ›</span>
 						<span class="reply-dark"><a href="{:U('topic/detail',array('tid'=>$comment['tid']))}">{$comment.title}</a></span>
 					<span class="info-reply-time">
-						<span>{$comment.publish_time}</span>
+						<span class="timespan">{$comment.publish_time}</span>
 					</span>
 						<img class="arrow" src="__PUBLIC__/home/img/arrow.png"></div>
 					<div class="panel-body">
@@ -182,7 +182,44 @@
 	<block name="js">
 		<script>
 			$(document).ready(function() {
-				$("ul li:eq(1)").addClass("nav-active");
+				now = new Date();
+				function getTime() {
+						var old = new Date($(this).text().replace(/-/g,'/')),	//Firefox时间格式要求
+								dif = now - old,
+								day = Math.floor(dif / (24 * 3600 * 1000)),
+								hour = Math.floor(dif / (3600 * 1000)),
+								min = Math.floor(dif / (60 * 1000)),
+								second = Math.floor(dif / (1000)),
+
+								nowYear = now.getFullYear(),
+								oldYear = old.getFullYear(),
+								nowMonth = now.getMonth(),
+								oldMonth = old.getMonth();
+
+						if (second < 60) {
+							$(this).text(second + " 秒前");
+						} else if (min < 60) {
+							$(this).text(min + ' 分钟前');
+						} else if (hour < 24) {
+							$(this).text(hour + ' 小时 ' + (min - hour * 60) + ' 分钟前');
+						} else if (day < 32) {
+							$(this).text(day + ' 天前');
+						} else if (day < 366) {
+							if (nowYear === oldYear) {
+								$(this).text(nowMonth - oldMonth + ' 个月前');
+							} else {
+								$(this).text(nowMonth - oldMonth + 12 + ' 个月前')
+							}
+						} else {
+							$(this).text(now.getFullYear() - old.getFullYear() + " 年前");
+
+						}
+						$(this).show();
+						console.log(now,old);
+					}
+
+					$('.timespan').each(getTime);
+					$("ul li:eq(1)").addClass("nav-active");
 				$('#addattention').bind('click',function(){
 					if($('#addattention').text() == '加入特别关注'){
 						var ID = $('#userID').val();

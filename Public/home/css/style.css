@@ -486,8 +486,17 @@ td a {
     float: left;
 }
 .logo {
-    width: 1080px;
-    margin: 0 auto;
+    margin-left:130px;
+}
+@media screen and (max-width: 900px) { /*当屏幕尺寸小于900px时，应用下面的CSS样式*/
+    .logo {
+        margin-left:40px;
+        margin-top:6px;
+
+    }
+    .navbar{
+        height:60px;
+    }
 }
 
 .media-left {

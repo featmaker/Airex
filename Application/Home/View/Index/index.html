@@ -35,8 +35,8 @@
 		    <span style="font-size:10px;color: #CDCFD7">
 			<if condition="$topic['last_comment_user'] != null">
 			   	<em>.</em>&nbsp;最后回复来自&nbsp;<strong><a href="{:U('User/info',['member'=>$topic['last_comment_user']])}" title="" style="color: black;">{$topic.last_comment_user}</a></strong></span>
-				 <span class="badge" style="float:right">{$topic.comments}</span>				
 			</if>
+			  <span class="badge" style="float:right">{$topic.comments}</span>
 		  </div>
 	</div>
 	<hr>  	
@@ -86,7 +86,7 @@
 			 <a href="#" title="">
 				 <small>{$data['notifications']}条未读提醒</small>
 			 </a>
-			 <a href="#" title=""><span class="badge badge-balance">财富: {$data['userInfo']['wealth']}</span></a>
+			 <a href="#" title=""><span class="badge badge-balance">财富: {$data['userInfo']['wealth']} 豆</span></a>
 		 </div>
 
 	 </if>

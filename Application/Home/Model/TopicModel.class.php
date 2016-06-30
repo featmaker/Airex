@@ -195,7 +195,8 @@ class TopicModel extends Model
 		$topics['lists'] = M('category as c')->where(array('cat_name'=>$catName))
 										->join('airex_topic as t on t.cat_id = c.id')
 										->join('airex_user as u on u.id = t.uid')
-										->field('publish_time,title,imgpath,comments,user_name,node_name,t.id as tid,t.hits as hits,last_comment_user')
+										->field('publish_time,title,imgpath,comments,user_name,node_name,t.id
+												as tid,t.hits as hits,last_comment_user')
 										->join('airex_node as n on n.id = t.node_id')
 									    ->page($p.','.$limit)
 									    ->order('t.publish_time desc')
@@ -224,7 +225,8 @@ class TopicModel extends Model
 		$topics['lists'] = M('Node as n')->where(['n.node_name'=>$nodeName])
 						 ->join('airex_topic as t on t.node_id = n.id')
 						 ->join('airex_user as u on u.id = t.uid')
-						 ->field('publish_time,title,imgpath,comments,user_name,node_name,t.id as tid,t.hits as hits,last_comment_user')
+						 ->field('publish_time,title,imgpath,comments,user_name,node_name,t.id as tid,t.hits
+						 		as hits,last_comment_user')
 						 ->page($p.','.$limit)
 						 ->order('t.publish_time desc')
 						 ->select();
@@ -238,7 +240,6 @@ class TopicModel extends Model
 	}
 
 	/**
-
 	 * 根据用户名获取主题
 	 * @param  string $username [description]
 	 * @return [array] topics           [description]
@@ -269,7 +270,8 @@ class TopicModel extends Model
 		$topics['lists'] = M('Topic as t')->where($sql)
 								->join('airex_user as u on u.id = uid')
 								->join('airex_node as n on n.id = node_id')
-								->field('publish_time,title,u.imgpath as imgpath,comments,n.node_name as node_name,u.user_name as user_name,t.id as tid,last_comment_user')
+								->field('publish_time,title,u.imgpath as imgpath,comments,n.node_name as
+										node_name,u.user_name as user_name,t.id as tid,last_comment_user')
 			 					->order('publish_time desc')
 								->select();
 		return $topics;
