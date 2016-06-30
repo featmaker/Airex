@@ -216,10 +216,12 @@ class UserModel extends Model{
             ->field('id,url,resume,user_name,imgpath,gender,create_time')
             ->select()[0];
         $attention = M('attention');
-        if($attention->where('uid='.I('session.uid').' AND atten_uid='.$data['id'])->find()){
-            $data['attention'] = 1;
-        }else{
-            $data['attention'] = 0;
+        if(I('session.uid')){
+            if($attention->where('uid='.I('session.uid').' AND atten_uid='.$data['id'])->find()){
+                $data['attention'] = 1;
+            }else{
+                $data['attention'] = 0;
+            }
         }
         return $data;
     }
