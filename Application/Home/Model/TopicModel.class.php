@@ -261,21 +261,22 @@ class TopicModel extends Model
 	 * @return [type]           [description]
 	 */
 	public function getTopicsByUserID($uid){
-		$sql = 'uid=';
-		$uid_last = array_pop($uid);
-		foreach($uid as $u){
-			$sql .= $u.' OR uid=';
-		}
-		$sql .= $uid_last;
-		$topics['lists'] = M('Topic as t')->where($sql)
-								->join('airex_user as u on u.id = uid')
-								->join('airex_node as n on n.id = node_id')
-								->field('publish_time,title,u.imgpath as imgpath,comments,n.node_name as
+		if(!empty($uid)){
+			$sql = 'uid=';
+			$uid_last = array_pop($uid);
+			foreach($uid as $u){
+				$sql .= $u.' OR uid=';
+			}
+			$sql .= $uid_last;
+			$topics['lists'] = M('Topic as t')->where($sql)
+				->join('airex_user as u on u.id = uid')
+				->join('airex_node as n on n.id = node_id')
+				->field('publish_time,title,u.imgpath as imgpath,comments,n.node_name as
 										node_name,u.user_name as user_name,t.id as tid,last_comment_user')
-			 					->order('publish_time desc')
-								->select();
-		return $topics;
-
+				->order('publish_time desc')
+				->select();
+			return $topics;
+		}
 	}
 
 

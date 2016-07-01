@@ -284,7 +284,7 @@ class UserController extends BaseController{
 			$this->assign('data',$data);
 			$this->display();
 		}else{
-
+			$this->error('用户不存在');
 		}
 
 	}
