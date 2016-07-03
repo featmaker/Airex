@@ -23,11 +23,12 @@ img.reply:hover {
     float: right;
 }
 .small {
-    text-indent: 16px;
+
 }
 
+
 .header{
-    margin:4px;
+
 }
 .panel-footer {
     position: relative;
@@ -103,7 +104,7 @@ h6 > a {
     color: gray;
 }
 .user-name{
-     margin:0;
+    margin:0;
 }
 
 
@@ -120,7 +121,7 @@ h6 > a {
 }
 
 
-
+/**bug*/
 .time {
     font-size: 12px;
 
@@ -152,7 +153,7 @@ h6 > a {
     margin: 2em 0;
 }
 
-.collapse {
+#collapse {
     display: block;
 }
 
@@ -172,6 +173,9 @@ h6 > a {
 .media-body > h6 > span {
     color: #a2a2a2;
 }
+/**bug*/
+
+
 
 /*a {*/
 /*color: black;*/

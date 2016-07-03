@@ -234,8 +234,8 @@ class UserController extends BaseController{
 			}
 		}else{
 			$data = $this->User->getSettingUserInfo();
-			$siteInfo = D('Index')->getSiteInfo();                 //站点信息
-			$hotNodes= $this->Node->getHotNodes();                  //热门节点
+			$siteInfo = D('Index')->getSiteInfo();//站点信息
+			$hotNodes= $this->Node->getHotNodes();//热门节点
 			$this->assign('data', $data);
 			$this->assign('siteInfo',$siteInfo);
 			$this->assign('hotNodes',$hotNodes);

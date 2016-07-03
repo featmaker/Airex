@@ -55,7 +55,7 @@ class TopicModel extends Model
 	 */
 	public function appendContent($tid,$content){
 		$originContent = $this->where(array('id'=>$tid))->getField('content');
-		$newContent = $originContent.'<br>'.$content;
+		$newContent = $originContent.'<span class=\'append\'><hr><p class=\'small\' style=\'background-color:#F0F0F0\'>'.$content.'</p></span>';
 		if ($this->where(array('id'=>$tid))->setField('content',$newContent)) {
 			return true;
 		}

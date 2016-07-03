@@ -90,7 +90,7 @@ class TopicController extends BaseController
 			if (!$this->Topic->appendContent($tid,$content)) {
 				$this->error($this->Topic->getError());
 			}
-			$this->success('追加信息成功!',U('User/info'));
+			$this->success('追加信息成功!',U('Topic/detail',array('tid'=>I('get.tid'))));
 		}else{
 			$data['tid'] = I('get.tid','','intval');
 			$data['title'] = $this->Topic->getFieldByTid($data['tid'],'title');
