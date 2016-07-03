@@ -25,7 +25,6 @@ class UserController extends BaseController{
 		$this->Topic = D('Topic');
 		$this->Comment = D('Comment');
 	}
-
 	/**
 	 * 验证码生成
 	 */
@@ -62,7 +61,6 @@ class UserController extends BaseController{
 		}else{
 			$this->display();
 		}
-
 	}
 
 
@@ -84,17 +82,12 @@ class UserController extends BaseController{
 				}else{
 					$this->error($this->User->getError());
 				}
-
-
 			}else{
 				$this->error('验证码错误，请重新输入！');
 			}
-
 		}else{
-
 			$this->display();
 		}
-
 	}
 
 	/**
@@ -104,17 +97,15 @@ class UserController extends BaseController{
 		//$User = new \Home\Model\UserModel();
 		$username = I('post.username');
 		echo $this->User->checkUsername($username);
-
 	}
 
 	/**
 	 * AJAX检查占用Email接口
 	 */
 	public function checkEmail(){
-		//$User = new \Home\Model\UserModel();
+		//$User = new \Home\Model\UserModel(
 		$email = I('post.email');
 		echo $this->User->checkEmail($email);
-
 	}
 
 	/**
@@ -136,7 +127,6 @@ class UserController extends BaseController{
 			}else{
 				$this->error('不存在此邮箱');
 			}
-
 		}else{
 			$this->display();
 		}
@@ -175,8 +165,6 @@ class UserController extends BaseController{
 		}else{
 			$this->error('非法操作',U('Index/index'));
 		}
-
-
 	}
 
 	/**
@@ -286,7 +274,6 @@ class UserController extends BaseController{
 		}else{
 			$this->error('用户不存在');
 		}
-
 	}
 
 	/**
