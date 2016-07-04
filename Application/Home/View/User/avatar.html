@@ -1,4 +1,4 @@
-<extend name="Public:base" />
+<extend name="Public:base"/>
 <block name="title">
     <title>头像修改 - Airex</title>
 </block>
@@ -6,7 +6,8 @@
 <block name="css">
 
 
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/setting.css"></block>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/setting.css">
+</block>
 
 <block name="page-main">
 
@@ -38,11 +39,12 @@
 
 </block>
 <block name="sidebar">
-    <include file="Public:sidebar" mode="all" />>
+    <include file="Public:sidebar" mode="all"/>
+    >
 </block>
 <block name="js">
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             var actives = $('#navbar ul li');
             actives.eq(2).addClass('nav-active');
         });

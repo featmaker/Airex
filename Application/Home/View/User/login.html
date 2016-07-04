@@ -1,4 +1,4 @@
-<extend name="Public:base" />
+<extend name="Public:base"/>
 <block name="title"><title>登录 - Airex</title></block>
 
 <block name="page-main">
@@ -10,7 +10,16 @@
     </div>
 
     <div class="signform">
+
         <form action="" method="post">
+            <if condition="$alert_content neq null">
+                <div class="alert alert-warning" id="warning">
+                    <a href="#" class="close" data-dismiss="alert">
+                        &times;
+                    </a>
+                    {$alert_content}
+                </div>
+            </if>
             <table cellpadding="5" cellspacing="0" border="0" width="100%">
                 <tr>
                     <td width="120" align="right" valign="top">
@@ -66,5 +75,17 @@
 
         </div>
     </div>
+</block>
+
+<block name="js">
+    <script type="text/javascript">
+
+        $(function () {
+            $(".close").click(function () {
+                $("#warning").alert('close');
+            });
+        });
+    </script>
+
 </block>
 

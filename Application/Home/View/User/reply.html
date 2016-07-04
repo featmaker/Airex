@@ -1,4 +1,4 @@
-<extend name="Public:base" />
+<extend name="Public:base"/>
 <block name="title">
     <title>{$data.user_name}的全部回复 - Airex</title>
 </block>
@@ -7,8 +7,6 @@
 </block>
 
 <block name="page-main">
-
-
 
 
     <div class="col-sm-12 nav">
@@ -26,7 +24,8 @@
                     </ul>
                 </div>
             </div>
-        </nav> <hr>
+        </nav>
+        <hr>
     </div>
 
 
@@ -35,28 +34,26 @@
 
         <volist name="comments['lists']" id="comment" empty="该用户暂未发表回复">
 
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <span>回复了 <a href="{:U('User/info',array('member'=>$comment['user_name']))}">{$comment.user_name}</a> 创建的主题 ›</span>
-                <span class="reply-dark"><a href="{:U('topic/detail',array('tid'=>$comment['tid']))}">{$comment.title}</a></span>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span>回复了 <a
+                            href="{:U('User/info',array('member'=>$comment['user_name']))}">{$comment.user_name}</a> 创建的主题 ›</span>
+                    <span class="reply-dark"><a href="{:U('topic/detail',array('tid'=>$comment['tid']))}">{$comment.title}</a></span>
 					<span class="info-reply-time">
 						<span>{$comment.publish_time}</span>
 					</span>
-                <img class="arrow" src="__PUBLIC__/home/img/arrow.png"></div>
-            <div class="panel-body">
-                <div class="reply-content">
-                    <span>{$comment.content}</span>
+                    <img class="arrow" src="__PUBLIC__/home/img/arrow.png"></div>
+                <div class="panel-body">
+                    <div class="reply-content">
+                        <span>{$comment.content}</span>
+                    </div>
                 </div>
-            </div>
 
-        </div>
+            </div>
 
         </volist>
 
     </div>
-
-
-
 
 
 </block>
@@ -69,7 +66,7 @@
 
 <block name="js">
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $("ul li:eq(1)").addClass("nav-active");
         });
     </script>

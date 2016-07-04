@@ -8,7 +8,7 @@
                 <p>没有账号?前往 <a href="{:U('User/register')}">注册</a></p>
             </div>
         </div>
-        <else />
+        <else/>
 
         <div class="sidebar-module sidebar-module-inset">
             <a href="{:U('User/info',['member'=>$_SESSION['user']])}" title="" class="info">
@@ -19,9 +19,12 @@
 
             <table class="table">
                 <tr>
-                    <td align="center"><a class="info" href="#" title="" ><span class="lead">{$sidebar['userInfo']['nodes']}</span> <br><span>节点收藏</span></a></td>
-                    <td align="center"><a class="info" href="{:U('User/coltopic')}" title="1" ><span class="lead">{$sidebar['userInfo']['topics']}</span> <br><span>主题收藏</span></a></td>
-                    <td align="center"><a class="info" href="{:U('User/attentions')}" title="1" ><span class="lead">{$sidebar['userInfo']['attentions']}</span> <br><span>特别关注</span></a></td>
+                    <td align="center"><a class="info" href="#" title=""><span class="lead">{$sidebar['userInfo']['nodes']}</span>
+                        <br><span>节点收藏</span></a></td>
+                    <td align="center"><a class="info" href="{:U('User/coltopic')}" title="1"><span class="lead">{$sidebar['userInfo']['topics']}</span>
+                        <br><span>主题收藏</span></a></td>
+                    <td align="center"><a class="info" href="{:U('User/attentions')}" title="1"><span class="lead">{$sidebar['userInfo']['attentions']}</span>
+                        <br><span>特别关注</span></a></td>
                 </tr>
             </table>
             <hr style="margin: 4px 0">
@@ -45,13 +48,13 @@
     </div>
     <div class="sidebar-module sidebar-module-inset">
         <h4>站点实况</h4>
-        <p>注册会员：	{$sidebar['siteInfo']['member_num']} 位</p>
-        <p>全站主题：	{$sidebar['siteInfo']['topic_num']} 条</p>
-        <p>全站回复：	{$sidebar['siteInfo']['comment_num']} 条</p>
+        <p>注册会员： {$sidebar['siteInfo']['member_num']} 位</p>
+        <p>全站主题： {$sidebar['siteInfo']['topic_num']} 条</p>
+        <p>全站回复： {$sidebar['siteInfo']['comment_num']} 条</p>
     </div>
 
 
-    <else />
+    <else/>
 
     <if condition="null == session('user')">
         <div class="sidebar-module sidebar-module-inset">
@@ -62,7 +65,7 @@
                 <p>没有账号?前往 <a href="{:U('User/register')}">注册</a></p>
             </div>
         </div>
-        <else />
+        <else/>
 
         <div class="sidebar-module sidebar-module-inset">
             <a href="{:U('User/info',['member'=>$_SESSION['user']])}" title="" class="info">
@@ -73,9 +76,12 @@
 
             <table class="table">
                 <tr>
-                    <td align="center"><a class="info" href="#" title="" ><span class="lead">{$sidebar['userInfo']['nodes']}</span> <br><span>节点收藏</span></a></td>
-                    <td align="center"><a class="info" href="{:U('User/coltopic')}" title="1" ><span class="lead">{$sidebar['userInfo']['topics']}</span> <br><span>主题收藏</span></a></td>
-                    <td align="center"><a class="info" href="{:U('User/attentions')}" title="1" ><span class="lead">{$sidebar['userInfo']['attentions']}</span> <br><span>特别关注</span></a></td>
+                    <td align="center"><a class="info" href="#" title=""><span class="lead">{$sidebar['userInfo']['nodes']}</span>
+                        <br><span>节点收藏</span></a></td>
+                    <td align="center"><a class="info" href="{:U('User/coltopic')}" title="1"><span class="lead">{$sidebar['userInfo']['topics']}</span>
+                        <br><span>主题收藏</span></a></td>
+                    <td align="center"><a class="info" href="{:U('User/attentions')}" title="1"><span class="lead">{$sidebar['userInfo']['attentions']}</span>
+                        <br><span>特别关注</span></a></td>
                 </tr>
             </table>
             <hr style="margin: 4px 0">

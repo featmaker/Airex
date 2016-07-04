@@ -1,4 +1,4 @@
-<extend name="Public:base" />
+<extend name="Public:base"/>
 <block name="title">
     <title>{$data.user_name}的特别关注 - Airex</title>
 </block>
@@ -7,8 +7,6 @@
 </block>
 
 <block name="page-main">
-
-
 
 
     <div class="col-sm-12 nav">
@@ -40,7 +38,8 @@
 					<span>
 						<span><a href="{:U('topic/detail',array('tid'=>$topic['tid']))}">{$topic.title}</a></span>
 						<br>
-						<span class="label label-default location"><a href="{:U('node/topics',array('node'=>$topic['node_name']))}">{$topic.node_name}</a></span>
+						<span class="label label-default location"><a
+                                href="{:U('node/topics',array('node'=>$topic['node_name']))}">{$topic.node_name}</a></span>
 						<span class="light-color">
 							&nbsp;•&nbsp; <strong><a href="{:U('User/info',array('member'=>$topic['user_name']))}">{$topic.user_name}</a>
                             &nbsp;•&nbsp;</strong>
@@ -61,8 +60,6 @@
     </div>
 
 
-
-
 </block>
 
 <block name="sidebar">
@@ -73,7 +70,7 @@
 
 <block name="js">
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $("ul li:eq(1)").addClass("nav-active");
         });
     </script>
