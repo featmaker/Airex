@@ -31,9 +31,7 @@ class NodeController extends BaseController
 		$this->assign('nodeInfo',$nodeInfo);
 		$this->assign('topics',$topics);
 		$this->assign('node',$node);
-
-		// var_dump($nodeInfo);
-		// var_dump($topics);
+		$this->showSidebar('all');//展示侧边栏
 		$this->display('Topic/node');
 	}
 }

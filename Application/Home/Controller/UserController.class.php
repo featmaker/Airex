@@ -207,11 +207,8 @@ class UserController extends BaseController{
 		}else{
 			//$User = new \Home\Model\UserModel();
 			$data = $this->User->getSettingUserInfo();
-			$siteInfo = D('Index')->getSiteInfo();                 //站点信息
-			$hotNodes= $this->Node->getHotNodes();                  //热门节点
-			$this->assign('siteInfo',$siteInfo);
-			$this->assign('hotNodes',$hotNodes);
 			$this->assign('data', $data);
+			$this->showSidebar('all');//展示侧边栏
 			$this->display();
 		}
 
@@ -234,11 +231,8 @@ class UserController extends BaseController{
 			}
 		}else{
 			$data = $this->User->getSettingUserInfo();
-			$siteInfo = D('Index')->getSiteInfo();//站点信息
-			$hotNodes= $this->Node->getHotNodes();//热门节点
 			$this->assign('data', $data);
-			$this->assign('siteInfo',$siteInfo);
-			$this->assign('hotNodes',$hotNodes);
+            $this->showSidebar('all');//展示侧边栏
 			$this->display();
 		}
 	}
@@ -262,14 +256,12 @@ class UserController extends BaseController{
 		}
 		$data = $this->User->getUserInfo($member);
 		if($data){
-			$userInfo = $this->User->getSidebarUserInfo();
 			$topics = $this->Topic->getTopicsByUser($member,5);//根据用户名获取文章
-			//var_dump($topics);
 			$comments = $this->Comment->getCommentByUser($member,10); //获取10条最新评论
 			$this->assign('topics',$topics);
 			$this->assign('comments',$comments);
-			$this->assign('userInfo', $userInfo);
 			$this->assign('data',$data);
+            $this->showSidebar();//展示侧边栏
 			$this->display();
 		}else{
 			$this->error('用户不存在');
@@ -286,13 +278,11 @@ class UserController extends BaseController{
 
 		$data = $this->User->getUserInfo(I('session.user'));
 		$this->assign('data',$data);
-		$userInfo = $this->User->getSidebarUserInfo();
-		$this->assign('userInfo',$userInfo);
 		$attentions = $this->User->getUserAttentions();
 		$topics = $this->Topic->getTopicsbyUserID($attentions);
 		$this->assign('topics',$topics);
+        $this->showSidebar();//展示侧边栏
 		$this->display();
-		//var_dump($topics);
 	}
 
 	/**
@@ -354,11 +344,10 @@ class UserController extends BaseController{
 		//$User = new \Home\Model\UserModel();
 		$data = $this->User->getUserInfo($member);
 		if($data){
-			$userInfo = $this->User->getSidebarUserInfo();
 			$topics = $this->Topic->getTopicsByUser($member);//根据用户名获取文章
 			$this->assign('topics',$topics);
 			$this->assign('data',$data);
-			$this->assign('userInfo', $userInfo);
+            $this->showSidebar();//展示侧边栏
 			$this->display();
 		}else{
 			$this->error('此用户不存在！');
@@ -373,13 +362,10 @@ class UserController extends BaseController{
 		//$User = new \Home\Model\UserModel();
 		$data = $this->User->getUserInfo($member);
 		if($data){
-			$userInfo = $this->User->getSidebarUserInfo();
-			//$topics = $this->Topic->getTopicsByUser($member);//根据用户名获取文章
-			//$this->assign('topics',$topics);
 			$this->assign('data',$data);
-			$this->assign('userInfo', $userInfo);
 			$comments = $this->Comment->getCommentByUser($member);
 			$this->assign('comments',$comments);
+            $this->showSidebar();//展示侧边栏
 			$this->display();
 		}else{
 			$this->error('此用户不存在！');
@@ -395,12 +381,11 @@ class UserController extends BaseController{
 		}
 		$data = $this->User->getUserInfo(I('session.user'));
 		$this->assign('data',$data);
-		$userInfo = $this->User->getSidebarUserInfo();
-		$this->assign('userInfo',$userInfo);
 		$uid = I('session.uid');
 		$coltopic_tid = $this->Topic->getColTopicByID($uid);
         $topics = $this->Topic->getTopicByTID($coltopic_tid);
 		$this->assign('topics',$topics);
+        $this->showSidebar();//展示侧边栏
 		$this->display();
 	}
 }

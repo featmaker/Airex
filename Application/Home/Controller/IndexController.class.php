@@ -26,11 +26,6 @@ class IndexController extends BaseController
      * @return [type] [description]
      */
     public function index(){
-        if (session('?uid')) {
-            $Index = D('Index');                               //用户信息
-            $data = $Index->getUserInfo();   
-            $this->assign('data',$data);           
-        }
         $catName = I('get.cat');
         if ($catName != null) {
             if (!catValidate($catName)) {
@@ -40,14 +35,11 @@ class IndexController extends BaseController
         $categorys = $this->Cate->getCategorys();             //获取导航栏分类
         $nodes=$this->Node->getNodeByCatName($catName);      //根据分类获取节点
         $topics = $this->Topic->getTopicsByCat($catName);      //根据分类获取文章
-        $siteInfo = D('Index')->getSiteInfo();                 //站点信息
-        $hotNodes= $this->Node->getHotNodes();                  //热门节点
         $this->assign('categorys',$categorys);
         $this->assign('nodes',$nodes);
         $this->assign('activeCat',$catName);                   //当前分类
         $this->assign('topics',$topics);
-        $this->assign('siteInfo',$siteInfo);
-        $this->assign('hotNodes',$hotNodes);
+        $this->showSidebar('all');//展示侧边栏
         $this->display();
     }
 }

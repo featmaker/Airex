@@ -38,41 +38,7 @@
 
 </block>
 <block name="sidebar">
-    <div class="sidebar-module sidebar-module-inset">
-        <a href="{:U('User/info',['member'=>$_SESSION['user']])}" title="" class="info">
-            <img src="__PUBLIC__{$data['userInfo']['imgpath']}" alt="..." class="img-rounded">
-        </a>
-        &nbsp;&nbsp;
-        <label><a href="{:U('User/info',['member'=>$_SESSION['user']])}" title="">{$Think.session.user}</a></label>
-        <table class="table">
-            <tr>
-                <td align="center"><a class="info" href="#" title="" ><span class="lead">{$data['userInfo']['nodes']}</span> <br><span>节点收藏</span></a></td>
-                <td align="center"><a class="info" href="#" title="1" ><span class="lead">{$data['userInfo']['topics']}</span> <br><span>主题收藏</span></a></td>
-                <td align="center"><a class="info" href="#" title="1" ><span class="lead">{$data['userInfo']['attentions']}</span> <br><span>特别关注</span></a></td>
-            </tr>
-        </table>
-        <hr style="margin: 4px 0">
-        <a href="{:U('topic/add')}" title="">
-            <span class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp;创建新主题</span>
-        </a>
-        <hr style="margin: 8px 0">
-        <a href="#" title="">
-            <small>{$data['notifications']}条未读提醒</small>
-        </a>
-        <a href="#" title=""><span class="badge badge-balance">财富: {$data['userInfo']['wealth']}</span></a>
-    </div>
-    <div class="sidebar-module sidebar-module-inset">
-        <h4>最热节点</h4>
-        <volist name="hotNodes" id="hot">
-            <a href="#" class="item-node">{$hot['node_name']}</a>
-        </volist>
-    </div>
-    <div class="sidebar-module sidebar-module-inset">
-        <h4>站点实况</h4>
-        <p>注册会员	{$siteInfo.member_num}</p>
-        <p>主题	{$siteInfo.topic_num}</p>
-        <p>回复	{$siteInfo.comment_num}</p>
-    </div>
+    <include file="Public:sidebar" mode="all" />>
 </block>
 <block name="js">
     <script type="text/javascript">

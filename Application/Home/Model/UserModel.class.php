@@ -279,7 +279,7 @@ class UserModel extends Model{
      */
     public function getSidebarUserInfo(){
         $uid = session('uid');
-        $data['userInfo'] = $this->where(array('id'=>$uid))
+        $data = $this->where(array('id'=>$uid))
             ->field('imgpath,attentions,topics,wealth,nodes')
             ->select()[0];
         $data['notifications'] = M('reply')->where(array('to_uid'=>$uid,'is_read'=>'否'))

@@ -67,40 +67,7 @@
 
 <block name="sidebar">
 
-    <if condition="null == session('user')">
-        <div class="sidebar-module sidebar-module-inset">
-            <h4>注册/登录</h4>
-            <p style="font-size:12px;color:grey">Airex是一个基于ThinkPHP的轻型bbs社区.</p>
-            <div align="center"><br>
-                <a class="btn btn-default" href="{:U('User/login')}" role="button">立即登陆</a><br><br>
-                <p>没有账号?前往 <a href="{:U('User/register')}">注册</a></p>
-            </div>
-        </div>
-        <else />
-        <div class="sidebar-module sidebar-module-inset">
-            <a href="{:U('User/info',array('member'=>$_SESSION['user']))}" title="" class="info">
-                <img src="__PUBLIC__{$userInfo['userInfo']['imgpath']}" alt="..." class="img-rounded">
-            </a>
-            &nbsp;&nbsp;
-            <label><a href="{:U('User/info',array('member'=>$_SESSION['user']))}" title="">{$Think.session.user}</a></label>
-            <table class="table">
-                <tr>
-                    <td align="center"><a class="info" href="#" title="" ><span class="lead">{$userInfo['userInfo']['nodes']}</span> <br><span>节点收藏</span></a></td>
-                    <td align="center"><a class="info" href="#" title="1" ><span class="lead">{$userInfo['userInfo']['topics']}</span> <br><span>主题收藏</span></a></td>
-                    <td align="center"><a class="info" href="#" title="1" ><span class="lead">{$userInfo['userInfo']['attentions']}</span> <br><span>特别关注</span></a></td>
-                </tr>
-            </table>
-            <hr style="margin: 4px 0">
-            <a href="{:U('topic/add')}" title="">
-                <span class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp;创建新主题</span>
-            </a>
-            <hr style="margin: 8px 0">
-            <a href="#" title="">
-                <small>{$userInfo['notifications']}条未读提醒</small>
-            </a>
-            <a href="#" title=""><span class="badge badge-balance">财富: {$userInfo['userInfo']['wealth']}</span></a>
-        </div>
-    </if>
+    <include file="Public:sidebar"/>
 
 </block>
 

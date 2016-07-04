@@ -10,8 +10,8 @@ class TopicController extends BaseController
 {
 	
 	public $Topic;
-	function __construct()
-	{
+
+	function __construct(){
 		parent::__construct();
 		if (!checkLogin()) {
 			$this->redirect("User/login",'',0);
@@ -59,19 +59,11 @@ class TopicController extends BaseController
 		}
 		$topicInfo = $this->Topic->getDataById($tid);		//根据tid获取详情
 		$commentInfo = D('Comment')->getCommentByTid($tid);	//根据tid获取评论
-		$data = D('Index')->getUserInfo();			//获取登陆用户信息
 		$this->assign('topicInfo',$topicInfo);
 		$this->assign('commentInfo',$commentInfo);
-		$this->assign('data',$data);
 		$this->assign('tid',$tid);
-		// var_dump($commentInfo);
-		// // die;
-		// var_dump(session('user'));
-		// var_dump($commentInfo[0]['user_name']);
-		// var_dump(session('user') == $commentInfo[0]['user_name']);
-		// die;
+        $this->showSidebar('all');//展示侧边栏
 		$this->display();
-		//var_dump($topicInfo);
 	}
 
 	/**
