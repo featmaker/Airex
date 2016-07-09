@@ -1,11 +1,12 @@
-<<<<<<< HEAD
-<extend name="Public:base" />
+<<<<<<< HEAD <extend name="Public:base" />
 <block name="title">
     <title>登录 - Airex</title>
 </block>
 =======
-<extend name="Public:base"/>
-<block name="title"><title>登录 - Airex</title></block>
+<extend name="Public:base" />
+<block name="title">
+    <title>登录 - Airex</title>
+</block>
 >>>>>>> a5f61b5b6725a80d48e00ec3920c6a4638340fca
 
 <block name="page-main">
@@ -23,8 +24,7 @@
                 <div class="alert alert-warning" id="warning">
                     <a href="#" class="close" data-dismiss="alert">
                         &times;
-                    </a>
-                    {$alert_content}
+                    </a> {$alert_content}
                 </div>
             </if>
             <table cellpadding="5" cellspacing="0" border="0" width="100%">
@@ -89,14 +89,13 @@
     </div>
 </block>
 
-<<<<<<< HEAD
 <block name="css">
     <style type="text/css">
         .notice {
             width: 100px !important;
             color: red !important;
-            margin-left:-200px !important;
-            font-size:14px !important;
+            margin-left: -200px !important;
+            font-size: 14px !important;
             display: none;
         }
 
@@ -116,8 +115,16 @@
     </style>
 </block>
 
+
 <block name="js">
-    <script>
+    <script type="text/javascript">
+        $(function() {
+            $(".close").click(function() {
+                $("#warning").alert('close');
+            });
+        });
+
+        //登录验证
         $(document).ready(function() {
             var loginBtn = $("#login-btn"),
                 input = $(".form-control");
@@ -134,23 +141,10 @@
                 }
             });
 
-            $(".form-control").focus(function(){
+            $(".form-control").focus(function() {
                 $(".notice").hide();
             });
         });
     </script>
-</block>
-=======
-<block name="js">
-    <script type="text/javascript">
-
-        $(function () {
-            $(".close").click(function () {
-                $("#warning").alert('close');
-            });
-        });
-    </script>
 
 </block>
-
->>>>>>> a5f61b5b6725a80d48e00ec3920c6a4638340fca
