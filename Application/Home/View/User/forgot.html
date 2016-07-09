@@ -1,5 +1,7 @@
 <extend name="Public:base" />
-<block name="title"><title>找回密码 - Airex</title></block>
+<block name="title">
+    <title>找回密码 - Airex</title>
+</block>
 
 <block name="page-main">
     <div class="post-header">
@@ -16,9 +18,10 @@
                     <td width="120" align="right" valign="top">
                         <label>电子邮箱</label>
                     </td>
-                    <td width="auto" align="left">
-                        <input type="email" name="email" class="form-control">
+                    <td class="find-input" width="auto" align="left">
+                        <input type="text" name="email" class="form-control input">
                     </td>
+                    <td><span class="notice">请输入正确的邮箱</span></td>
                 </tr>
                 <tr>
                     <td width="120" align="right" valign="top">
@@ -31,7 +34,7 @@
                     <td width="120" align="right" valign="top">
                     </td>
                     <td width="auto" align="left">
-                        <button type="submit">找回密码</button>
+                        <button id="submit" type="submit">找回密码</button>
                     </td>
                 </tr>
 
@@ -47,10 +50,59 @@
     <div class="sidebar-module sidebar-module-inset">
         <h4>还没有帐号？</h4>
         <p style="font-size:12px;color:grey">Airex是一个基于ThinkPHP的轻型bbs社区.</p>
-        <div align="center"><br>
+        <div align="center">
+            <br>
 
-            <a class="btn btn-default" href="{:U('User/register')}" role="button">前往注册</a><br><br>
+            <a class="btn btn-default" href="{:U('User/register')}" role="button">前往注册</a>
+            <br>
+            <br>
         </div>
     </div>
 </block>
 
+<block name="js">
+    <script>
+        $(document).ready(function() {
+            $("#submit").click(function() {
+                if (!$(".input").val().match(
+                        /^[a-zA-Z0-9]+@[a-zA-Z0-9]+[.]{1}[a-zA-Z0-9]+/)) {
+                    $(".notice").show();
+                    return false;
+                } else {
+                    $("#submit").text("发送邮件...");
+                    return false;
+                }
+            });
+
+            $(".input").focus(function(){
+                $(".notice").hide();
+            });
+        });
+    </script>
+</block>
+
+<block name="css">
+    <style type="text/css">
+        .notice {
+            color: red !important;
+            width: 100px;
+            margin-left: -150px !important;
+            font-size: 14px !important;
+            display: none;
+        }
+
+        .input {
+            width: 100% !important;
+        }
+
+        .find-input {
+            display: inline-block;
+            width: 300px;
+        }
+
+        #submit{
+            width:150px;
+        }
+    </style>
+
+</block>

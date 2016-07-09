@@ -3,7 +3,7 @@ $(document).ready(function() {
 	console.time("each");
 
 	function getTime() {
-		var old = new Date($(this).text().replace(/-/g,'/')),	//Firefox时间格式要求
+		var old = new Date($(this).text().replace(/-/g, '/')), //Firefox时间格式要求
 			dif = now - old,
 			day = Math.floor(dif / (24 * 3600 * 1000)),
 			hour = Math.floor(dif / (3600 * 1000)),
@@ -27,10 +27,10 @@ $(document).ready(function() {
 			if (nowYear === oldYear) {
 				$(this).text(nowMonth - oldMonth + ' 个月前');
 			} else {
-				$(this).text(nowMonth - oldMonth + 12 + ' 个月前')
+				$(this).text(nowMonth - oldMonth + 12 + ' 个月前');
 			}
 		} else {
-			$(this).text(now.getFullYear() - old.getFullYear() + " 年前");
+	$(this).text(now.getFullYear() - old.getFullYear() + " 年前");
 
 		}
 		$(this).show();

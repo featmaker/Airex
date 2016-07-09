@@ -1,5 +1,7 @@
 <extend name="Public:base" />
-<block name="title"><title>登录 - Airex</title></block>
+<block name="title">
+    <title>登录 - Airex</title>
+</block>
 
 <block name="page-main">
     <div class="post-header">
@@ -14,36 +16,39 @@
             <table cellpadding="5" cellspacing="0" border="0" width="100%">
                 <tr>
                     <td width="120" align="right" valign="top">
-                        <label>用户名</label>
+                        <label for="username">用户名</label>
                     </td>
-                    <td width="auto" align="left">
-                        <input type="text" class="form-control" name="username">
+                    <td class="login-input" width="auto" align="left">
+                        <input type="text" id="username" class="form-control" name="username">
                     </td>
+                    <td><span class="notice">请输入用户名</span></td>
+
+
                 </tr>
                 <tr>
                     <td width="120" align="right" valign="top">
-                        <label>密码</label>
+                        <label for="password">密码</label>
                     </td>
-                    <td width="auto" align="left">
-                        <input class="form-control" type="password" name="password">
+                    <td class="login-input" width="auto" align="left">
+                        <input id="password" class="form-control" type="password" name="password">
                     </td>
+
+                    <td><span class="notice">请输入密码</span></td>
+
                 </tr>
                 <tr>
                     <td width="120" align="right" valign="top">
 
                     </td>
                     <td width="auto" align="left">
-
-                        <button type="submit">登录</button>
+                        <button id="login-btn" type="submit">登录</button>
                     </td>
                 </tr>
 
                 <tr>
                     <td width="120" align="right" valign="top">
-
                     </td>
                     <td width="auto" align="left">
-
                         <a href="{:U('User/forgot')}">忘记密码了？</a>
                     </td>
                 </tr>
@@ -59,12 +64,64 @@
     <div class="sidebar-module sidebar-module-inset">
         <h4>还没有帐号？</h4>
         <p style="font-size:12px;color:grey">Airex是一个基于ThinkPHP的轻型bbs社区.</p>
-        <div align="center"><br>
+        <div align="center">
+            <br>
 
             <a class="btn btn-default" href="{:U('User/register')}" role="button">前往注册</a>
-            <br><br>
+            <br>
+            <br>
 
         </div>
     </div>
 </block>
 
+<block name="css">
+    <style type="text/css">
+        .notice {
+            width: 100px !important;
+            color: red !important;
+            margin-left:-200px !important;
+            font-size:14px !important;
+            display: none;
+        }
+
+        .login-input {
+            display: inline-block;
+            width: 250px;
+        }
+
+        #username,
+        #password {
+            width: 100%;
+        }
+
+        #login-btn {
+            width: 150px;
+        }
+    </style>
+</block>
+
+<block name="js">
+    <script>
+        $(document).ready(function() {
+            var loginBtn = $("#login-btn"),
+                input = $(".form-control");
+
+            loginBtn.click(function() {
+                if (input[1].value.trim() === "") {
+                    $(".notice:first").show();
+                    return false;
+                } else if (input[2].value.trim() === "") {
+                    $(".notice:last").show();
+                    return false;
+                } else {
+                    loginBtn.text("登录中...");
+                }
+            });
+
+            $(".form-control").focus(function(){
+                $(".notice").hide();
+            });
+        });
+    </script>
+</block>
