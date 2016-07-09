@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 <extend name="Public:base" />
 <block name="title">
     <title>登录 - Airex</title>
 </block>
+=======
+<extend name="Public:base"/>
+<block name="title"><title>登录 - Airex</title></block>
+>>>>>>> a5f61b5b6725a80d48e00ec3920c6a4638340fca
 
 <block name="page-main">
     <div class="post-header">
@@ -12,7 +17,16 @@
     </div>
 
     <div class="signform">
+
         <form action="" method="post">
+            <if condition="$alert_content neq null">
+                <div class="alert alert-warning" id="warning">
+                    <a href="#" class="close" data-dismiss="alert">
+                        &times;
+                    </a>
+                    {$alert_content}
+                </div>
+            </if>
             <table cellpadding="5" cellspacing="0" border="0" width="100%">
                 <tr>
                     <td width="120" align="right" valign="top">
@@ -75,6 +89,7 @@
     </div>
 </block>
 
+<<<<<<< HEAD
 <block name="css">
     <style type="text/css">
         .notice {
@@ -125,3 +140,17 @@
         });
     </script>
 </block>
+=======
+<block name="js">
+    <script type="text/javascript">
+
+        $(function () {
+            $(".close").click(function () {
+                $("#warning").alert('close');
+            });
+        });
+    </script>
+
+</block>
+
+>>>>>>> a5f61b5b6725a80d48e00ec3920c6a4638340fca

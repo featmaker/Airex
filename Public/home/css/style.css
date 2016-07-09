@@ -44,6 +44,7 @@ hr {
 }
 .navbar.navbar-fixed-top {
     border: 0;
+    background-color: white;
 }
 
 #logo {
@@ -55,6 +56,7 @@ hr {
     background-color: white;
     box-shadow: 0 1px 4px 0 #9f9f9f;
 }
+
 
 .container-fluid {
     width: 85%;
@@ -425,7 +427,7 @@ hr {
 
     color: #999;
     border-top: 1px solid #e5e5e5;
-    background-color: #f9f9f9;
+    background-color: white;
 }
 .blog-footer p:last-child {
     margin-bottom: 0;
@@ -486,8 +488,13 @@ td a {
     float: left;
 }
 .logo {
-    width: 1080px;
-    margin: 0 auto;
+    margin-left:130px;
+}
+@media screen and (max-width: 1280px) { /*当屏幕尺寸小于900px时，应用下面的CSS样式*/
+    .logo {
+        margin-left:40px;
+        margin-top:6px;
+    }
 }
 
 .media-left {
@@ -503,10 +510,10 @@ td a {
     position: relative;
 }
 .index-title{
-  margin-bottom:0px;
+    margin-bottom:0;
 }
 .each-area{
-  margin-top:10px;
+    margin-top:10px;
 }
 .time{
     display:none;
